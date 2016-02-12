@@ -1,7 +1,7 @@
 ﻿namespace Assignment4
 {
-    interface ISorter
+    public interface ISorter
     {
-        void sort();
+        void sort(int[] numbers, int low, int high);
     }
 }
