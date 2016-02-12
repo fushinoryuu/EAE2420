@@ -59,10 +59,10 @@ class LinkedList:
         """Adds the given value as the last value in the list."""
         new_node = Node(value, None, self.tail)
         self.tail = new_node
-        if self.head is not None:
-            self.tail.previous.next = new_node
-        else:
+        if self.head is None:
             self.head = new_node
+        else:
+            self.tail.previous.next = new_node
         self.length += 1
 
     def find(self, value):
