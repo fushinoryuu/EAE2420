@@ -1,6 +1,6 @@
 ﻿namespace Assignment4
 {
-    class QuickSort
+    class QuickSort : ISorter
     {
         private static void swap_numbers(int[] numbers, int index1, int index2)
         {
@@ -26,7 +26,17 @@
             return wall;
         }
 
-        public static void sort(int[] numbers, int low, int high)
+        //public static void defaultsort(int[] numbers, int low, int high)
+        //{
+        //    if(low < high)
+        //    {
+        //        int pivot_location = partition(numbers, low, high);
+        //        defaultsort(numbers, low, pivot_location);
+        //        defaultsort(numbers, pivot_location + 1, high);
+        //    }
+        //}
+
+        public void sort(int[] numbers, int low, int high)
         {
             if(low < high)
             {
