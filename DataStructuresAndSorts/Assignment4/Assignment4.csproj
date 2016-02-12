@@ -37,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ISorter.cs" />
+    <Compile Include="Quicksort.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
