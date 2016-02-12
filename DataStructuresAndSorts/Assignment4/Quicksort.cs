@@ -1,6 +1,6 @@
 ﻿namespace Assignment4
 {
-    class Quicksort
+    class QuickSort
     {
         static void swap_numbers(int[] numbers, int index1, int index2)
         {

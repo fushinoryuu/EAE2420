@@ -36,9 +36,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BubbleSort.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="InsertionSort.cs" />
     <Compile Include="ISorter.cs" />
-    <Compile Include="Quicksort.cs" />
+    <Compile Include="QuickSort.cs" />
+    <Compile Include="SelectionSort.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
