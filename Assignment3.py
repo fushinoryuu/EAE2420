@@ -168,13 +168,27 @@ def main():
     print("Twenty One Item List:", twentyoneitem_list, '\n')
 
     quick_sort(sorted_list, 0, len(sorted_list))
+    assert sorted_list == [1, 2, 3, 4, 5]
     quick_sort(reversed_list, 0, len(reversed_list))
+    assert reversed_list == [6, 7, 8, 9, 10]
     quick_sort(unsorted_list, 0, len(unsorted_list))
+    assert unsorted_list == [11, 12, 13, 15, 19]
     quick_sort(oneitem_list, 0, len(oneitem_list))
+    assert oneitem_list == [20]
     quick_sort(twoitem_list, 0, len(twoitem_list))
+    assert twoitem_list == [21, 22]
     quick_sort(nineitem_list, 0, len(nineitem_list))
+    for item in range(0, len(nineitem_list)):
+        if item < len(nineitem_list) - 1:
+            assert nineitem_list[item] < nineitem_list[item + 1]
     quick_sort(thirteenitem_list, 0, len(thirteenitem_list))
+    for item in range(0, len(thirteenitem_list)):
+        if item < len(thirteenitem_list) - 1:
+            assert thirteenitem_list[item] < thirteenitem_list[item + 1]
     quick_sort(twentyoneitem_list, 0, len(twentyoneitem_list))
+    for item in range(0, len(twentyoneitem_list)):
+        if item < len(twentyoneitem_list) - 1:
+            assert twentyoneitem_list[item] < twentyoneitem_list[item + 1]
 
     print("Lists after Quicksort:\n")
     print("Sorted List:", sorted_list)
