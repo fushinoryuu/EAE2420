@@ -167,24 +167,39 @@ def main():
     print("Thirteen Item List:", thirteenitem_list)
     print("Twenty One Item List:", twentyoneitem_list, '\n')
 
+    # Sorting a sorted list
     quick_sort(sorted_list, 0, len(sorted_list))
     assert sorted_list == [1, 2, 3, 4, 5]
+
+    # Sorting a list that is in reverse order
     quick_sort(reversed_list, 0, len(reversed_list))
     assert reversed_list == [6, 7, 8, 9, 10]
+
+    # Sorting an unsorted list
     quick_sort(unsorted_list, 0, len(unsorted_list))
     assert unsorted_list == [11, 12, 13, 15, 19]
+
+    # Sorting a one item list
     quick_sort(oneitem_list, 0, len(oneitem_list))
     assert oneitem_list == [20]
+
+    # Sorting a two item list
     quick_sort(twoitem_list, 0, len(twoitem_list))
     assert twoitem_list == [21, 22]
+
+    # Sorting a random 9 item list
     quick_sort(nineitem_list, 0, len(nineitem_list))
     for item in range(0, len(nineitem_list)):
         if item < len(nineitem_list) - 1:
             assert nineitem_list[item] < nineitem_list[item + 1]
+
+    # Sorting a random 13 item list
     quick_sort(thirteenitem_list, 0, len(thirteenitem_list))
     for item in range(0, len(thirteenitem_list)):
         if item < len(thirteenitem_list) - 1:
             assert thirteenitem_list[item] < thirteenitem_list[item + 1]
+
+    # Sorting a random 21 item list
     quick_sort(twentyoneitem_list, 0, len(twentyoneitem_list))
     for item in range(0, len(twentyoneitem_list)):
         if item < len(twentyoneitem_list) - 1:
@@ -214,6 +229,15 @@ def main():
         default_runner = default_runner.next
     print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
 
+    print("\nDeleting 1 and 9 from the list. New list:\n")
+    linked_list.remove(linked_list.find(1))
+    linked_list.remove(linked_list.find(9))
+    delete_runner = linked_list.head
+    while delete_runner is not None:
+        print("Value of Node:", delete_runner.data, "Address:", delete_runner)
+        delete_runner = delete_runner.next
+    print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
+
     print("\nInserting 6 at the beginning and 4 at the end. New list:\n")
     linked_list.addFirst(6)
     linked_list.addLast(4)
@@ -227,10 +251,10 @@ def main():
     linked_list.remove(linked_list.find(5))
     linked_list.insertBefore(linked_list.find(3), 2)
     linked_list.insertAfter(linked_list.find(7), 8)
-    delete_runner = linked_list.head
-    while delete_runner is not None:
-        print("Value of Node:", delete_runner.data, "Address:", delete_runner)
-        delete_runner = delete_runner.next
+    mod_runner = linked_list.head
+    while mod_runner is not None:
+        print("Value of Node:", mod_runner.data, "Address:", mod_runner)
+        mod_runner = mod_runner.next
     print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
 
     print("\nIterating through the list:\n")
