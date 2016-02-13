@@ -222,6 +222,7 @@ def main():
     for i in test_list:
         linked_list.addLast(i)
 
+    # Initial linked list
     print("This is the starting Linked List:\n")
     default_runner = linked_list.head
     while default_runner is not None:
@@ -229,6 +230,7 @@ def main():
         default_runner = default_runner.next
     print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
 
+    # Deleting a couple of nodes
     print("\nDeleting 1 and 9 from the list. New list:\n")
     linked_list.remove(linked_list.find(1))
     linked_list.remove(linked_list.find(9))
@@ -238,6 +240,7 @@ def main():
         delete_runner = delete_runner.next
     print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
 
+    # Inserting a couple of node
     print("\nInserting 6 at the beginning and 4 at the end. New list:\n")
     linked_list.addFirst(6)
     linked_list.addLast(4)
@@ -247,8 +250,8 @@ def main():
         add_runner = add_runner.next
     print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
 
-    print("\nDeleting 5, inserting 2 before 3, inserting 8 after 7. New list: \n")
-    linked_list.remove(linked_list.find(5))
+    # Inserting a couple more nodes
+    print("\nInserting 2 before 3, inserting 8 after 7. New list: \n")
     linked_list.insertBefore(linked_list.find(3), 2)
     linked_list.insertAfter(linked_list.find(7), 8)
     mod_runner = linked_list.head
@@ -257,6 +260,7 @@ def main():
         mod_runner = mod_runner.next
     print("Length:", linked_list.count(), "Head:", linked_list.first().data, "Tail:", linked_list.last().data)
 
+    # Iterate through the list
     print("\nIterating through the list:\n")
     iter = linked_list.__iter__()
     for i in range(linked_list.length):
