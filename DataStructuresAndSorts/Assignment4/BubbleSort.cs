@@ -1,8 +1,8 @@
 ﻿namespace Assignment4
 {
-    class BubbleSort
+    class BubbleSort : ISorter
     {
-        public void bubble_sort(int[] numbers)
+        public void sort(int[] numbers, int hihg, int low)
         {
             for(int i = 0; i < numbers.Length - 1; i++)
             {
@@ -16,7 +16,7 @@
             }
         }
 
-        static void swap_numbers(int[] numbers, int index1, int index2)
+        private static void swap_numbers(int[] numbers, int index1, int index2)
         {
             int temp = numbers[index1];
             numbers[index1] = numbers[index2];

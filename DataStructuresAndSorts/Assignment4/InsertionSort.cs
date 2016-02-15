@@ -1,8 +1,9 @@
 ﻿namespace Assignment4
 {
-    class InsertionSort
+    class InsertionSort : ISorter
     {
-        public void insertion_sort(int[] numbers)
+        // TODO: this function is not sorting the last element in the list.
+        public void sort(int[] numbers, int low, int high)
         {
             for(int index = 0; index < numbers.Length - 1; index++)
             {

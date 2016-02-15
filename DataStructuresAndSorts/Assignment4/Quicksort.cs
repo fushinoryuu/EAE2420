@@ -26,16 +26,6 @@
             return wall;
         }
 
-        //public static void defaultsort(int[] numbers, int low, int high)
-        //{
-        //    if(low < high)
-        //    {
-        //        int pivot_location = partition(numbers, low, high);
-        //        defaultsort(numbers, low, pivot_location);
-        //        defaultsort(numbers, pivot_location + 1, high);
-        //    }
-        //}
-
         public void sort(int[] numbers, int low, int high)
         {
             if(low < high)

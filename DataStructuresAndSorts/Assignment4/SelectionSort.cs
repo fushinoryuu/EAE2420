@@ -2,9 +2,9 @@
 
 namespace Assignment4
 {
-    class SelectionSort
+    class SelectionSort : ISorter
     {
-        static void selection_sort(int[] numbers)
+        public void sort(int[] numbers, int low, int high)
         {
             for(int index = 0; index < numbers.Length - 1; index++)
             {
@@ -19,7 +19,7 @@ namespace Assignment4
             }
         }
 
-        static int find_index(int[] numbers, int value)
+        private static int find_index(int[] numbers, int value)
         {
             int index = 0;
             foreach(int item in numbers)
@@ -32,7 +32,7 @@ namespace Assignment4
             return -1;
         }
 
-        static void swap_numbers(int[] numbers, int index1, int index2)
+        private static void swap_numbers(int[] numbers, int index1, int index2)
         {
             int temp = numbers[index1];
             numbers[index1] = numbers[index2];
