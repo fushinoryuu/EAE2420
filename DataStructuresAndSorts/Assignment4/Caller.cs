@@ -14,13 +14,13 @@ namespace Assignment4
             qSorter.sort(qList, 0, qList.Length);
             Console.WriteLine("List after quick sort: [{0}]\n", string.Join(", ", qList));
 
-            int[] sList = new[] {2, 6, 3, 1, 9};
+            int[] sList = new[] { 2, 6, 3, 1, 9 };
             Console.WriteLine("List before selection sort: [{0}]", string.Join(", ", sList));
             SelectionSort sSorter = new SelectionSort();
             sSorter.sort(sList, 0, 0);
             Console.WriteLine("List after selection sort: [{0}]\n", string.Join(", ", sList));
 
-            int[] iList = new[] {2, 8, 5, 7, 3};
+            int[] iList = new[] { 2, 8, 5, 7, 3 };
             Console.WriteLine("List before insertion sort: [{0}]", string.Join(", ", iList));
             InsertionSort iSorter = new InsertionSort();
             iSorter.sort(iList, 0, 0);
@@ -35,7 +35,7 @@ namespace Assignment4
             int[] mList = new[] { 6, 8, 3, 0, 1 };
             Console.WriteLine("List before merge sort: [{0}]", string.Join(", ", mList));
             MergeSort mSorter = new MergeSort();
-            mSorter.sort(mList, 0, 0);
+            mSorter.sort(mList, 0, mList.Length - 1);
             Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
         }
     }
