@@ -21,10 +21,10 @@ namespace Assignment4
             Console.WriteLine("List after selection sort: [{0}]\n", string.Join(", ", sList));
 
             int[] iList = new[] {2, 8, 5, 7, 3};
-            Console.WriteLine("List before selection sort: [{0}]", string.Join(", ", iList));
+            Console.WriteLine("List before insertion sort: [{0}]", string.Join(", ", iList));
             InsertionSort iSorter = new InsertionSort();
             iSorter.sort(iList, 0, 0);
-            Console.WriteLine("List after selection sort: [{0}]\n", string.Join(", ", iList));
+            Console.WriteLine("List after insertion sort: [{0}]\n", string.Join(", ", iList));
 
             int[] bList = new[] { 1, 7, 3, 2, 0 };
             Console.WriteLine("List before bubble sort: [{0}]", string.Join(", ", bList));

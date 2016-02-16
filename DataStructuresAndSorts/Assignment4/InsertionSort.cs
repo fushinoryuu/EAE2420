@@ -2,20 +2,27 @@
 {
     class InsertionSort : ISorter
     {
-        // TODO: this function is not sorting the last element in the list.
         public void sort(int[] numbers, int low, int high)
         {
-            for(int index = 0; index < numbers.Length - 1; index++)
+            for(int i = 0; i < numbers.Length - 1; i++)
             {
-                int current = numbers[index];
-                int next = index;
-                while(next > 0 && numbers[next - 1] > current)
+                int j = i + 1;
+                while(j > 0)
                 {
-                    numbers[next] = numbers[next - 1];
-                    next--;
+                    if(numbers[j - 1] > numbers[j])
+                    {
+                        swap_numbers(numbers, j - 1, j);
+                    }
+                    j--;
                 }
-                numbers[next] = current;
             }
+        }
+
+        private static void swap_numbers(int[] numbers, int index1, int index2)
+        {
+            int temp = numbers[index1];
+            numbers[index1] = numbers[index2];
+            numbers[index2] = temp;
         }
     }
 }
