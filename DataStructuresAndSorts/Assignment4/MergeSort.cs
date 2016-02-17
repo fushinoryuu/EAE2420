@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Assignment4
+﻿namespace Assignment4
 {
     class MergeSort : ISorter
     {
@@ -18,7 +16,7 @@ namespace Assignment4
             }
         }
 
-        private void merge(int[] numbers, int left, int mid, int right)
+        private static void merge(int[] numbers, int left, int mid, int right)
         {
             int[] temp = new int[25];
             int i, left_end, num_elements, tmp_pos;

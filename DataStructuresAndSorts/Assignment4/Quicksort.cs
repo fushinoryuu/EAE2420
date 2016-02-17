@@ -2,6 +2,16 @@
 {
     class QuickSort : ISorter
     {
+        public void sort(int[] numbers, int low, int high)
+        {
+            if (low < high)
+            {
+                int pivot_location = partition(numbers, low, high);
+                sort(numbers, low, pivot_location);
+                sort(numbers, pivot_location + 1, high);
+            }
+        }
+
         private static void swap_numbers(int[] numbers, int index1, int index2)
         {
             int temp = numbers[index1];
@@ -20,20 +30,9 @@
                     wall++;
                     swap_numbers(numbers, i, wall);
                 }
-
             }
             swap_numbers(numbers, low, wall);
             return wall;
-        }
-
-        public void sort(int[] numbers, int low, int high)
-        {
-            if(low < high)
-            {
-                int pivot_location = partition(numbers, low, high);
-                sort(numbers, low, pivot_location);
-                sort(numbers, pivot_location + 1, high);
-            }
-        }
+        }        
     }
 }
