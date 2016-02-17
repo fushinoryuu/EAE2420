@@ -8,7 +8,7 @@ namespace Assignment4
         {
             int mid;
 
-            if (right > left)
+            if (left < right)
             {
                 mid = (right + left) / 2;
                 sort(numbers, left, mid);
