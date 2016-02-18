@@ -29,7 +29,6 @@ namespace Assignment4
             }
         }
 
-        // TODO Implement: Count
         public int Count
         {
             get
