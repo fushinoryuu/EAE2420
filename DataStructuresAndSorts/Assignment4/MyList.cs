@@ -45,7 +45,7 @@ namespace Assignment4
             }
         }
         
-        // TODO Implement: Array Resize
+        // TODO Handle Exception
         public void Add(T item)
         {
             if (element_count < this.underlyingArray.Length)
@@ -63,10 +63,14 @@ namespace Assignment4
             this.element_count = 0;
         }
 
-        // TODO Implement: Contains
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < Count; index++)
+            {
+                if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item));
+                    return true;
+            }
+            return false;
         }
 
         // TODO Implement: Copy

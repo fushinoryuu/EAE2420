@@ -47,6 +47,7 @@ namespace Assignment4
             MyList<int> myList = new MyList<int>(5);
             myList.Add(9);
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.WriteLine(myList.Contains(9));
         }
 
         private static void asserter(int[] numbers)
