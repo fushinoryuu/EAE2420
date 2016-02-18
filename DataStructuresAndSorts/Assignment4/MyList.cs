@@ -59,10 +59,9 @@ namespace Assignment4
                 throw new IndexOutOfRangeException();
         }
 
-        // TODO Implement: Clear
         public void Clear()
         {
-            throw new NotImplementedException();
+            this.element_count = 0;
         }
 
         // TODO Implement: Contains
