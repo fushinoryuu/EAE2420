@@ -73,10 +73,15 @@ namespace Assignment4
             return false;
         }
 
-        // TODO Implement: Copy
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            T[] newArray = new T[underlyingArray.Length * 2];
+            while (arrayIndex < underlyingArray.Length)
+            {
+                newArray[arrayIndex] = underlyingArray[arrayIndex];
+                arrayIndex++;
+            }
+            underlyingArray = newArray;
         }
 
         // TODO Implement: Get Enumerator
