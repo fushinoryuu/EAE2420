@@ -45,17 +45,18 @@ namespace Assignment4
             }
         }
         
-        // TODO Handle Exception
         public void Add(T item)
         {
-            if (element_count < this.underlyingArray.Length)
+            try
             {
                 this.underlyingArray[element_count] = item;
                 this.element_count++;
             }
-
-            else
-                throw new IndexOutOfRangeException();
+            catch (IndexOutOfRangeException)
+            {
+                this.CopyTo(this.underlyingArray, 0);
+                this.Add(item);
+            }
         }
 
         public void Clear()

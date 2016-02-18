@@ -44,11 +44,10 @@ namespace Assignment4
             //asserter(mList);
             //Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
 
-            MyList<int> myList = new MyList<int>(5);
+            MyList<int> myList = new MyList<int>(1);
             myList.Add(9);
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
-            Console.WriteLine(myList.Contains(9));
-            myList.CopyTo(myList.underlyingArray, 0);
+            myList.Add(1);
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
