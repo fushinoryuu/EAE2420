@@ -11,7 +11,7 @@ namespace Assignment4
 
         public MyList(int initial_size)
         {
-            underlyingArray = new T[initial_size];
+            this.underlyingArray = new T[initial_size];
             this.element_count = 0;
         }
 
@@ -33,16 +33,15 @@ namespace Assignment4
         {
             get
             {
-                return element_count;
+                return this.element_count;
             }
         }
 
-        // TODO Implement: Read Only
         public bool IsReadOnly
         {
             get
             {
-                throw new NotImplementedException();
+                return this.underlyingArray.IsReadOnly;
             }
         }
         
@@ -51,8 +50,8 @@ namespace Assignment4
         {
             if (element_count < this.underlyingArray.Length)
             {
-                underlyingArray[element_count] = item;
-                element_count++;
+                this.underlyingArray[element_count] = item;
+                this.element_count++;
             }
 
             else
@@ -68,10 +67,6 @@ namespace Assignment4
         public bool Contains(T item)
         {
             throw new NotImplementedException();
-            //for (int index = 0; index < underlyingArray.Length; index++)
-            //    if (underlyingArray[index] == item)
-            //        return true;
-            //return false;
         }
 
         // TODO Implement: Copy
