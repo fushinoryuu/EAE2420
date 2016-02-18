@@ -43,6 +43,10 @@ namespace Assignment4
             mSorter.sort(mList, 0, mList.Length - 1);
             asserter(mList);
             Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
+
+            MyList<int> myList = new MyList<int>(5);
+            myList.Add(9);
+            Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
         private static void asserter(int[] numbers)
