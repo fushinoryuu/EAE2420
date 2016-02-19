@@ -131,22 +131,21 @@ namespace Assignment4
             for (int index = 0; index < Count; index++)
                 if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item))
                 {
-                    while (index < Count - 1)
-                    {
-                        underlyingArray[index] = underlyingArray[index + 1];
-                        index++;
-                    }
-                    ChangeCount(-1);
-                    underlyingArray[Count] = default(T);
+                    RemoveAt(index);
                     return true;
                 }
             return false;
         }
 
-        // TODO Implement: Remove at
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            while (index < Count - 1)
+            {
+                underlyingArray[index] = underlyingArray[index + 1];
+                index++;
+            }
+            ChangeCount(-1);
+            underlyingArray[Count] = default(T);
         }
 
         // TODO Implement: Get IEnumerable
