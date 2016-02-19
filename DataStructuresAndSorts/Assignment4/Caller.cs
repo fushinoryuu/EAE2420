@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Assignment4
 {
@@ -9,7 +11,7 @@ namespace Assignment4
         {
             //Console.WriteLine("Hello World!\n");
 
-            //int[] qList = new[] { 9, 7, 2, 6, 1 };
+            int[] qList = new[] { 9, 7, 2, 6, 1 };
             //Console.WriteLine("List before quick sort: [{0}]", string.Join(", ", qList));
             //QuickSort qSorter = new QuickSort();
             //qSorter.sort(qList, 0, qList.Length);
@@ -44,19 +46,32 @@ namespace Assignment4
             //asserter(mList);
             //Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
 
+            //List<int> somelist = new List<int> { 1, 3, 4, 5, 6, 7};
+            //var isfour = somelist.Where(x => x == 4).ToArray();
+
+            //Stopwatch watch = new Stopwatch();
+            //watch.Start();
+
             MyList<int> myList = new MyList<int>(2);
             myList.Add(1);
             myList.Add(2);
             myList.Add(3);
-            Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
-            myList.Insert(0, 9);
-            myList.Insert(1, 8);
-            myList.Insert(2, 7);
-            myList.Insert(3, 6);
-            myList.Insert(4, 5);
-            myList.Add(4);
+
+            for (int index = 0; index < qList.Length; index++)
+                myList.Add(qList[index]);
+
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
             Console.WriteLine(myList.Count);
+
+            myList.Insert(0, 9);
+            myList.Add(8);
+            Console.WriteLine(myList.Remove(2));
+
+            Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.WriteLine(myList.Count);
+
+            //watch.Stop();
+            //Console.WriteLine(watch.Elapsed);
         }
 
         private static void asserter(int[] numbers)

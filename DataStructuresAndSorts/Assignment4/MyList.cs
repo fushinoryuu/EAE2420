@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// TODO Comment code
 namespace Assignment4
 {
     class MyList<T> : IList<T>
@@ -35,10 +36,11 @@ namespace Assignment4
             {
                 return element_count;
             }
-            private set
-            {
-                element_count++;
-            }
+        }
+
+        private void ChangeCount(int amount)
+        {
+            element_count += amount;
         }
 
         public bool IsReadOnly
@@ -53,8 +55,8 @@ namespace Assignment4
         {
             try
             {
-                underlyingArray[element_count] = item;
-                Count++;
+                underlyingArray[Count] = item;
+                ChangeCount(1);
             }
             catch (IndexOutOfRangeException)
             {
@@ -71,34 +73,30 @@ namespace Assignment4
         public void Resize(T[] array)
         {
             T[] newArray = new T[array.Length * 2];
+
             for (int index = 0; index < array.Length; index++)
-            {
                 newArray[index] = array[index];
-            }
+
             underlyingArray = newArray;
         }
 
         public bool Contains(T item)
         {
             for (int index = 0; index < Count; index++)
-            {
                 if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item))
                     return true;
-            }
+
             return false;
         }
         
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (Count == array.Length)
-            {
                 Resize(array);
-            }
             
             for (int index = Count; index > arrayIndex; index--)
-            {
                 array[index] = array[index - 1];
-            }
+
             underlyingArray = array;
         }
 
@@ -117,23 +115,32 @@ namespace Assignment4
         public void Insert(int index, T item)
         {
             if (Count == underlyingArray.Length)
-            {
                 Resize(underlyingArray);
-            }
             if (index >= Count)
                 Add(item);
             else
             {
                 CopyTo(underlyingArray, index);
                 underlyingArray[index] = item;
-                element_count++;
+                ChangeCount(1);
             }
         }
 
-        // TODO Implement: Remove
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < Count; index++)
+                if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item))
+                {
+                    while (index < Count - 1)
+                    {
+                        underlyingArray[index] = underlyingArray[index + 1];
+                        index++;
+                    }
+                    ChangeCount(-1);
+                    underlyingArray[Count] = default(T);
+                    return true;
+                }
+            return false;
         }
 
         // TODO Implement: Remove at
