@@ -52,21 +52,21 @@ namespace Assignment4
             //Stopwatch watch = new Stopwatch();
             //watch.Start();
 
-            MyList<int> myList = new MyList<int>(2);
+            MyList<int> myList = new MyList<int>(1);
             myList.Add(1);
             myList.Add(2);
-            //myList.Add(3);
+            myList.Add(3);
 
-            //for (int index = 0; index < qList.Length; index++)
-            //    myList.Add(qList[index]);
+            for (int index = 0; index < qList.Length; index++)
+                myList.Add(qList[index]);
 
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
             Console.WriteLine(myList.Count);
 
-            //myList.Insert(0, 9);
-            //myList.Add(8);
-            Console.WriteLine(myList.Remove(2));
-            myList.RemoveAt(0);
+            myList.Insert(0, 9);
+            myList.Add(8);
+            myList.RemoveAt(1);
+            myList.Remove(2);
 
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
             Console.WriteLine(myList.Count);

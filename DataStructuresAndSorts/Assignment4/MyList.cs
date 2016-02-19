@@ -16,17 +16,16 @@ namespace Assignment4
             element_count = 0;
         }
 
-        // TODO Implement: Indexer
         public T this[int index]
         {
             get
             {
-                throw new NotImplementedException();
+                return underlyingArray[index];
             }
 
             set
             {
-                throw new NotImplementedException();
+                underlyingArray[index] = value;
             }
         }
 
@@ -38,7 +37,7 @@ namespace Assignment4
             }
         }
 
-        private void ChangeCount(int amount)
+        private void UpdateCount(int amount)
         {
             element_count += amount;
         }
@@ -56,7 +55,7 @@ namespace Assignment4
             try
             {
                 underlyingArray[Count] = item;
-                ChangeCount(1);
+                UpdateCount(1);
             }
             catch (IndexOutOfRangeException)
             {
@@ -122,7 +121,7 @@ namespace Assignment4
             {
                 CopyTo(underlyingArray, index);
                 underlyingArray[index] = item;
-                ChangeCount(1);
+                UpdateCount(1);
             }
         }
 
@@ -144,7 +143,7 @@ namespace Assignment4
                 underlyingArray[index] = underlyingArray[index + 1];
                 index++;
             }
-            ChangeCount(-1);
+            UpdateCount(-1);
             underlyingArray[Count] = default(T);
         }
 
