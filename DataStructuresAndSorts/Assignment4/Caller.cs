@@ -45,9 +45,12 @@ namespace Assignment4
             //Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
 
             MyList<int> myList = new MyList<int>(1);
-            myList.Add(9);
-            Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
             myList.Add(1);
+            myList.Add(2);
+            myList.Add(3);
+            //Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
+            myList.Insert(1, 9);
+            //myList.Add(5);
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 

@@ -74,15 +74,27 @@ namespace Assignment4
             return false;
         }
 
+        // TODO Fix CopyTo
         public void CopyTo(T[] array, int arrayIndex)
         {
-            T[] newArray = new T[underlyingArray.Length * 2];
-            while (arrayIndex < underlyingArray.Length)
+            if (Count == array.Length)
             {
-                newArray[arrayIndex] = underlyingArray[arrayIndex];
-                arrayIndex++;
+                T[] newArray = new T[array.Length * 2];
+                for (int index = arrayIndex; index < array.Length; index++)
+                {
+                    newArray[index] = array[index];
+                }
+                this.underlyingArray = newArray;
             }
-            underlyingArray = newArray;
+            else
+            {
+                T temp = array[arrayIndex + 1];
+                for (int index = arrayIndex; index < array.Length - 1; index++)
+                {
+                    array[index + 1] = array[index];
+                    temp = array[index + 1];
+                }
+            }
         }
 
         // TODO Implement: Get Enumerator
@@ -100,7 +112,13 @@ namespace Assignment4
         // TODO Implement: Insert
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            if (index >= this.Count)
+                this.Add(item);
+            else
+            {
+                this.CopyTo(this.underlyingArray, index);
+                this.underlyingArray[index] = item;
+            }
         }
 
         // TODO Implement: Remove
