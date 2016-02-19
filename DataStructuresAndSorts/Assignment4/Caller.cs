@@ -44,14 +44,19 @@ namespace Assignment4
             //asserter(mList);
             //Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
 
-            MyList<int> myList = new MyList<int>(1);
+            MyList<int> myList = new MyList<int>(2);
             myList.Add(1);
             myList.Add(2);
             myList.Add(3);
-            //Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
-            myList.Insert(1, 9);
-            //myList.Add(5);
             Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
+            myList.Insert(0, 9);
+            myList.Insert(1, 8);
+            myList.Insert(2, 7);
+            myList.Insert(3, 6);
+            myList.Insert(4, 5);
+            myList.Add(4);
+            Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.WriteLine(myList.Count);
         }
 
         private static void asserter(int[] numbers)

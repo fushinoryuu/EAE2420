@@ -11,8 +11,8 @@ namespace Assignment4
 
         public MyList(int initial_size)
         {
-            this.underlyingArray = new T[initial_size];
-            this.element_count = 0;
+            underlyingArray = new T[initial_size];
+            element_count = 0;
         }
 
         // TODO Implement: Indexer
@@ -33,7 +33,11 @@ namespace Assignment4
         {
             get
             {
-                return this.element_count;
+                return element_count;
+            }
+            private set
+            {
+                element_count++;
             }
         }
 
@@ -41,7 +45,7 @@ namespace Assignment4
         {
             get
             {
-                return this.underlyingArray.IsReadOnly;
+                return underlyingArray.IsReadOnly;
             }
         }
         
@@ -49,52 +53,53 @@ namespace Assignment4
         {
             try
             {
-                this.underlyingArray[element_count] = item;
-                this.element_count++;
+                underlyingArray[element_count] = item;
+                Count++;
             }
             catch (IndexOutOfRangeException)
             {
-                this.CopyTo(this.underlyingArray, 0);
-                this.Add(item);
+                Resize(underlyingArray);
+                Add(item);
             }
         }
 
         public void Clear()
         {
-            this.element_count = 0;
+            element_count = 0;
+        }
+
+        public void Resize(T[] array)
+        {
+            T[] newArray = new T[array.Length * 2];
+            for (int index = 0; index < array.Length; index++)
+            {
+                newArray[index] = array[index];
+            }
+            underlyingArray = newArray;
         }
 
         public bool Contains(T item)
         {
             for (int index = 0; index < Count; index++)
             {
-                if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item));
+                if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item))
                     return true;
             }
             return false;
         }
-
-        // TODO Fix CopyTo
+        
         public void CopyTo(T[] array, int arrayIndex)
         {
             if (Count == array.Length)
             {
-                T[] newArray = new T[array.Length * 2];
-                for (int index = arrayIndex; index < array.Length; index++)
-                {
-                    newArray[index] = array[index];
-                }
-                this.underlyingArray = newArray;
+                Resize(array);
             }
-            else
+            
+            for (int index = Count; index > arrayIndex; index--)
             {
-                T temp = array[arrayIndex + 1];
-                for (int index = arrayIndex; index < array.Length - 1; index++)
-                {
-                    array[index + 1] = array[index];
-                    temp = array[index + 1];
-                }
+                array[index] = array[index - 1];
             }
+            underlyingArray = array;
         }
 
         // TODO Implement: Get Enumerator
@@ -108,16 +113,20 @@ namespace Assignment4
         {
             throw new NotImplementedException();
         }
-
-        // TODO Implement: Insert
+        
         public void Insert(int index, T item)
         {
-            if (index >= this.Count)
-                this.Add(item);
+            if (Count == underlyingArray.Length)
+            {
+                Resize(underlyingArray);
+            }
+            if (index >= Count)
+                Add(item);
             else
             {
-                this.CopyTo(this.underlyingArray, index);
-                this.underlyingArray[index] = item;
+                CopyTo(underlyingArray, index);
+                underlyingArray[index] = item;
+                element_count++;
             }
         }
 
