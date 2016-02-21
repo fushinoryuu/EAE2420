@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Assignment4
 {
     class Caller
     {
-        MyList<int> myList = new MyList<int>(1);
-
         public static void Main()
         {
             Console.WriteLine("Hello World!\n");
@@ -48,21 +44,8 @@ namespace Assignment4
             SortAsserter(mList);
             Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
 
-            //for (int index = 0; index < qList.Length; index++)
-            //    myList.Add(qList[index]);
-
-            //myList.Clear();
-
-            //Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
-            //Console.WriteLine(myList.Count);
-
-            //myList.Insert(0, 9);
-            //myList.Add(8);
-            //myList.RemoveAt(1);
-            //myList.Remove(2);
-
-            //Console.WriteLine("My IList: [{0}]", string.Join(", ", myList.underlyingArray));
-            //Console.WriteLine(myList.Count);
+            MyList<int> myList = new MyList<int>(1);
+            TestList(myList);
         }
 
         private static void SortAsserter(int[] numbers)
@@ -80,47 +63,62 @@ namespace Assignment4
         }
 
         // TODO Implement TestList
-        private static void TestList()
+        private static void TestList(MyList<int> myList)
         {
-            TestAdd();
-            TestInsert();
-            TestRemove();
-            TestContains();
-            TestClear();
+            Console.WriteLine("Initial list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Console.WriteLine("Adding 1, 3, 5, 7, & 9 to the list...\n");
+            TestAdd(myList);
+
+            Console.WriteLine("Inserting 2 into index 4 and 5 into index 5...\n");
+            TestInsert(myList);
+            
+            //TestRemove();
+            
+            //TestContains();
+            
+            //TestClear();
         }
 
-        // TODO Implement TestAdd
-        private static void TestAdd()
+        private static void TestAdd(MyList<int> myList)
         {
-            throw new NotImplementedException();
+            int[] testlist = new[] { 1, 3, 5, 7, 9 };
+            for (int i = 0; i < testlist.Length; i++)
+            {
+                myList.Add(testlist[i]);
+                Debug.Assert(myList.Contains(testlist[i]) == true, "List doesn't contain this number.");
+            }
+            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
         }
 
-        // TODO Implement TestInsert
-        private static void TestInsert()
+        private static void TestInsert(MyList<int> myList)
         {
-            throw new NotImplementedException();
+            myList.Insert(4, 2);
+            myList.Insert(5, 5);
+            Debug.Assert(myList.Contains(2) == true);
+            Debug.Assert(myList.Contains(5) == true);
+            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
         }
 
         // TODO Implement TestClear
-        private static void TestClear()
+        private static void TestClear(MyList<int> myList)
         {
             throw new NotImplementedException();
         }
 
         // TODO Implement TestRemove
-        private static void TestRemove()
+        private static void TestRemove(MyList<int> myList)
         {
             throw new NotImplementedException();
         }
 
         // TODO Implement TestContains
-        private static void TestContains()
+        private static void TestContains(MyList<int> myList)
         {
             throw new NotImplementedException();
         }
 
         // TODO Implement TestCount
-        private static void TestCount()
+        private static void TestCount(MyList<int> myList)
         {
             throw new NotImplementedException();
         }
