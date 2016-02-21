@@ -71,8 +71,12 @@ namespace Assignment4
 
             Console.WriteLine("Inserting 2 into index 4 and 5 into index 5...\n");
             TestInsert(myList);
-            
-            //TestRemove();
+
+            Console.WriteLine("Removing the first 5 from the list...\n");
+            TestRemove(myList);
+
+            Console.WriteLine("Removing 3 at index 1...\n");
+            TestRemoveAt(myList);
             
             //TestContains();
             
@@ -105,10 +109,18 @@ namespace Assignment4
             throw new NotImplementedException();
         }
 
-        // TODO Implement TestRemove
         private static void TestRemove(MyList<int> myList)
         {
-            throw new NotImplementedException();
+            myList.Remove(5);
+            Debug.Assert(myList.Contains(5) == true);
+            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+        }
+
+        private static void TestRemoveAt(MyList<int> myList)
+        {
+            myList.RemoveAt(1);
+            Debug.Assert(myList.Contains(3) == false);
+            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
         }
 
         // TODO Implement TestContains
