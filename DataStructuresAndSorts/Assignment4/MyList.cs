@@ -154,7 +154,6 @@ namespace Assignment4
             throw new NotImplementedException();
         }
 
-        // TODO Implement: Index of
         /// <summary>
         /// Determines the index of a specific item in the list.
         /// </summary>
@@ -162,7 +161,10 @@ namespace Assignment4
         /// <returns>The index of item if found in the list; otherwise, -1.</returns>
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < Count; index++)
+                if (EqualityComparer<T>.Default.Equals(underlyingArray[index], item))
+                    return index;
+            return -1;
         }
 
         /// <summary>
