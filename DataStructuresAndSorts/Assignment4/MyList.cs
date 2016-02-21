@@ -90,13 +90,15 @@ namespace Assignment4
             }
         }
 
-        // TODO Clear the items in the array
         /// <summary>
         /// Removes all items from the list.
         /// </summary>
         public void Clear()
         {
-            element_count = 0;
+            for (int index = 0; index < Count; index++)
+                underlyingArray[index] = default(T);
+
+            UpdateCount(-Count);
         }
 
         /// <summary>
