@@ -22,12 +22,11 @@ namespace Assignment4
             element_count = 0;
         }
 
-
         /// <summary>
         /// Gets or sets the element at the specified index.
         /// </summary>
         /// <param name="index">The index of the element to get or set.</param>
-        /// <returns></returns>
+        /// <returns>The index of the element in the list.</returns>
         public T this[int index]
         {
             get
