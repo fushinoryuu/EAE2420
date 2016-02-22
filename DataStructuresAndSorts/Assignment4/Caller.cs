@@ -66,6 +66,7 @@ namespace Assignment4
         {
             Console.Write("Initial list: [{0}]", string.Join(", ", myList));
             TestCount(myList, 0);
+            TestInterface(myList);
 
             Console.WriteLine("Adding 1, 3, 5, 7, & 9 to the list...\n");
             TestAdd(myList);
@@ -99,6 +100,7 @@ namespace Assignment4
                 Debug.Assert(myList.Contains(testlist[i]) == true, "List doesn't contain this number.");
             }
             Console.Write("New list: [{0}]", string.Join(", ", myList));
+            
         }
 
         private static void TestInsert(MyList<int> myList)
@@ -141,6 +143,11 @@ namespace Assignment4
         {
             Debug.Assert(myList.Contains(7));
             Console.WriteLine("The index of 7 is: {0}\n",myList.IndexOf(7));
+        }
+
+        private static void TestInterface(MyList<int> myList)
+        {
+            Debug.Assert(myList is MyList<int> == true, "The object doesn't implement the interface.");
         }
     }
 }

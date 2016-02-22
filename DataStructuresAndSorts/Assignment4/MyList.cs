@@ -154,6 +154,11 @@ namespace Assignment4
                 yield return underlyingArray[i];
         }
 
+        public IEnumerator<T> GetEnumeratorNoYield()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Determines the index of a specific item in the list.
         /// </summary>
@@ -218,14 +223,13 @@ namespace Assignment4
             underlyingArray[Count] = default(T);
         }
 
-        // TODO Implement: Get IEnumerable
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>An IEnumerator object that can be used to iterate through the list.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
