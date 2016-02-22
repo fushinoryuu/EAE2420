@@ -62,25 +62,30 @@ namespace Assignment4
             throw new NotImplementedException();
         }
 
-        // TODO Implement TestList
         private static void TestList(MyList<int> myList)
         {
             Console.WriteLine("Initial list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            TestCount(myList, 0);
+
             Console.WriteLine("Adding 1, 3, 5, 7, & 9 to the list...\n");
             TestAdd(myList);
+            TestCount(myList, 5);
 
             Console.WriteLine("Inserting 2 into index 4 and 5 into index 5...\n");
             TestInsert(myList);
-
+            TestCount(myList, 7);
+            
             Console.WriteLine("Removing the first 5 from the list...\n");
             TestRemove(myList);
+            TestCount(myList, 6);
 
             Console.WriteLine("Removing 3 at index 1...\n");
             TestRemoveAt(myList);
-            
-            //TestContains();
-            
-            //TestClear();
+            TestCount(myList, 5);
+
+            Console.WriteLine("Clearing the list...\n");
+            TestClear(myList);
+            TestCount(myList, 0);
         }
 
         private static void TestAdd(MyList<int> myList)
@@ -103,10 +108,11 @@ namespace Assignment4
             Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
         }
 
-        // TODO Implement TestClear
         private static void TestClear(MyList<int> myList)
         {
-            throw new NotImplementedException();
+            myList.Clear();
+            Debug.Assert(myList.Count == 0);
+            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
         }
 
         private static void TestRemove(MyList<int> myList)
@@ -123,16 +129,9 @@ namespace Assignment4
             Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
         }
 
-        // TODO Implement TestContains
-        private static void TestContains(MyList<int> myList)
+        private static void TestCount(MyList<int> myList, int count)
         {
-            throw new NotImplementedException();
-        }
-
-        // TODO Implement TestCount
-        private static void TestCount(MyList<int> myList)
-        {
-            throw new NotImplementedException();
+            Debug.Assert(myList.Count == count, "The total count doesn't match.");
         }
     }
 }
