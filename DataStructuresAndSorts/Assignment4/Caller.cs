@@ -74,7 +74,7 @@ namespace Assignment4
             Console.WriteLine("Inserting 2 into index 4 and 5 into index 5...\n");
             TestInsert(myList);
             TestCount(myList, 7);
-            
+
             Console.WriteLine("Removing the first 5 from the list...\n");
             TestRemove(myList);
             TestCount(myList, 6);
@@ -132,6 +132,7 @@ namespace Assignment4
         private static void TestCount(MyList<int> myList, int count)
         {
             Debug.Assert(myList.Count == count, "The total count doesn't match.");
+            Console.WriteLine("List count: {0}\n", myList.Count);
         }
     }
 }
