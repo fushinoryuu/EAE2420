@@ -64,7 +64,7 @@ namespace Assignment4
 
         private static void TestList(MyList<int> myList)
         {
-            Console.Write("Initial list: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.Write("Initial list: [{0}]", string.Join(", ", myList));
             TestCount(myList, 0);
 
             Console.WriteLine("Adding 1, 3, 5, 7, & 9 to the list...\n");
@@ -98,7 +98,7 @@ namespace Assignment4
                 myList.Add(testlist[i]);
                 Debug.Assert(myList.Contains(testlist[i]) == true, "List doesn't contain this number.");
             }
-            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
         private static void TestInsert(MyList<int> myList)
@@ -107,28 +107,28 @@ namespace Assignment4
             myList.Insert(5, 8);
             Debug.Assert(myList.Contains(2) == true);
             Debug.Assert(myList.Contains(5) == true);
-            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
         private static void TestClear(MyList<int> myList)
         {
             myList.Clear();
             Debug.Assert(myList.Count == 0);
-            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
         private static void TestRemove(MyList<int> myList)
         {
             myList.Remove(5);
             Debug.Assert(myList.Contains(5) == false);
-            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
         private static void TestRemoveAt(MyList<int> myList)
         {
             myList.RemoveAt(1);
             Debug.Assert(myList.Contains(3) == false);
-            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
         private static void TestCount(MyList<int> myList, int count)

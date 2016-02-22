@@ -9,7 +9,7 @@ namespace Assignment4
         /// <summary>
         /// Global variables for the class.
         /// </summary>
-        public T[] underlyingArray;
+        private T[] underlyingArray;
         private int element_count;
 
         /// <summary>
@@ -144,14 +144,14 @@ namespace Assignment4
             underlyingArray = array;
         }
 
-        // TODO Implement: Get Enumerator
         /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the list.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < underlyingArray.Length; i++)
+                yield return underlyingArray[i];
         }
 
         /// <summary>
