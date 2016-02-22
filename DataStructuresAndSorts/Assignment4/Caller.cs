@@ -66,6 +66,8 @@ namespace Assignment4
         {
             Console.Write("Initial list: [{0}]", string.Join(", ", myList));
             TestCount(myList, 0);
+
+            TestIsReadOnly(myList);
             TestInterface(myList);
 
             Console.WriteLine("Adding 1, 3, 5, 7, & 9 to the list...\n");
@@ -148,6 +150,13 @@ namespace Assignment4
         private static void TestInterface(MyList<int> myList)
         {
             Debug.Assert(myList is MyList<int> == true, "The object doesn't implement the interface.");
+            Console.WriteLine("Does the list implement MyList interface? {0}\n", myList is MyList<int> == true);
+        }
+
+        private static void TestIsReadOnly(MyList<int> myList)
+        {
+            Debug.Assert(myList.IsReadOnly == false);
+            Console.WriteLine("Is the list ready only? {0}\n", myList.IsReadOnly);
         }
     }
 }
