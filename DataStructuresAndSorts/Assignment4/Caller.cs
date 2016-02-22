@@ -64,18 +64,20 @@ namespace Assignment4
 
         private static void TestList(MyList<int> myList)
         {
-            Console.WriteLine("Initial list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Console.Write("Initial list: [{0}]", string.Join(", ", myList.underlyingArray));
             TestCount(myList, 0);
 
             Console.WriteLine("Adding 1, 3, 5, 7, & 9 to the list...\n");
             TestAdd(myList);
             TestCount(myList, 5);
 
-            Console.WriteLine("Inserting 2 into index 4 and 5 into index 5...\n");
+            Console.WriteLine("Inserting 2 into index 3 and 8 into index 5...\n");
             TestInsert(myList);
             TestCount(myList, 7);
 
-            Console.WriteLine("Removing the first 5 from the list...\n");
+            TestIndexOf(myList);
+
+            Console.WriteLine("Removing 5 from the list...\n");
             TestRemove(myList);
             TestCount(myList, 6);
 
@@ -96,43 +98,49 @@ namespace Assignment4
                 myList.Add(testlist[i]);
                 Debug.Assert(myList.Contains(testlist[i]) == true, "List doesn't contain this number.");
             }
-            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
         private static void TestInsert(MyList<int> myList)
         {
-            myList.Insert(4, 2);
-            myList.Insert(5, 5);
+            myList.Insert(3, 2);
+            myList.Insert(5, 8);
             Debug.Assert(myList.Contains(2) == true);
             Debug.Assert(myList.Contains(5) == true);
-            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
         private static void TestClear(MyList<int> myList)
         {
             myList.Clear();
             Debug.Assert(myList.Count == 0);
-            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
         private static void TestRemove(MyList<int> myList)
         {
             myList.Remove(5);
-            Debug.Assert(myList.Contains(5) == true);
-            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Debug.Assert(myList.Contains(5) == false);
+            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
         private static void TestRemoveAt(MyList<int> myList)
         {
             myList.RemoveAt(1);
             Debug.Assert(myList.Contains(3) == false);
-            Console.WriteLine("New list: [{0}]\n", string.Join(", ", myList.underlyingArray));
+            Console.Write("New list: [{0}]", string.Join(", ", myList.underlyingArray));
         }
 
         private static void TestCount(MyList<int> myList, int count)
         {
             Debug.Assert(myList.Count == count, "The total count doesn't match.");
-            Console.WriteLine("List count: {0}\n", myList.Count);
+            Console.WriteLine(" Items in list: {0}\n", myList.Count);
+        }
+
+        private static void TestIndexOf(MyList<int> myList)
+        {
+            Debug.Assert(myList.Contains(7));
+            Console.WriteLine("The index of 7 is: {0}\n",myList.IndexOf(7));
         }
     }
 }
