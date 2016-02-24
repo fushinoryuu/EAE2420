@@ -4,12 +4,12 @@
     {
         public void sort(int[] numbers, int low, int high)
         {
-            for(int i = 0; i < numbers.Length - 1; i++)
+            for (int i = 0; i < numbers.Length - 1; i++)
             {
                 int j = i + 1;
-                while(j > 0)
+                while (j > 0)
                 {
-                    if(numbers[j - 1] > numbers[j])
+                    if (numbers[j - 1] > numbers[j])
                     {
                         swap_numbers(numbers, j - 1, j);
                     }

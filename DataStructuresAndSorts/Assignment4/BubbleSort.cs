@@ -2,7 +2,7 @@
 {
     class BubbleSort : ISorter
     {
-        public void sort(int[] numbers, int hihg, int low)
+        public void sort(int[] numbers, int high, int low)
         {
             for(int i = 0; i < numbers.Length - 1; i++)
             {
