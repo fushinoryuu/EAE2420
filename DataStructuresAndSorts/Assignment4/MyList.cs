@@ -149,14 +149,50 @@ namespace Assignment4
         /// <returns>An enumerator that can be used to iterate through the list.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < underlyingArray.Length; i++)
-                yield return underlyingArray[i];
+            //for (int i = 0; i < underlyingArray.Length; i++)
+            //    yield return underlyingArray[i];
+
+            return GetEnumeratorNoYield();
         }
 
         // TODO No yield
         public IEnumerator<T> GetEnumeratorNoYield()
         {
             throw new NotImplementedException();
+        }
+
+        private class myEnumerator : IEnumerator<T>
+        {
+            public T Current
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            object IEnumerator.Current
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool MoveNext()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /// <summary>
