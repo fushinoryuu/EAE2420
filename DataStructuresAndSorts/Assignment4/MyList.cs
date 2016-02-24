@@ -152,22 +152,46 @@ namespace Assignment4
             //for (int i = 0; i < underlyingArray.Length; i++)
             //    yield return underlyingArray[i];
 
-            return GetEnumeratorNoYield();
+            //return GetEnumeratorNoYield();
+
+            return new myEnumerator(this);
         }
 
         // TODO No yield
-        public IEnumerator<T> GetEnumeratorNoYield()
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerator<T> GetEnumeratorNoYield()
+        //{
+        //    return new myEnumerator(this);
+        //}
 
         private class myEnumerator : IEnumerator<T>
         {
+            private MyList<T> myList;
+            private int index;
+            bool started = false;
+
+            public myEnumerator(MyList<T> myList)
+            {
+                this.myList = myList;
+                index = -1;
+            }
+
+            // TODO MoveNext
+            // STUCK IN LOOP
+            public bool MoveNext()
+            {
+                if (started)
+                    index++;
+                started = true;
+                return myList[index] != null;
+            }
+
+            //TODO T Current
+            // STUCK IN LOOP
             public T Current
             {
                 get
                 {
-                    throw new NotImplementedException();
+                    return myList[index];
                 }
             }
 
@@ -175,18 +199,13 @@ namespace Assignment4
             {
                 get
                 {
-                    throw new NotImplementedException();
+                    return Current;
                 }
             }
 
             public void Dispose()
             {
-                throw new NotImplementedException();
-            }
-
-            public bool MoveNext()
-            {
-                throw new NotImplementedException();
+                //Not Needed
             }
 
             public void Reset()
