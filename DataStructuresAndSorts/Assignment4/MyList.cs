@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Assignment4
@@ -30,12 +31,17 @@ namespace Assignment4
         {
             get
             {
+                if (index >= Count)
+                    throw new IndexOutOfRangeException();
                 return underlyingArray[index];
             }
 
             set
             {
-                underlyingArray[index] = value;
+                if (index >= Count)
+                    Add(value);
+                else
+                    underlyingArray[index] = value;
             }
         }
 
