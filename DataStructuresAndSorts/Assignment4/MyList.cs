@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace Assignment4
@@ -150,23 +149,38 @@ namespace Assignment4
             return new myEnumerator(this);
         }
 
+        /// <summary>
+        /// A simple iteratator used in the customer List class above.
+        /// </summary>
         private class myEnumerator : IEnumerator<T>
         {
             private MyList<T> myList;
             private int index;
 
+            /// <summary>
+            /// Constructor for myEnumerator.
+            /// </summary>
+            /// <param name="myList">List used to iterate over.</param>
             public myEnumerator(MyList<T> myList)
             {
                 this.myList = myList;
                 index = -1;
             }
 
+            /// <summary>
+            /// Advances the enumerator to the next element of the list.
+            /// </summary>
+            /// <returns>true if the enumerator was successfully advanced to the next element; 
+            /// false if the enumerator has passed the end of the list.</returns>
             public bool MoveNext()
             {
                 index++;
                 return (index < myList.Count);
             }
 
+            /// <summary>
+            /// Gets the element in the collection at the current position of the enumerator.
+            /// </summary>
             public T Current
             {
                 get
@@ -175,6 +189,9 @@ namespace Assignment4
                 }
             }
 
+            /// <summary>
+            /// Gets the current element in the list.
+            /// </summary>
             object IEnumerator.Current
             {
                 get
@@ -183,14 +200,18 @@ namespace Assignment4
                 }
             }
 
+            // Not Needed
             public void Dispose()
             {
                 //Not Needed
             }
 
+            /// <summary>
+            /// Sets the enumerator to its initial position, which is before the first element in the list.
+            /// </summary>
             public void Reset()
             {
-                throw new NotImplementedException();
+                index = -1;
             }
         }
 
