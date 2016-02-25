@@ -77,16 +77,11 @@ namespace Assignment4
         /// <param name="item">The object to add to the list.</param>
         public void Add(T item)
         {
-            try
-            {
-                underlyingArray[Count] = item;
-                UpdateCount(1);
-            }
-            catch (IndexOutOfRangeException)
-            {
+            if (Count == underlyingArray.Length)
                 Resize(underlyingArray);
-                Add(item);
-            }
+
+            underlyingArray[Count] = item;
+            UpdateCount(1);
         }
 
         /// <summary>
@@ -152,22 +147,13 @@ namespace Assignment4
             //for (int i = 0; i < underlyingArray.Length; i++)
             //    yield return underlyingArray[i];
 
-            //return GetEnumeratorNoYield();
-
             return new myEnumerator(this);
         }
-
-        // TODO No yield
-        //public IEnumerator<T> GetEnumeratorNoYield()
-        //{
-        //    return new myEnumerator(this);
-        //}
 
         private class myEnumerator : IEnumerator<T>
         {
             private MyList<T> myList;
             private int index;
-            bool started = false;
 
             public myEnumerator(MyList<T> myList)
             {
@@ -175,18 +161,12 @@ namespace Assignment4
                 index = -1;
             }
 
-            // TODO MoveNext
-            // STUCK IN LOOP
             public bool MoveNext()
             {
-                if (started)
-                    index++;
-                started = true;
-                return myList[index] != null;
+                index++;
+                return (index < myList.Count);
             }
 
-            //TODO T Current
-            // STUCK IN LOOP
             public T Current
             {
                 get
