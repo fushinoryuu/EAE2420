@@ -149,9 +149,11 @@ namespace Assignment4
         /// <returns>An enumerator that can be used to iterate through the list.</returns>
         public IEnumerator<T> GetEnumerator()
         {
+            // WITH YIELD
             //for (int i = 0; i < underlyingArray.Length; i++)
             //    yield return underlyingArray[i];
 
+            // WITH OUT YIELD
             return new myEnumerator(this);
         }
 
@@ -291,7 +293,7 @@ namespace Assignment4
         /// <returns>An IEnumerator object that can be used to iterate through the list.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return new myEnumerator(this);
         }
     }
 }
