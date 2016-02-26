@@ -12,7 +12,7 @@ namespace Assignment4
 
             //int[] qList = new[] { 9, 7, 2, 6, 1 };
             //Console.WriteLine("List before quick sort: [{0}]", string.Join(", ", qList));
-            //QuickSort qSorter = new QuickSort();
+            QuickSort qSorter = new QuickSort();
             //qSorter.sort(qList, 0, qList.Length);
             //SortAsserter(qList);
             //Console.WriteLine("List after quick sort: [{0}]\n", string.Join(", ", qList));
@@ -45,8 +45,10 @@ namespace Assignment4
             //SortAsserter(mList);
             //Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
 
-            MyList<int> myList = new MyList<int>(1);
-            TestList(myList);
+            //MyList<int> myList = new MyList<int>(1);
+            //TestList(myList);
+
+            RunningTimes.SortPlot(qSorter, 70000);
         }
 
         /// <summary>
@@ -210,9 +212,9 @@ namespace Assignment4
         /// <param name="myList">List to test.</param>
         private static void TestIterator(MyList<int> myList)
         {
-            IEnumerator<int> rator = myList.GetEnumerator();
-            while (rator.MoveNext())
-                Console.WriteLine("Next value: {0}", rator.Current);
+            IEnumerator<int> iterator = myList.GetEnumerator();
+            while (iterator.MoveNext())
+                Console.WriteLine("Next value: {0}", iterator.Current);
         }
     }
 }
