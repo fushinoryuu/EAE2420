@@ -19,28 +19,28 @@ namespace Assignment4
 
             //int[] sList = new[] { 2, 6, 3, 1, 9 };
             //Console.WriteLine("List before selection sort: [{0}]", string.Join(", ", sList));
-            //SelectionSort sSorter = new SelectionSort();
+            SelectionSort sSorter = new SelectionSort();
             //sSorter.sort(sList, 0, 0);
             //SortAsserter(sList);
             //Console.WriteLine("List after selection sort: [{0}]\n", string.Join(", ", sList));
 
             //int[] iList = new[] { 2, 8, 5, 7, 3 };
             //Console.WriteLine("List before insertion sort: [{0}]", string.Join(", ", iList));
-            //InsertionSort iSorter = new InsertionSort();
+            InsertionSort iSorter = new InsertionSort();
             //iSorter.sort(iList, 0, 0);
             //SortAsserter(iList);
             //Console.WriteLine("List after insertion sort: [{0}]\n", string.Join(", ", iList));
 
             //int[] bList = new[] { 1, 7, 3, 2, 0 };
             //Console.WriteLine("List before bubble sort: [{0}]", string.Join(", ", bList));
-            //BubbleSort bSorter = new BubbleSort();
+            BubbleSort bSorter = new BubbleSort();
             //bSorter.sort(bList, 0, 0);
             //SortAsserter(bList);
             //Console.WriteLine("List after bubble sort: [{0}]\n", string.Join(", ", bList));
 
             //int[] mList = new[] { 6, 8, 3, 0, 1 };
             //Console.WriteLine("List before merge sort: [{0}]", string.Join(", ", mList));
-            //MergeSort mSorter = new MergeSort();
+            MergeSort mSorter = new MergeSort();
             //mSorter.sort(mList, 0, mList.Length - 1);
             //SortAsserter(mList);
             //Console.WriteLine("List after merge sort: [{0}]\n", string.Join(", ", mList));
@@ -48,7 +48,11 @@ namespace Assignment4
             //MyList<int> myList = new MyList<int>(1);
             //TestList(myList);
 
-            RunningTimes.SortPlot(qSorter, 70000);
+            RunningTimes.SortPlot(qSorter, 70000, "Quick Sort");
+            RunningTimes.SortPlot(sSorter, 30000, "Selection Sort");
+            RunningTimes.SortPlot(iSorter, 30000, "Insertion Sort");
+            RunningTimes.SortPlot(bSorter, 30000, "Bubble Sort");
+            //RunningTimes.SortPlot(mSorter, 70000, "Merge Sort");
         }
 
         /// <summary>
