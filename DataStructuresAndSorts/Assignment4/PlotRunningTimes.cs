@@ -25,10 +25,10 @@ namespace Assignment4
                 {
                     watch.Reset();
                     watch.Start();
-                    sorter.sort(list, 1, list.Length - 0);
+                    sorter.sort(list, 0, list.Length - 1);
                     watch.Stop();
                     time = watch.ElapsedMilliseconds;
-                    Console.WriteLine(time);
+                    Console.WriteLine("Sort: {0}, Element count: {1}, Time in Milliseconds: {2}", name, elements, time);
                 }
 
                 else
@@ -38,13 +38,14 @@ namespace Assignment4
                     sorter.sort(list, 0, list.Length);
                     watch.Stop();
                     time = watch.ElapsedMilliseconds;
-                    Console.WriteLine(time);
+                    Console.WriteLine("Sort: {0}, Element count: {1}, Time in Milliseconds: {2}", name, elements, time);
                 }
 
                 file.WriteLine("Sort: {0}, Element count: {1}, Time in Milliseconds: {2}", name, elements, time);
 
                 elements -= 10000;
             }
+            Console.WriteLine(" ");
             file.WriteLine(" ");
             file.Close();
         }
