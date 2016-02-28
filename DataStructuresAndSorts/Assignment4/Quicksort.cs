@@ -33,7 +33,6 @@
             int temp = numbers[index1];
             numbers[index1] = numbers[index2];
             numbers[index2] = temp;
-        }
-      
+        } 
     }
 }

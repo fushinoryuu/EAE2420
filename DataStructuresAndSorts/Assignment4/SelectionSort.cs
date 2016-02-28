@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Assignment4
+﻿namespace Assignment4
 {
     class SelectionSort : ISorter
     {
