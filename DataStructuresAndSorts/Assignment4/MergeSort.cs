@@ -1,48 +1,55 @@
-﻿namespace Assignment4
+﻿using System;
+
+namespace Assignment4
 {
     class MergeSort : ISorter
     {
         public void sort(int[] numbers, int left, int right)
         {
-            int mid;
-
             if (left < right)
             {
-                mid = (right + left) / 2;
-                sort(numbers, left, mid);
-                sort(numbers, (mid + 1), right);
+                int middle = (left + right) / 2;
 
-                merge(numbers, left, (mid + 1), right);
+                sort(numbers, left, middle);
+
+                sort(numbers, middle + 1, right);
+
+                merge(numbers, left, middle, right);
             }
         }
 
-        private static void merge(int[] numbers, int left, int mid, int right)
+        private static void merge(int[] numbers, int left, int middle, int right)
         {
-            int[] temp = new int[25];
-            int i, left_end, num_elements, tmp_pos;
+            int lengthLeft = middle - left + 1;
+            int lengthRight = right - middle;
 
-            left_end = (mid - 1);
-            tmp_pos = left;
-            num_elements = (right - left + 1);
+            int[] leftArray = new int[lengthLeft + 1];
+            int[] rightArray = new int[lengthRight + 1];
 
-            while ((left <= left_end) && (mid <= right))
+            for (int i = 0; i < lengthLeft; i++)
+                leftArray[i] = numbers[left + i - 1];
+
+            for (int j = 0; j < lengthRight; j++)
+                rightArray[j] = numbers[middle + j];
+
+            leftArray[lengthLeft] = Int32.MaxValue;
+            rightArray[lengthRight] = Int32.MaxValue;
+
+            int iIndex = 0;
+            int jIndex = 0;
+
+            for (int k = left; k < right; k++)
             {
-                if (numbers[left] <= numbers[mid])
-                    temp[tmp_pos++] = numbers[left++];
+                if (leftArray[iIndex] <= rightArray[jIndex])
+                {
+                    numbers[k] = leftArray[iIndex];
+                    iIndex++;
+                }
                 else
-                    temp[tmp_pos++] = numbers[mid++];
-            }
-
-            while (left <= left_end)
-                temp[tmp_pos++] = numbers[left++];
-
-            while (mid <= right)
-                temp[tmp_pos++] = numbers[mid++];
-
-            for (i = 0; i < num_elements; i++)
-            {
-                numbers[right] = temp[right];
-                right--;
+                {
+                    numbers[k] = rightArray[jIndex];
+                    jIndex++;
+                }
             }
         }
     }

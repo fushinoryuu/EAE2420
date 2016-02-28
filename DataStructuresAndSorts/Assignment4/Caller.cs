@@ -49,10 +49,10 @@ namespace Assignment4
             //TestList(myList);
 
             RunningTimes.SortPlot(qSorter, 70000, "Quick Sort");
-            RunningTimes.SortPlot(sSorter, 30000, "Selection Sort");
-            RunningTimes.SortPlot(iSorter, 30000, "Insertion Sort");
-            RunningTimes.SortPlot(bSorter, 30000, "Bubble Sort");
-            //RunningTimes.SortPlot(mSorter, 70000, "Merge Sort");
+            RunningTimes.SortPlot(sSorter, 70000, "Selection Sort");
+            RunningTimes.SortPlot(iSorter, 70000, "Insertion Sort");
+            RunningTimes.SortPlot(bSorter, 70000, "Bubble Sort");
+            RunningTimes.SortPlot(mSorter, 70000, "Merge Sort");
         }
 
         /// <summary>

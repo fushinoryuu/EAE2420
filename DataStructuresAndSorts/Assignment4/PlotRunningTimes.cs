@@ -21,12 +21,25 @@ namespace Assignment4
                 for (int i = 0; i < list.Length; i++)
                     list[i] = randint.Next(1, 200);
 
-                watch.Reset();
-                watch.Start();
-                sorter.sort(list, 0, list.Length);
-                watch.Stop();
-                time = watch.ElapsedMilliseconds;
-                Console.WriteLine(time);
+                if (name == "Merge Sort")
+                {
+                    watch.Reset();
+                    watch.Start();
+                    sorter.sort(list, 1, list.Length - 0);
+                    watch.Stop();
+                    time = watch.ElapsedMilliseconds;
+                    Console.WriteLine(time);
+                }
+
+                else
+                {
+                    watch.Reset();
+                    watch.Start();
+                    sorter.sort(list, 0, list.Length);
+                    watch.Stop();
+                    time = watch.ElapsedMilliseconds;
+                    Console.WriteLine(time);
+                }
 
                 file.WriteLine("Sort: {0}, Element count: {1}, Time in Milliseconds: {2}", name, elements, time);
 
