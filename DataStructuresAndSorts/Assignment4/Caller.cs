@@ -48,6 +48,8 @@ namespace Assignment4
             MyList<int> myList = new MyList<int>(1);
             TestList(myList);
 
+            Console.WriteLine("Testing running times:\n");
+
             RunningTimes.SortPlot(qSorter, 70000, "Quick Sort");
             RunningTimes.SortPlot(sSorter, 70000, "Selection Sort");
             RunningTimes.SortPlot(iSorter, 70000, "Insertion Sort");
