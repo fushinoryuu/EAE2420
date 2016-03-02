@@ -34,6 +34,21 @@
             }
         }
 
+        public bool Contains(int item)
+        {
+            TreeNode crawler = root;
+            while (crawler != null)
+            {
+                if (item == crawler.data)
+                    return true;
+                else if (item >= crawler.data)
+                    crawler = crawler.right;
+                else
+                    crawler = crawler.left;
+            }
+            return false;
+        }
+
         public void Clear()
         {
             root = null;

@@ -15,6 +15,8 @@ namespace Assignment5
             Console.WriteLine(tree.root.data);
             Console.WriteLine(tree.root.left.data);
             Console.WriteLine(tree.root.right.data);
+
+            Console.WriteLine(tree.Contains(1));
         }
     }
 }
