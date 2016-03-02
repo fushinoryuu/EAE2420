@@ -6,17 +6,17 @@ namespace Assignment5
     {
         public static void Main()
         {
-            BinarySearchTree tree = new BinarySearchTree();
+            BinarySearchTree sTree = new BinarySearchTree();
             int[] list = new int[] { 5, 7, 2 };
 
             for (int i = 0; i < list.Length; i++)
-                tree.Add(list[i]);
+                sTree.Add(list[i]);
 
-            Console.WriteLine(tree.root.data);
-            Console.WriteLine(tree.root.left.data);
-            Console.WriteLine(tree.root.right.data);
+            Console.WriteLine(sTree.root.data);
+            Console.WriteLine(sTree.root.left.data);
+            Console.WriteLine(sTree.root.right.data);
 
-            Console.WriteLine(tree.Contains(1));
+            Console.WriteLine(sTree.Contains(1));
         }
     }
 }

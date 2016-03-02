@@ -2,7 +2,7 @@
 {
     class BinarySearchTree
     {
-        public TreeNode root;
+        public TreeNode<int> root;
 
         public BinarySearchTree()
         {
@@ -11,12 +11,12 @@
 
         public void Add(int item)
         {
-            TreeNode new_node = new TreeNode(item);
+            TreeNode<int> new_node = new TreeNode<int>(item);
             if (root == null)
                 root = new_node;
             else
             {
-                TreeNode crawler = root;
+                TreeNode<int> crawler = root;
 
                 while (crawler != null)
                 {
@@ -36,12 +36,12 @@
 
         public bool Contains(int item)
         {
-            TreeNode crawler = root;
+            TreeNode<int> crawler = root;
             while (crawler != null)
             {
                 if (item == crawler.data)
                     return true;
-                else if (item >= crawler.data)
+                else if (item >= crawler.data) 
                     crawler = crawler.right;
                 else
                     crawler = crawler.left;
@@ -53,6 +53,5 @@
         {
             root = null;
         }
-
     }
 }
