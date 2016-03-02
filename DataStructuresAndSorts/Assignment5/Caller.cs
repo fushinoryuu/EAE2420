@@ -6,8 +6,6 @@ namespace Assignment5
     {
         public static void Main()
         {
-            Console.WriteLine("Hello World");
-
             BinarySearchTree tree = new BinarySearchTree();
             int[] list = new int[] { 5, 7, 2 };
 
