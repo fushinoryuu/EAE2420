@@ -36,6 +36,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySearchTree.cs" />
     <Compile Include="Caller.cs" />
     <Compile Include="TreeNode.cs" />
   </ItemGroup>

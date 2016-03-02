@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assignment5
+﻿namespace Assignment5
 {
     class TreeNode
     {
-        public TreeNode()
-        {
+        public int data;
+        public TreeNode left, right, parent;
 
+        public TreeNode(int data, TreeNode left = null, TreeNode right = null, TreeNode parent = null)
+        {
+            this.data = data;
+            this.left = left;
+            this.right = right;
+            this.parent = parent;
         }
     }
 }

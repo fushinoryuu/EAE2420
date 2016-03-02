@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment5
 {
@@ -11,6 +7,16 @@ namespace Assignment5
         public static void Main()
         {
             Console.WriteLine("Hello World");
+
+            BinarySearchTree tree = new BinarySearchTree();
+            int[] list = new int[] { 5, 7, 2 };
+
+            for (int i = 0; i < list.Length; i++)
+                tree.Add(list[i]);
+
+            Console.WriteLine(tree.root.data);
+            Console.WriteLine(tree.root.left.data);
+            Console.WriteLine(tree.root.right.data);
         }
     }
 }
