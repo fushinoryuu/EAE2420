@@ -3,12 +3,10 @@
     class BinarySearchTree
     {
         public TreeNode root;
-        private int node_count;
 
         public BinarySearchTree()
         {
             root = null;
-            node_count = 0;
         }
 
         public void Add(int item)
@@ -36,6 +34,10 @@
             }
         }
 
+        public void Clear()
+        {
+            root = null;
+        }
 
     }
 }
