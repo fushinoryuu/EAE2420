@@ -40,6 +40,7 @@
     <Compile Include="Caller.cs" />
     <Compile Include="ExpressionParser.cs" />
     <Compile Include="ExpressionTree.cs" />
+    <Compile Include="myList.cs" />
     <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>

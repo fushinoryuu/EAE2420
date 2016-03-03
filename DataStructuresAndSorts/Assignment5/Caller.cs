@@ -6,19 +6,19 @@ namespace Assignment5
     {
         public static void Main()
         {
-            //BinarySearchTree sTree = new BinarySearchTree();
-            //int[] list = new int[] { 5, 7, 2 };
+            BinarySearchTree tree = new BinarySearchTree();
+            int[] temp = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
-            //for (int i = 0; i < list.Length; i++)
-            //    sTree.Add(list[i]);
+            for (int i = 0; i < temp.Length; i++)
+                tree.Add(temp[i]);
 
-            //Console.WriteLine(sTree.root.data);
-            //Console.WriteLine(sTree.root.left.data);
-            //Console.WriteLine(sTree.root.right.data);
+            MyList<int> preList = new MyList<int>(tree.Count);
 
-            //Console.WriteLine(sTree.Contains(1));
+            tree.TraversePre(preList, tree.root);
 
-            ExpressionParser xTree = new ExpressionParser();
+            Console.WriteLine("Pre-order: [{0}]", string.Join(", ", preList));
+
+            //ExpressionParser xTree = new ExpressionParser();
         }
     }
 }

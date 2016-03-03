@@ -3,10 +3,12 @@
     class BinarySearchTree
     {
         public TreeNode<int> root;
+        private int node_count;
 
         public BinarySearchTree()
         {
             root = null;
+            node_count = 0;
         }
 
         public void Add(int item)
@@ -32,6 +34,7 @@
                 else
                     new_node.parent.left = new_node;
             }
+            node_count += 1;
         }
 
         public bool Contains(int item)
@@ -52,6 +55,24 @@
         public void Clear()
         {
             root = null;
+            node_count = 0;
+        }
+
+        public int Count
+        {
+            get
+            {
+                return node_count;
+            }
+        }
+
+        public void TraversePre(MyList<int> list, TreeNode<int> node)
+        {
+            list.Add(node.data);
+            if (node.left != null)
+                TraversePre(list, node.left);
+            if (node.right != null)
+                TraversePre(list, node.right);
         }
     }
 }
