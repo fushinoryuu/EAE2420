@@ -5,37 +5,45 @@ namespace Assignment5
 {
     class ExpressionParser
     {
-        private Stack xStack;
+        private Stack stack;
 
         public ExpressionParser()
         {
-            xStack = new Stack();
+            stack = new Stack();
 
-            Console.WriteLine("Enter an expression");
-            string input = Console.ReadLine();
-
-            Parser(input);
+            Parser();
         }
 
-        public void Parser(string input)
+        public void Parser()
         {
+            Console.Write("Enter an expression: ");
+            string input = Console.ReadLine();
+
             string[] expression = new string[input.Length];
             expression = input.Split();
 
-            ToStack(expression);
+            BuildTree(expression);
         }
 
-        private void ToStack(string[] expression)
+        private void BuildTree(string[] expression)
         {
             foreach (string s in expression)
             {
-                if(s is int)
+                int temp;
+                if(Int32.TryParse(s, out temp))
                 {
-                    xStack.Push(s);
+                    Console.WriteLine("Its a Number");
+                    TreeNode<int> iNode = new TreeNode<int>(temp);
+                    stack.Push(iNode);
                 }
                 else
                 {
+                    Console.WriteLine("Not a Number");
+                    TreeNode<string> sNode = new TreeNode<string>(s);
 
+                    //More work needed here. 
+
+                    stack.Push(sNode);
                 }
             }
         }
