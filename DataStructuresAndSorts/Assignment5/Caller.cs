@@ -17,6 +17,8 @@ namespace Assignment5
             Console.WriteLine(sTree.root.right.data);
 
             Console.WriteLine(sTree.Contains(1));
+
+            ExpressionParser xTree = new ExpressionParser();
         }
     }
 }
