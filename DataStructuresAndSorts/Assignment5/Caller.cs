@@ -13,10 +13,12 @@ namespace Assignment5
                 tree.Add(temp[i]);
 
             MyList<int> preList = new MyList<int>(tree.Count);
-
             tree.TraversePre(preList, tree.root);
-
             Console.WriteLine("Pre-order: [{0}]", string.Join(", ", preList));
+
+            MyList<int> inList = new MyList<int>(tree.Count);
+            tree.TraverseIn(inList, tree.root);
+            Console.WriteLine("In-order: [{0}]", string.Join(", ", inList));
 
             //ExpressionParser xTree = new ExpressionParser();
         }

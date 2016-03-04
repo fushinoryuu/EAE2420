@@ -74,5 +74,14 @@
             if (node.right != null)
                 TraversePre(list, node.right);
         }
+
+        public void TraverseIn(MyList<int> list, TreeNode<int> node)
+        {
+            if (node.left != null)
+                TraverseIn(list, node.left);
+            list.Add(node.data);
+            if (node.right != null)
+                TraverseIn(list, node.right);
+        }
     }
 }
