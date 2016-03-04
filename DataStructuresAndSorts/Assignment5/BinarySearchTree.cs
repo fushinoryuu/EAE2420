@@ -34,7 +34,7 @@
                 else
                     new_node.parent.left = new_node;
             }
-            node_count += 1;
+            node_count++;
         }
 
         public bool Contains(int item)
@@ -44,7 +44,7 @@
             {
                 if (item == crawler.data)
                     return true;
-                else if (item >= crawler.data) 
+                else if (item >= crawler.data)
                     crawler = crawler.right;
                 else
                     crawler = crawler.left;
@@ -66,31 +66,34 @@
             }
         }
 
-        public void TraversePre(MyList<int> list, TreeNode<int> node)
+        public string TraversePre(MyList<int> list, TreeNode<int> node)
         {
             list.Add(node.data);
             if (node.left != null)
                 TraversePre(list, node.left);
             if (node.right != null)
                 TraversePre(list, node.right);
+            return string.Join(", ", list);
         }
 
-        public void TraverseIn(MyList<int> list, TreeNode<int> node)
+        public string TraverseIn(MyList<int> list, TreeNode<int> node)
         {
             if (node.left != null)
                 TraverseIn(list, node.left);
             list.Add(node.data);
             if (node.right != null)
                 TraverseIn(list, node.right);
+            return string.Join(", ", list);
         }
 
-        public void TraversePost(MyList<int> list, TreeNode<int> node)
+        public string TraversePost(MyList<int> list, TreeNode<int> node)
         {
             if (node.left != null)
                 TraversePost(list, node.left);
             if (node.right != null)
                 TraversePost(list, node.right);
             list.Add(node.data);
+            return string.Join(", ", list);
         }
     }
 }
