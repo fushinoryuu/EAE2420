@@ -58,7 +58,7 @@
             node_count = 0;
         }
 
-        public int Count
+        public int NodeCount
         {
             get
             {
@@ -82,6 +82,15 @@
             list.Add(node.data);
             if (node.right != null)
                 TraverseIn(list, node.right);
+        }
+
+        public void TraversePost(MyList<int> list, TreeNode<int> node)
+        {
+            if (node.left != null)
+                TraversePost(list, node.left);
+            if (node.right != null)
+                TraversePost(list, node.right);
+            list.Add(node.data);
         }
     }
 }
