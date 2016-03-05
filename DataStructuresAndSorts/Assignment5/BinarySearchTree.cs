@@ -38,7 +38,6 @@ namespace Assignment5
             }
             node_count++;
             CalculateHeight(root);
-            Rotate(root);
         }
 
         public TreeNode<int> Contains(int item)
@@ -86,25 +85,38 @@ namespace Assignment5
                 node.height = 1;
         }
 
-        private void Rotate(TreeNode<int> node)
+        private void CheckHeight(TreeNode<int> node)
         {
-            TreeNode<int> temp = node;
             if (node.left != null && node.right != null)
             {
                 int max = Math.Max(node.left.height, node.right.height);
                 if (node.left.height == max)
                 {
-
+                    Rotate(node.left);
                 }
-                else if (node.right.height == max)
+                if (node.right.height == max)
                 {
-                    node.left = temp;
-                    node.left.parent = node;
-                    node = node.right;
-                    node.right.parent = node;
-                    node.right = node.right.right;
+                    Rotate(node.right);
                 }
             }
+            else if (node.left.height > 1 && node.right == null)
+            {
+
+            }
+            else if (node.right.height > 1 && node.left == null)
+            {
+
+            }
+        }
+
+        private void Rotate(TreeNode<int> node)
+        {
+            TreeNode<int> temp = node;
+            node.left = temp;
+            node.left.parent = node;
+            node = node.right;
+            node.right.parent = node;
+            node.right = node.right.right;
         }
 
         public string TraversePre(MyList<int> list, TreeNode<int> node)
