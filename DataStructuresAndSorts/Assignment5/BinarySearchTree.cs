@@ -1,4 +1,6 @@
-﻿namespace Assignment5
+﻿using System;
+
+namespace Assignment5
 {
     class BinarySearchTree
     {
@@ -35,21 +37,23 @@
                     new_node.parent.left = new_node;
             }
             node_count++;
+            CalculateHeight(root);
+            Console.WriteLine("");
         }
 
-        public bool Contains(int item)
+        public TreeNode<int> Contains(int item)
         {
             TreeNode<int> crawler = root;
             while (crawler != null)
             {
                 if (item == crawler.data)
-                    return true;
+                    return crawler;
                 else if (item >= crawler.data)
                     crawler = crawler.right;
                 else
                     crawler = crawler.left;
             }
-            return false;
+            return null;
         }
 
         public void Clear()
@@ -64,6 +68,22 @@
             {
                 return node_count;
             }
+        }
+        private void CalculateHeight(TreeNode<int> node)
+        {
+            if (node.left != null)
+                CalculateHeight(node.left);
+            if (node.right != null)
+                CalculateHeight(node.right);
+
+            if (node.left != null && node.right != null)
+                node.height = Math.Max(node.left.height, node.right.height) + 1;
+            else if (node.left != null && node.right == null)
+                node.height = node.left.height + 1;
+            else if (node.left == null && node.right != null)
+                node.height = node.right.height + 1;
+            else if (node.left == null && node.right == null)
+                node.height = 1;
         }
 
         public string TraversePre(MyList<int> list, TreeNode<int> node)

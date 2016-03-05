@@ -21,18 +21,20 @@ namespace Assignment5
 
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
-            TestPre(preResult);
+            //TestPre(preResult);
             Console.WriteLine("Pre-order: [{0}]\n", preResult);
 
             MyList<int> inList = new MyList<int>(tree.NodeCount);
             string inResult = tree.TraverseIn(inList, tree.root);
-            TestIn(inResult);
+            //TestIn(inResult);
             Console.WriteLine("In-order: [{0}]\n", inResult);
 
             MyList<int> postList = new MyList<int>(tree.NodeCount);
             string postResult = tree.TraversePost(postList, tree.root);
-            TestPost(postResult);
+            //TestPost(postResult);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
+
+            Console.WriteLine(tree.root.height);
         }
 
         private static void TestPre(string result)
