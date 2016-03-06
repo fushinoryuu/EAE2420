@@ -89,29 +89,29 @@ namespace Assignment5
         {
             if (node.left != null && node.right != null)
             {
-                int max = Math.Max(node.left.height, node.right.height);
-                if (node.left.height == max)
+                if (node.left.height > node.right.height + 1)
                 {
                     Rotate(node.left);
                 }
-                if (node.right.height == max)
+                if (node.right.height > node.left.height + 1)
                 {
                     Rotate(node.right);
                 }
             }
             else if (node.left.height > 1 && node.right == null)
             {
-
+                Rotate(node.left);
             }
             else if (node.right.height > 1 && node.left == null)
             {
-
+                Rotate(node.right);
             }
         }
 
         private void Rotate(TreeNode<int> node)
         {
             TreeNode<int> temp = node;
+            
             node.left = temp;
             node.left.parent = node;
             node = node.right;
