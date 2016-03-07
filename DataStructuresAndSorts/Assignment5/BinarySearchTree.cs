@@ -57,13 +57,14 @@ namespace Assignment5
             return null;
         }
 
+        // TODO Finish Remove function
         public void Remove(TreeNode<int> node)
         {
             if (node == null)
-                return;
+                Console.WriteLine("\nCould not remove the node you were looking for!\n");
             else
             {
-
+                CalculateHeight(root);
             }
         }
 
@@ -124,7 +125,8 @@ namespace Assignment5
                     Rotate(node.right);
             }
         }
-
+        
+        // TODO Finish Rotate function
         private void Rotate(TreeNode<int> node)
         {
             //TreeNode<int> temp = node;
