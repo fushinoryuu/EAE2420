@@ -16,6 +16,7 @@ namespace Assignment5
         public void Add(int item)
         {
             TreeNode<int> new_node = new TreeNode<int>(item);
+
             if (root == null)
                 root = new_node;
             else
@@ -43,6 +44,7 @@ namespace Assignment5
         public TreeNode<int> Contains(int item)
         {
             TreeNode<int> crawler = root;
+
             while (crawler != null)
             {
                 if (item == crawler.data)
@@ -53,6 +55,16 @@ namespace Assignment5
                     crawler = crawler.left;
             }
             return null;
+        }
+
+        public void Remove(TreeNode<int> node)
+        {
+            if (node == null)
+                return;
+            else
+            {
+
+            }
         }
 
         public void Clear()
@@ -68,6 +80,7 @@ namespace Assignment5
                 return node_count;
             }
         }
+
         private void CalculateHeight(TreeNode<int> node)
         {
             if (node.left != null)
@@ -77,46 +90,50 @@ namespace Assignment5
 
             if (node.left != null && node.right != null)
                 node.height = Math.Max(node.left.height, node.right.height) + 1;
+
             else if (node.left != null && node.right == null)
                 node.height = node.left.height + 1;
+
             else if (node.left == null && node.right != null)
                 node.height = node.right.height + 1;
+
             else if (node.left == null && node.right == null)
                 node.height = 1;
+
+            CheckBalance(node);
         }
 
-        private void CheckHeight(TreeNode<int> node)
+        private void CheckBalance(TreeNode<int> node)
         {
-            if (node.left != null && node.right != null)
+            if (node.left == null && node.right == null)
+                return;
+
+            else if (node.left != null && node.right == null)
+                if (node.left.height > 1)
+                    Rotate(node);
+
+            else if (node.left == null && node.right != null)
+                if (node.right.height > 1)
+                    Rotate(node);
+
+            else if (node.left != null && node.right != null)
             {
                 if (node.left.height > node.right.height + 1)
-                {
                     Rotate(node.left);
-                }
-                if (node.right.height > node.left.height + 1)
-                {
+                else if (node.right.height > node.left.height + 1)
                     Rotate(node.right);
-                }
-            }
-            else if (node.left.height > 1 && node.right == null)
-            {
-                Rotate(node.left);
-            }
-            else if (node.right.height > 1 && node.left == null)
-            {
-                Rotate(node.right);
             }
         }
 
         private void Rotate(TreeNode<int> node)
         {
-            TreeNode<int> temp = node;
+            //TreeNode<int> temp = node;
             
-            node.left = temp;
-            node.left.parent = node;
-            node = node.right;
-            node.right.parent = node;
-            node.right = node.right.right;
+            //node.left = temp;
+            //node.left.parent = node;
+            //node = node.right;
+            //node.right.parent = node;
+            //node.right = node.right.right;
         }
 
         public string TraversePre(MyList<int> list, TreeNode<int> node)
