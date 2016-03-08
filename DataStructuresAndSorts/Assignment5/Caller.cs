@@ -8,7 +8,7 @@ namespace Assignment5
         public static void Main()
         {
             BSTree();
-            //ExpressionParser xTree = new ExpressionParser();
+            ETree();
         }
 
         private static void BSTree()
@@ -19,12 +19,12 @@ namespace Assignment5
             for (int i = 0; i < temp.Length; i++)
                 tree.Add(temp[i]);
 
-            tree.Remove(tree.Contains(25));
+            //tree.Remove(tree.Contains(25));
 
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
             TestPre(preResult);
-            Console.WriteLine("Pre-order: [{0}]\n", preResult);
+            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
             MyList<int> inList = new MyList<int>(tree.NodeCount);
             string inResult = tree.TraverseIn(inList, tree.root);
@@ -37,6 +37,11 @@ namespace Assignment5
             Console.WriteLine("Post-order: [{0}]\n", postResult);
 
             Console.WriteLine(tree.root.height);
+        }
+
+        private static void ETree()
+        {
+            ExpressionParser xTree = new ExpressionParser();
         }
 
         private static void TestPre(string result)

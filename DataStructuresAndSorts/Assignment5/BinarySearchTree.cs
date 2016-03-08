@@ -39,6 +39,7 @@ namespace Assignment5
             }
             node_count++;
             CalculateHeight(root);
+            Console.WriteLine("");
         }
 
         public TreeNode<int> Contains(int item)
@@ -100,7 +101,7 @@ namespace Assignment5
 
             else if (node.left == null && node.right == null)
                 node.height = 1;
-
+            Console.WriteLine("Node value: {0} Node Height: {1}", node.data, node.height);
             CheckBalance(node);
         }
 
@@ -113,24 +114,24 @@ namespace Assignment5
                 if (node.left.height > 1)
                     Rotate(node);
 
-            else if (node.left == null && node.right != null)
-                if (node.right.height > 1)
-                    Rotate(node);
+                else if (node.left == null && node.right != null)
+                    if (node.right.height > 1)
+                        Rotate(node);
 
-            else if (node.left != null && node.right != null)
-            {
-                if (node.left.height > node.right.height + 1)
-                    Rotate(node.left);
-                else if (node.right.height > node.left.height + 1)
-                    Rotate(node.right);
-            }
+                    else if (node.left != null && node.right != null)
+                    {
+                        if (node.left.height > node.right.height + 1)
+                            Rotate(node.left);
+                        else if (node.right.height > node.left.height + 1)
+                            Rotate(node.right);
+                    }
         }
-        
+
         // TODO Finish Rotate function
         private void Rotate(TreeNode<int> node)
         {
             //TreeNode<int> temp = node;
-            
+
             //node.left = temp;
             //node.left.parent = node;
             //node = node.right;

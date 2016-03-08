@@ -19,32 +19,41 @@ namespace Assignment5
             Console.Write("Enter an expression: ");
             string input = Console.ReadLine();
 
-            string[] expression = new string[input.Length];
-            expression = input.Split();
+            string[] expressions = new string[input.Length];
+            expressions = input.Split();
 
-            BuildTree(expression);
+            BuildTree(expressions);
         }
 
-        private void BuildTree(string[] expression)
+        private void BuildTree(string[] expressions)
         {
-            foreach (string s in expression)
+            ExpressionTree tree = new ExpressionTree();
+
+            foreach (string s in expressions)
             {
                 int temp;
-                if(Int32.TryParse(s, out temp))
+                if (Int32.TryParse(s, out temp))
                 {
-                    Console.WriteLine("Its a Number");
-                    TreeNode<int> iNode = new TreeNode<int>(temp);
-                    stack.Push(iNode);
-                }
-                else
-                {
-                    Console.WriteLine("Not a Number");
-                    TreeNode<string> sNode = new TreeNode<string>(s);
+                    TreeNode<string> new_node = new TreeNode<string>(temp.ToString());
 
-                    //More work needed here. 
-
-                    stack.Push(sNode);
                 }
+
+                //int temp;
+                //if(Int32.TryParse(s, out temp))
+                //{
+                //    Console.WriteLine("Its a Number");
+                //    TreeNode<int> iNode = new TreeNode<int>(temp);
+                //    stack.Push(iNode);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("Not a Number");
+                //    TreeNode<string> sNode = new TreeNode<string>(s);
+
+                //    //More work needed here. 
+
+                //    stack.Push(sNode);
+                //}
             }
         }
     }
