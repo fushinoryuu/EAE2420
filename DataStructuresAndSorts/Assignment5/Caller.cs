@@ -41,7 +41,20 @@ namespace Assignment5
 
         private static void ETree()
         {
-            ExpressionParser xTree = new ExpressionParser();
+            ExpressionTree ETree = new ExpressionTree();
+            ExpressionParser parser = new ExpressionParser(ETree);
+
+            //MyList<string> preList = new MyList<string>(5);
+            //string preResult = ETree.TraversePre(preList, ETree.root);
+            //Console.WriteLine("\nPre-order: [{0}]\n", preResult);
+
+            //MyList<string> inList = new MyList<string>(5);
+            //string inResult = ETree.TraverseIn(inList, ETree.root);
+            //Console.WriteLine("In-order: [{0}]\n", inResult);
+
+            //MyList<string> postList = new MyList<string>(5);
+            //string postResult = ETree.TraversePost(postList, ETree.root);
+            //Console.WriteLine("Post-order: [{0}]\n", postResult);
         }
 
         private static void TestPre(string result)
