@@ -16,7 +16,7 @@ namespace Assignment5
 
             public int CompareTo(Person other)
             {
-                int result = this.age - other.age;
+                int result = age - other.age;
 
                 if (result != 0)
                     return result;
@@ -25,7 +25,7 @@ namespace Assignment5
                 if (result != 0)
                     return result;
 
-                return this.name.CompareTo(other.name);
+                return name.CompareTo(other.name);
             }
         }
 

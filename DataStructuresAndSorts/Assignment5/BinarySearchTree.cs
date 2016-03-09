@@ -5,7 +5,7 @@ namespace Assignment5
 {
     class BinarySearchTree<T>
     {
-        //IComparer<T> comparer;
+        IComparer<T> comparer;
         public TreeNode<T> root;
         private int node_count;
 
@@ -17,7 +17,6 @@ namespace Assignment5
 
         public void Add(T item)
         {
-            //TreeNode<T> new_node = new TreeNode<T>(item);
             TreeNode<T> new_node = new TreeNode<T> { data = item };
 
             if (root == null)
@@ -45,14 +44,13 @@ namespace Assignment5
             Console.WriteLine("");
         }
 
-        // TODO Make recursive
         public TreeNode<T> Contains(T item)
         {
             TreeNode<T> crawler = root;
 
             while (crawler != null)
             {
-                if (EqualityComparer<T>.Default.Equals(item, crawler.data)) //item == crawler.data)
+                if (crawler.CompareTo(item) == 0) //item == crawler.data)
                     return crawler;
                 else if (crawler.CompareTo(item) > 0) //item >= crawler.data)
                     crawler = crawler.right;

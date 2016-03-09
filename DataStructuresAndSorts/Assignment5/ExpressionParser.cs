@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Assignment5
 {
     class ExpressionParser
     {
-        private Stack numberStack, operatorStack;
+        private Stack<TreeNode<string>> numberStack, operatorStack;
 
-        public ExpressionParser(ExpressionTree ETree)
+        public ExpressionParser(ExpressionTree ETree, string input)
         {
-            numberStack = new Stack();
-            operatorStack = new Stack();
+            numberStack = new Stack<TreeNode<string>>();
+            operatorStack = new Stack<TreeNode<string>>();
 
-            Parser(ETree);
+            ToArray(ETree, input);
         }
 
-        public void Parser(ExpressionTree ETree)
+        public void ToArray(ExpressionTree ETree, string input)
         {
-            Console.Write("Enter an expression: ");
-            string input = Console.ReadLine();
-
             string[] expressions = new string[input.Length];
             expressions = input.Split();
 
@@ -33,13 +31,11 @@ namespace Assignment5
                 int tempInt;
                 if (Int32.TryParse(item, out tempInt))
                 {
-                    //TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
                     TreeNode<string> number_node = new TreeNode<string> { data = tempInt.ToString() };
                     numberStack.Push(number_node);
                 }
                 else
                 {
-                    //TreeNode<string> operator_node = new TreeNode<string>(item);
                     TreeNode<string> operator_node = new TreeNode<string> { data = item };
                     operatorStack.Push(operator_node);
                 }
@@ -49,40 +45,17 @@ namespace Assignment5
 
         private void BuildTree(ExpressionTree ETree)
         {
-            while (numberStack.Count != 0)
+            ETree.node_count = numberStack.Count + operatorStack.Count;
+
+            while (operatorStack.Count != 0)
             {
-                if (operatorStack.Count != 0)
-                {
-                    ETree.Add((TreeNode<string>)operatorStack.Pop());
-                    ETree.Add((TreeNode<string>)numberStack.Pop());
-                }
+                TreeNode<string> tempRoot = operatorStack.Pop();
+                tempRoot.right = numberStack.Pop();
+                tempRoot.left = numberStack.Pop();
+                numberStack.Push(tempRoot);
             }
+
+            ETree.root = numberStack.Pop();
         }
     }
 }
-//foreach (string item in expressions)
-//{
-//    int tempInt;
-//    if (Int32.TryParse(item, out tempInt))
-//    {
-//        TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
-//        stack.Push(number_node);
-//    }
-//    else
-//    {
-//        TreeNode<string> operator_node = new TreeNode<string>(item);
-//        if (operator_node.left == null && stack.Count != 0)
-//        {
-//            operator_node.left = (TreeNode<string>)stack.Pop();
-//        }
-//        if (operator_node.right == null & stack.Count != 0)
-//        {
-//            operator_node.right = (TreeNode<string>)stack.Pop();
-//        }
-//        stack.Push(operator_node);
-//    }
-//}
-//ETree.root = (TreeNode<string>)stack.Pop();
-//        }
-//    }
-//}

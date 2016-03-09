@@ -5,30 +5,14 @@ namespace Assignment5
     class ExpressionTree
     {
         public TreeNode<string> root;
-        //private int node_count;
+        public int node_count;
 
         public ExpressionTree()
         {
             root = null;
         }
 
-        public void Add(TreeNode<string> new_node)
-        {
-            if (root == null)
-            {
-                root = new_node;
-            }
-            else
-            {
-                TreeNode<string> crawler = root;
-
-                while (crawler != null)
-                {
-                    new_node.parent = crawler;
-                }
-            }
-        }
-
+        // TODO Finish Evaluate
         public void Evaluate()
         {
 
