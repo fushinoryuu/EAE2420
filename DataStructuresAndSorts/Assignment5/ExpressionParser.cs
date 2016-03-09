@@ -33,12 +33,14 @@ namespace Assignment5
                 int tempInt;
                 if (Int32.TryParse(item, out tempInt))
                 {
-                    TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
+                    //TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
+                    TreeNode<string> number_node = new TreeNode<string> { data = tempInt.ToString() };
                     numberStack.Push(number_node);
                 }
                 else
                 {
-                    TreeNode<string> operator_node = new TreeNode<string>(item);
+                    //TreeNode<string> operator_node = new TreeNode<string>(item);
+                    TreeNode<string> operator_node = new TreeNode<string> { data = item };
                     operatorStack.Push(operator_node);
                 }
             }

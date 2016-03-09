@@ -13,13 +13,13 @@ namespace Assignment5
 
         private static void BSTree()
         {
-            BinarySearchTree tree = new BinarySearchTree();
+            BinarySearchTree<int> tree = new BinarySearchTree<int>();
             int[] temp = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
             for (int i = 0; i < temp.Length; i++)
                 tree.Add(temp[i]);
 
-            //tree.Remove(tree.Contains(25));
+            tree.Remove(tree.Contains(25));
 
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
@@ -37,6 +37,8 @@ namespace Assignment5
             Console.WriteLine("Post-order: [{0}]\n", postResult);
 
             Console.WriteLine(tree.root.height);
+
+            
         }
 
         private static void ETree()
