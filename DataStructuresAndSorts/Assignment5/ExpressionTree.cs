@@ -5,7 +5,7 @@ namespace Assignment5
     class ExpressionTree
     {
         public TreeNode<string> root;
-        private int node_count;
+        //private int node_count;
 
         public ExpressionTree()
         {
@@ -30,7 +30,7 @@ namespace Assignment5
         }
 
         public void Evaluate()
-        { 
+        {
 
         }
 

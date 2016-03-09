@@ -33,12 +33,14 @@ namespace Assignment5
                 int tempInt;
                 if (Int32.TryParse(item, out tempInt))
                 {
-                    TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
+                    //TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
+                    TreeNode<string> number_node = new TreeNode<string> { data = tempInt.ToString() };
                     numberStack.Push(number_node);
                 }
                 else
                 {
-                    TreeNode<string> operator_node = new TreeNode<string>(item);
+                    //TreeNode<string> operator_node = new TreeNode<string>(item);
+                    TreeNode<string> operator_node = new TreeNode<string> { data = item };
                     operatorStack.Push(operator_node);
                 }
             }
@@ -47,9 +49,9 @@ namespace Assignment5
 
         private void BuildTree(ExpressionTree ETree)
         {
-            while(numberStack.Count != 0)
+            while (numberStack.Count != 0)
             {
-                if(operatorStack.Count != 0)
+                if (operatorStack.Count != 0)
                 {
                     ETree.Add((TreeNode<string>)operatorStack.Pop());
                     ETree.Add((TreeNode<string>)numberStack.Pop());
@@ -58,29 +60,29 @@ namespace Assignment5
         }
     }
 }
-            //foreach (string item in expressions)
-            //{
-            //    int tempInt;
-            //    if (Int32.TryParse(item, out tempInt))
-            //    {
-            //        TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
-            //        stack.Push(number_node);
-            //    }
-            //    else
-            //    {
-            //        TreeNode<string> operator_node = new TreeNode<string>(item);
-            //        if (operator_node.left == null && stack.Count != 0)
-            //        {
-            //            operator_node.left = (TreeNode<string>)stack.Pop();
-            //        }
-            //        if (operator_node.right == null & stack.Count != 0)
-            //        {
-            //            operator_node.right = (TreeNode<string>)stack.Pop();
-            //        }
-            //        stack.Push(operator_node);
-            //    }
-            //}
-            //ETree.root = (TreeNode<string>)stack.Pop();
+//foreach (string item in expressions)
+//{
+//    int tempInt;
+//    if (Int32.TryParse(item, out tempInt))
+//    {
+//        TreeNode<string> number_node = new TreeNode<string>(tempInt.ToString());
+//        stack.Push(number_node);
+//    }
+//    else
+//    {
+//        TreeNode<string> operator_node = new TreeNode<string>(item);
+//        if (operator_node.left == null && stack.Count != 0)
+//        {
+//            operator_node.left = (TreeNode<string>)stack.Pop();
+//        }
+//        if (operator_node.right == null & stack.Count != 0)
+//        {
+//            operator_node.right = (TreeNode<string>)stack.Pop();
+//        }
+//        stack.Push(operator_node);
+//    }
+//}
+//ETree.root = (TreeNode<string>)stack.Pop();
 //        }
 //    }
 //}

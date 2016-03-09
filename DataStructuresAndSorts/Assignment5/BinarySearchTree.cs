@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment5
 {
-    class BinarySearchTree
+    class BinarySearchTree<T>
     {
-        public TreeNode<int> root;
+        //IComparer<T> comparer;
+        public TreeNode<T> root;
         private int node_count;
 
         public BinarySearchTree()
@@ -13,26 +15,27 @@ namespace Assignment5
             node_count = 0;
         }
 
-        public void Add(int item)
+        public void Add(T item)
         {
-            TreeNode<int> new_node = new TreeNode<int>(item);
+            //TreeNode<T> new_node = new TreeNode<T>(item);
+            TreeNode<T> new_node = new TreeNode<T> { data = item };
 
             if (root == null)
                 root = new_node;
             else
             {
-                TreeNode<int> crawler = root;
+                TreeNode<T> crawler = root;
 
                 while (crawler != null)
                 {
                     new_node.parent = crawler;
-                    if (item >= crawler.data)
+                    if (crawler.CompareTo(item) > 0) //item >= crawler.data)
                         crawler = crawler.right;
                     else
                         crawler = crawler.left;
                 }
 
-                if (item >= new_node.parent.data)
+                if (crawler.CompareTo(item) < 0) //item >= new_node.parent.data)
                     new_node.parent.right = new_node;
                 else
                     new_node.parent.left = new_node;
@@ -42,15 +45,16 @@ namespace Assignment5
             Console.WriteLine("");
         }
 
-        public TreeNode<int> Contains(int item)
+        // TODO Make recursive
+        public TreeNode<T> Contains(T item)
         {
-            TreeNode<int> crawler = root;
+            TreeNode<T> crawler = root;
 
             while (crawler != null)
             {
-                if (item == crawler.data)
+                if (EqualityComparer<T>.Default.Equals(item, crawler.data)) //item == crawler.data)
                     return crawler;
-                else if (item >= crawler.data)
+                else if (crawler.CompareTo(item) > 0) //item >= crawler.data)
                     crawler = crawler.right;
                 else
                     crawler = crawler.left;
@@ -59,7 +63,7 @@ namespace Assignment5
         }
 
         // TODO Finish Remove function
-        public void Remove(TreeNode<int> node)
+        public void Remove(TreeNode<T> node)
         {
             if (node == null)
                 Console.WriteLine("\nCould not remove the node you were looking for!\n");
@@ -83,7 +87,7 @@ namespace Assignment5
             }
         }
 
-        private void CalculateHeight(TreeNode<int> node)
+        private void CalculateHeight(TreeNode<T> node)
         {
             if (node.left != null)
                 CalculateHeight(node.left);
@@ -105,7 +109,7 @@ namespace Assignment5
             CheckBalance(node);
         }
 
-        private void CheckBalance(TreeNode<int> node)
+        private void CheckBalance(TreeNode<T> node)
         {
             if (node.left == null && node.right == null)
                 return;
@@ -128,7 +132,7 @@ namespace Assignment5
         }
 
         // TODO Finish Rotate function
-        private void Rotate(TreeNode<int> node)
+        private void Rotate(TreeNode<T> node)
         {
             //TreeNode<int> temp = node;
 
@@ -139,7 +143,7 @@ namespace Assignment5
             //node.right = node.right.right;
         }
 
-        public string TraversePre(MyList<int> list, TreeNode<int> node)
+        public string TraversePre(MyList<T> list, TreeNode<T> node)
         {
             list.Add(node.data);
             if (node.left != null)
@@ -149,7 +153,7 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        public string TraverseIn(MyList<int> list, TreeNode<int> node)
+        public string TraverseIn(MyList<T> list, TreeNode<T> node)
         {
             if (node.left != null)
                 TraverseIn(list, node.left);
@@ -159,7 +163,7 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        public string TraversePost(MyList<int> list, TreeNode<int> node)
+        public string TraversePost(MyList<T> list, TreeNode<T> node)
         {
             if (node.left != null)
                 TraversePost(list, node.left);
