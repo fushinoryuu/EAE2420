@@ -38,7 +38,7 @@ namespace Assignment5
 
             Console.WriteLine(tree.root.height);
 
-
+            
         }
 
         private static void ETree()
