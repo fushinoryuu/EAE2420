@@ -46,6 +46,12 @@ namespace Assignment5
             Console.WriteLine("");
         }
 
+        public void RecursiveAdd(T item)
+        {
+            if (root == null)
+                root = new TreeNode<T> { data = item };
+        }
+
         // TODO Make Recursive
         public TreeNode<T> Contains(T item)
         {
@@ -124,12 +130,10 @@ namespace Assignment5
                         Rotate(node);
 
                     else if (node.left != null && node.right != null)
-                    {
                         if (node.left.height > node.right.height + 1)
                             Rotate(node.left);
                         else if (node.right.height > node.left.height + 1)
                             Rotate(node.right);
-                    }
         }
 
         // TODO Finish Rotate function
