@@ -5,16 +5,18 @@ namespace Assignment5
 {
     class BinarySearchTree<T>
     {
-        IComparer<T> comparer;
+        //IComparer<T> comparer;
         public TreeNode<T> root;
         private int node_count;
 
-        public BinarySearchTree()
+        public BinarySearchTree()//IComparer<T> comparer)
         {
             root = null;
             node_count = 0;
+            //this.comparer = comparer;
         }
 
+        // TODO Make Recursive
         public void Add(T item)
         {
             TreeNode<T> new_node = new TreeNode<T> { data = item };
@@ -28,13 +30,13 @@ namespace Assignment5
                 while (crawler != null)
                 {
                     new_node.parent = crawler;
-                    if (crawler.CompareTo(item) > 0) //item >= crawler.data)
+                    if (new_node.CompareTo(crawler.data) >= 0) //item >= crawler.data)
                         crawler = crawler.right;
                     else
                         crawler = crawler.left;
                 }
 
-                if (crawler.CompareTo(item) < 0) //item >= new_node.parent.data)
+                if (new_node.CompareTo(new_node.parent.data) >= 0)//item >= new_node.parent.data)
                     new_node.parent.right = new_node;
                 else
                     new_node.parent.left = new_node;
@@ -44,6 +46,7 @@ namespace Assignment5
             Console.WriteLine("");
         }
 
+        // TODO Make Recursive
         public TreeNode<T> Contains(T item)
         {
             TreeNode<T> crawler = root;

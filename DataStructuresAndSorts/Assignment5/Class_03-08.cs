@@ -31,7 +31,7 @@ namespace Assignment5
 
         static void Mains()
         {
-            BinarySearchTree<Person> people = new BinarySearchTree<Person>();
+            //BinarySearchTree<Person> people = new BinarySearchTree<Person>();
             Person jamie = new Person { name = "Jamie", age = 36, weight = 800 };
             Person nathan = new Person { name = "Nathan", age = 55, weight = 750 };
 
