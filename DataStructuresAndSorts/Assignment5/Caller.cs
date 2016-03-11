@@ -14,10 +14,13 @@ namespace Assignment5
         private static void BSTree()
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
-            int[] temp = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
+            int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
-            for (int i = 0; i < temp.Length; i++)
-                tree.Add(temp[i]);
+            for (int i = 0; i < tempList.Length; i++)
+                tree.Add(tempList[i]);
+
+            //for (int i = 0; i < tempList.Length; i++)
+            //    tree.RecursiveAdd(tempList[i], tree.root);
 
             tree.Remove(tree.Contains(25));
 

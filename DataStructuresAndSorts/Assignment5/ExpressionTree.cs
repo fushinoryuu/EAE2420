@@ -11,11 +11,19 @@ namespace Assignment5
         {
             root = null;
         }
+        public int NodeCount
+        {
+            get
+            {
+                return node_count;
+            }
+        }
 
         // TODO Finish Evaluate
         public void Evaluate()
         {
-
+            MyList<String> tempList = new MyList<string>(NodeCount);
+            string expression = TraversePost(tempList, root);
         }
 
         public string TraversePre(MyList<string> list, TreeNode<string> node)

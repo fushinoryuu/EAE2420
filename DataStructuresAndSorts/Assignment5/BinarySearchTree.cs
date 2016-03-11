@@ -46,10 +46,19 @@ namespace Assignment5
             Console.WriteLine("");
         }
 
-        public void RecursiveAdd(T item)
+        public void RecursiveAdd(T item, TreeNode<T> node)
         {
             if (root == null)
                 root = new TreeNode<T> { data = item };
+            else
+            {
+                TreeNode<T> tempNode = new TreeNode<T> { data = item };
+                if (tempNode.CompareTo(node.data) >= 0)
+                    RecursiveAdd(item, node.right);
+
+                else if (tempNode.CompareTo(node.data) < 0)
+                    RecursiveAdd(item, node.left);
+            }
         }
 
         // TODO Make Recursive
@@ -67,6 +76,11 @@ namespace Assignment5
                     crawler = crawler.left;
             }
             return null;
+        }
+
+        public TreeNode<T> ContainsRecursive(T item)
+        {
+            throw new NotImplementedException();
         }
 
         // TODO Finish Remove function
