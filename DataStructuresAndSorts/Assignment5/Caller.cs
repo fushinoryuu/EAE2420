@@ -47,6 +47,9 @@ namespace Assignment5
             Console.Write("Enter an expression: ");
             string input = Console.ReadLine();
 
+            //Console.WriteLine("Expression to evaluate: 5 + 2 * 8 – 6 / 4");
+            //string input = "5 + 2 * 8 – 6 / 4";
+
             ExpressionTree ETree = new ExpressionTree();
             ExpressionParser parser = new ExpressionParser(ETree, input);
             

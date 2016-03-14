@@ -18,6 +18,7 @@ namespace Assignment5
 
         public void ToArray(ExpressionTree ETree, string input)
         {
+
             string[] expressions = new string[input.Length];
             expressions = input.Split();
 

@@ -20,10 +20,13 @@ namespace Assignment5
         }
 
         // TODO Finish Evaluate
-        public void Evaluate()
+        public void Evaluate(TreeNode<string> node)
         {
-            MyList<String> tempList = new MyList<string>(NodeCount);
-            string expression = TraversePost(tempList, root);
+            if (node.left != null)
+                Evaluate(node.left);
+            if (node.right != null)
+                Evaluate(node.right);
+            // DO STUFF
         }
 
         public string TraversePre(MyList<string> list, TreeNode<string> node)

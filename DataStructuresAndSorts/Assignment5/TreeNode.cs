@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assignment5
 {
-    class TreeNode<T> : IComparable<T>, IComparer<T>
+    class TreeNode<T> : IComparable<T>//, IComparer<T>
     {
         public T data { get; set; }
         public TreeNode<T> left { get; set; }
@@ -18,9 +18,9 @@ namespace Assignment5
             return Int32.Parse(tempOne) - Int32.Parse(tempTwo);
         }
 
-        public int Compare(T x, T y)
-        {
-            throw new NotImplementedException();
-        }
+        //public int Compare(T x, T y)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
