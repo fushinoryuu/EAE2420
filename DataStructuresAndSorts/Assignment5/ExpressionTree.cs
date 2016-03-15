@@ -26,7 +26,7 @@ namespace Assignment5
                 Evaluate(node.left);
             if (node.right != null)
                 Evaluate(node.right);
-            // DO STUFF
+            
         }
 
         public string TraversePre(MyList<string> list, TreeNode<string> node)

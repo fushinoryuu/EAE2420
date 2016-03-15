@@ -44,29 +44,37 @@ namespace Assignment5
 
         private static void ETree()
         {
-            Console.Write("Enter an expression: ");
-            string input = Console.ReadLine();
+            try
+            {
+                Console.Write("Enter an expression: ");
+                string input = Console.ReadLine();
 
-            //Console.WriteLine("Expression to evaluate: 5 + 2 * 8 – 6 / 4");
-            //string input = "5 + 2 * 8 – 6 / 4";
+                //Console.WriteLine("Expression to evaluate: 5 + 2 * 8 – 6 / 4");
+                //string input = "5 + 2 * 8 – 6 / 4";
 
-            ExpressionTree ETree = new ExpressionTree();
-            ExpressionParser parser = new ExpressionParser(ETree, input);
-            
-            MyList<string> preList = new MyList<string>(ETree.node_count);
-            string preResult = ETree.TraversePre(preList, ETree.root);
-            TestPre_ET(preResult);
-            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
+                ExpressionTree ETree = new ExpressionTree();
+                ExpressionParser parser = new ExpressionParser(ETree, input);
 
-            MyList<string> inList = new MyList<string>(ETree.node_count);
-            string inResult = ETree.TraverseIn(inList, ETree.root);
-            TestIn_ET(inResult);
-            Console.WriteLine("In-order: [{0}]\n", inResult);
+                MyList<string> preList = new MyList<string>(ETree.node_count);
+                string preResult = ETree.TraversePre(preList, ETree.root);
+                TestPre_ET(preResult);
+                Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
-            MyList<string> postList = new MyList<string>(ETree.node_count);
-            string postResult = ETree.TraversePost(postList, ETree.root);
-            TestPost_ET(postResult);
-            Console.WriteLine("Post-order: [{0}]\n", postResult);
+                MyList<string> inList = new MyList<string>(ETree.node_count);
+                string inResult = ETree.TraverseIn(inList, ETree.root);
+                TestIn_ET(inResult);
+                Console.WriteLine("In-order: [{0}]\n", inResult);
+
+                MyList<string> postList = new MyList<string>(ETree.node_count);
+                string postResult = ETree.TraversePost(postList, ETree.root);
+                TestPost_ET(postResult);
+                Console.WriteLine("Post-order: [{0}]\n", postResult);
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("\nInput can't be empty, please try again.\n");
+                ETree();
+            }
         }
 
         private static void TestPre_BST(string result)
