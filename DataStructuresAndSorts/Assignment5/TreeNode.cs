@@ -8,7 +8,7 @@ namespace Assignment5
         public T Data { get; set; }
         public TreeNode<T> Left { get; set; }
         public TreeNode<T> Right { get; set; }
-        public TreeNode<T> Parent { get; set; } // TODO Remove Parent once BST is recursive
+        //public TreeNode<T> Parent { get; set; }
         public int Height { get; set; }
 
         public int CompareTo(T other)

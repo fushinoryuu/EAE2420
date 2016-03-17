@@ -22,7 +22,6 @@ namespace Assignment5
             {
                 numberStack = new Stack<TreeNode<string>>();
                 operatorStack = new Stack<TreeNode<string>>();
-                Console.WriteLine(input.Length);
                 string[] expressionArray = new string[input.Length];
                 expressionArray = input.Split();
 
@@ -73,13 +72,45 @@ namespace Assignment5
         }
 
         // TODO Finish Evaluate
-        public void Evaluate(MyList<string> list, TreeNode<string> node)
+        public void Evaluate(TreeNode<string> node)
         {
             if (node.Left != null)
-                Evaluate(list, node.Left);
+                Evaluate(node.Left);
             if (node.Right != null)
-                Evaluate(list, node.Right);
-            throw new NotImplementedException();
+                Evaluate(node.Right);
+            switch (node.Data)
+            {
+                case "+":
+                    double addResult = double.Parse(node.Left.Data) + double.Parse(node.Right.Data);
+                    node.Data = addResult.ToString();
+                    node.Left = null;
+                    node.Right = null;
+                    break;
+                case "-":
+                    double subResult = double.Parse(node.Left.Data) - double.Parse(node.Right.Data);
+                    node.Data = subResult.ToString();
+                    node.Left = null;
+                    node.Right = null;
+                    break;
+                case "*":
+                    double multResult = double.Parse(node.Left.Data) * double.Parse(node.Right.Data);
+                    node.Data = multResult.ToString();
+                    node.Left = null;
+                    node.Right = null;
+                    break;
+                case "/":
+                    double divResult = double.Parse(node.Left.Data) / double.Parse(node.Right.Data);
+                    node.Data = divResult.ToString();
+                    node.Left = null;
+                    node.Right = null;
+                    break;
+                case "^":
+                    double expResult = Math.Pow(double.Parse(node.Left.Data), double.Parse(node.Right.Data));
+                    node.Data = expResult.ToString();
+                    node.Left = null;
+                    node.Right = null;
+                    break;
+            }
         }
 
         public string TraversePre(MyList<string> list, TreeNode<string> node)

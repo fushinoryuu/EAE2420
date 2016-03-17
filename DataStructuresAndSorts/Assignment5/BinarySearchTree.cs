@@ -26,20 +26,22 @@ namespace Assignment5
             else
             {
                 TreeNode<T> crawler = root;
+                TreeNode<T> tracker = crawler;
 
                 while (crawler != null)
                 {
-                    new_node.Parent = crawler;
+                    //new_node.Parent = crawler;
+                    tracker = crawler;
                     if (new_node.CompareTo(crawler.Data) >= 0) //item >= crawler.data)
                         crawler = crawler.Right;
                     else
                         crawler = crawler.Left;
                 }
 
-                if (new_node.CompareTo(new_node.Parent.Data) >= 0)//item >= new_node.parent.data)
-                    new_node.Parent.Right = new_node;
+                if (new_node.CompareTo(tracker.Data) >= 0)//item >= new_node.parent.data)
+                    tracker.Right = new_node;
                 else
-                    new_node.Parent.Left = new_node;
+                    tracker.Left = new_node;
             }
             node_count++;
             CalculateHeight(root);
