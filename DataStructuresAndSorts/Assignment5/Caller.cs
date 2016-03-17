@@ -39,7 +39,7 @@ namespace Assignment5
             TestPost_BST(postResult);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
 
-            Console.WriteLine(tree.root.height);
+            Console.WriteLine(tree.root.Height);
         }
 
         private static void ETree()
@@ -52,20 +52,20 @@ namespace Assignment5
                 //Console.WriteLine("Expression to evaluate: 5 + 2 * 8 – 6 / 4");
                 //string input = "5 + 2 * 8 – 6 / 4";
 
-                ExpressionTree ETree = new ExpressionTree();
-                ExpressionParser parser = new ExpressionParser(ETree, input);
+                ExpressionTree ETree = new ExpressionTree(input);
+                //ExpressionParser parser = new ExpressionParser(ETree, input);
 
-                MyList<string> preList = new MyList<string>(ETree.node_count);
+                MyList<string> preList = new MyList<string>(ETree.NodeCount);
                 string preResult = ETree.TraversePre(preList, ETree.root);
                 TestPre_ET(preResult);
                 Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
-                MyList<string> inList = new MyList<string>(ETree.node_count);
+                MyList<string> inList = new MyList<string>(ETree.NodeCount);
                 string inResult = ETree.TraverseIn(inList, ETree.root);
                 TestIn_ET(inResult);
                 Console.WriteLine("In-order: [{0}]\n", inResult);
 
-                MyList<string> postList = new MyList<string>(ETree.node_count);
+                MyList<string> postList = new MyList<string>(ETree.NodeCount);
                 string postResult = ETree.TraversePost(postList, ETree.root);
                 TestPost_ET(postResult);
                 Console.WriteLine("Post-order: [{0}]\n", postResult);

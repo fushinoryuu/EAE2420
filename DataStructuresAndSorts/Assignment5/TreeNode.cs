@@ -5,15 +5,15 @@ namespace Assignment5
 {
     class TreeNode<T> : IComparable<T>//, IComparer<T>
     {
-        public T data { get; set; }
-        public TreeNode<T> left { get; set; }
-        public TreeNode<T> right { get; set; }
-        public TreeNode<T> parent { get; set; } // TODO Remove Parent once BST is recursive
-        public int height { get; set; }
+        public T Data { get; set; }
+        public TreeNode<T> Left { get; set; }
+        public TreeNode<T> Right { get; set; }
+        public TreeNode<T> Parent { get; set; } // TODO Remove Parent once BST is recursive
+        public int Height { get; set; }
 
         public int CompareTo(T other)
         {
-            var tempOne = data.ToString();
+            var tempOne = Data.ToString();
             var tempTwo = other.ToString();
             return Int32.Parse(tempOne) - Int32.Parse(tempTwo);
         }
