@@ -9,7 +9,7 @@ namespace Assignment5
         public TreeNode<T> root;
         private int node_count;
 
-        public BinarySearchTree()//IComparer<T> comparer)
+        public BinarySearchTree()//IComparer<T> comparer = null)
         {
             root = null;
             node_count = 0;

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="BinarySearchTree.cs" />
     <Compile Include="Caller.cs" />
+    <Compile Include="myComparer.cs" />
     <Compile Include="Class_03-08.cs" />
     <Compile Include="ExpressionTree.cs" />
     <Compile Include="myList.cs" />

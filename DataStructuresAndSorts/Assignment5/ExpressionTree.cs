@@ -32,10 +32,10 @@ namespace Assignment5
             {
                 foreach (string item in expressionArray)
                 {
-                    int tempInt;
-                    if (Int32.TryParse(item, out tempInt))
+                    double tempNumber;
+                    if (double.TryParse(item, out tempNumber))
                     {
-                        TreeNode<string> number_node = new TreeNode<string> { Data = tempInt.ToString() };
+                        TreeNode<string> number_node = new TreeNode<string> { Data = tempNumber.ToString() };
                         numberStack.Push(number_node);
                     }
                     else
