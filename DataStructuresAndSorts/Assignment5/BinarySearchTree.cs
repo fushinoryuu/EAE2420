@@ -17,54 +17,53 @@ namespace Assignment5
         }
 
         // TODO Make Recursive
-        //public void Add(T item)
-        //{
-        //    TreeNode<T> new_node = new TreeNode<T> { Data = item };
-
-        //    if (root == null)
-        //        root = new_node;
-        //    else
-        //    {
-        //        TreeNode<T> crawler = root;
-        //        TreeNode<T> tracker = crawler;
-
-        //        while (crawler != null)
-        //        {
-        //            tracker = crawler;
-
-        //            if (comparer.Compare(new_node.Data, crawler.Data) < 0)
-        //                crawler = crawler.Left;
-        //            else
-        //                crawler = crawler.Right;
-        //        }
-
-        //        if (comparer.Compare(new_node.Data, tracker.Data) < 0)
-        //            tracker.Left = new_node;
-        //        else
-        //            tracker.Right = new_node;
-        //    }
-        //    node_count++;
-        //    CalculateHeight(root);
-        //}
-
-        public void Add(T item, TreeNode<T> currentNode = null, TreeNode<T> previousNode = null)
+        public void Add(T item)
         {
-            previousNode = currentNode;
+            TreeNode<T> new_node = new TreeNode<T> { Data = item };
 
             if (root == null)
-                root = new TreeNode<T> { Data = item };
+                root = new_node;
             else
             {
-                if (currentNode == null)
-                    return;
-                else if (comparer.Compare(item, currentNode.Data) < 0)
-                    Add(item, currentNode.Left, previousNode);
+                TreeNode<T> crawler = root;
+                TreeNode<T> tracker = crawler;
+
+                while (crawler != null)
+                {
+                    tracker = crawler;
+
+                    if (comparer.Compare(new_node.Data, crawler.Data) < 0)
+                        crawler = crawler.Left;
+                    else
+                        crawler = crawler.Right;
+                }
+
+                if (comparer.Compare(new_node.Data, tracker.Data) < 0)
+                    tracker.Left = new_node;
                 else
-                    Add(item, currentNode.Right, previousNode);
+                    tracker.Right = new_node;
             }
             node_count++;
             CalculateHeight(root);
         }
+
+        //public void Add(T item, TreeNode<T> currentNode)
+        //{
+        //    if (root == null)
+        //        root = new TreeNode<T> { Data = item };
+        //    else
+        //    {
+        //        if (currentNode == null)
+        //            return;
+
+        //        else if (comparer.Compare(item, currentNode.Data) < 0)
+        //            Add(item, currentNode.Left);
+        //        else if (comparer.Compare(item, currentNode.Data) >= 0)
+        //            Add(item, currentNode.Right);
+        //    }
+        //    node_count++;
+        //    CalculateHeight(root);
+        //}
 
         // TODO Make Recursive
         public TreeNode<T> Contains(T item)
