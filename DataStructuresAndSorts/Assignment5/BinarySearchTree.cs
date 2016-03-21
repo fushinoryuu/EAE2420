@@ -19,7 +19,10 @@ namespace Assignment5
         public void Add(T item, TreeNode<T> currentNode)
         {
             if (root == null)
+            {
                 root = new TreeNode<T> { Data = item };
+                currentNode = root;
+            }
             else
             {
                 if (comparer.Compare(item, currentNode.Data) < 0)
@@ -38,7 +41,8 @@ namespace Assignment5
                 }
             }
             node_count++;
-            CalculateHeight(root);
+            CalculateHeight(currentNode);
+            Console.WriteLine("");
         }
 
         public TreeNode<T> Contains(T item, TreeNode<T> currentNode)
@@ -63,7 +67,7 @@ namespace Assignment5
         public void Remove(TreeNode<T> node)
         {
             if (node == null)
-                Console.WriteLine("\nNode Not Found!\n");
+                return;
             else
             {
                 CalculateHeight(root);
@@ -102,14 +106,21 @@ namespace Assignment5
 
             else if (node.Left == null && node.Right == null)
                 node.Height = 1;
-
+            Console.WriteLine("Node Value: {0} Node Height: {1}", node.Data, node.Height);
             CheckBalance(node);
         }
 
+        // TO DO Fix StackOverFlow
         private void CheckBalance(TreeNode<T> node)
         {
             if (node.Left == null && node.Right == null)
                 return;
+
+            //else if (node.Left == null && node.Right != null)
+            //{
+            //    if (node.Right.Height > 1)
+            //        LeftRotate(node);
+            //}
 
             else if (node.Left != null && node.Right == null)
                 if (node.Left.Height > 1)
@@ -129,16 +140,23 @@ namespace Assignment5
         // TODO Finish Rotate function
         private void Rotate(TreeNode<T> node)
         {
-            //TreeNode<int> temp = node;
-
-            //node.left = temp;
-            //node.left.parent = node;
-            //node = node.right;
-            //node.right.parent = node;
-            //node.right = node.right.right;
+            
         }
 
-        // TO DO: Get output without list.
+        private void LeftRotate(TreeNode<T> node)
+        {
+            TreeNode<T> subRoot = node;
+            node = node.Right;
+            node.Left = subRoot;
+        }
+
+        private void RightRotate(TreeNode<T> node)
+        {
+            TreeNode<T> subRoot = node;
+            node = node.Left;
+            node.Right = subRoot;
+        }
+
         public string TraversePre(MyList<T> list, TreeNode<T> node)
         {
             list.Add(node.Data);
@@ -149,7 +167,6 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        // TO DO: Get output without list.
         public string TraverseIn(MyList<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
@@ -160,7 +177,6 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        // TO DO: Get output without list.
         public string TraversePost(MyList<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
