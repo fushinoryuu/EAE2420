@@ -16,54 +16,30 @@ namespace Assignment5
             this.comparer = comparer;
         }
 
-        // TODO Make Recursive
-        public void Add(T item)
+        public void Add(T item, TreeNode<T> currentNode)
         {
-            TreeNode<T> new_node = new TreeNode<T> { Data = item };
-
             if (root == null)
-                root = new_node;
+                root = new TreeNode<T> { Data = item };
             else
             {
-                TreeNode<T> crawler = root;
-                TreeNode<T> tracker = crawler;
-
-                while (crawler != null)
+                if (comparer.Compare(item, currentNode.Data) < 0)
                 {
-                    tracker = crawler;
-
-                    if (comparer.Compare(new_node.Data, crawler.Data) < 0)
-                        crawler = crawler.Left;
+                    if (currentNode.Left == null)
+                        currentNode.Left = new TreeNode<T> { Data = item };
                     else
-                        crawler = crawler.Right;
+                        Add(item, currentNode.Left);
                 }
-
-                if (comparer.Compare(new_node.Data, tracker.Data) < 0)
-                    tracker.Left = new_node;
-                else
-                    tracker.Right = new_node;
+                else if (comparer.Compare(item, currentNode.Data) >= 0)
+                {
+                    if (currentNode.Right == null)
+                        currentNode.Right = new TreeNode<T> { Data = item };
+                    else
+                        Add(item, currentNode.Right);
+                }
             }
             node_count++;
             CalculateHeight(root);
         }
-
-        //public void Add(T item, TreeNode<T> currentNode)
-        //{
-        //    if (root == null)
-        //        root = new TreeNode<T> { Data = item };
-        //    else
-        //    {
-        //        if (currentNode == null)
-        //            return;
-
-        //        else if (comparer.Compare(item, currentNode.Data) < 0)
-        //            Add(item, currentNode.Left);
-        //        else if (comparer.Compare(item, currentNode.Data) >= 0)
-        //            Add(item, currentNode.Right);
-        //    }
-        //    node_count++;
-        //    CalculateHeight(root);
-        //}
 
         // TODO Make Recursive
         public TreeNode<T> Contains(T item)

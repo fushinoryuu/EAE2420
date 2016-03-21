@@ -18,11 +18,8 @@ namespace Assignment5
             BinarySearchTree<int> tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
-            //foreach (int number in tempList)
-            //    tree.Add(number, tree.root);
-
             foreach (int number in tempList)
-                tree.Add(number);
+                tree.Add(number, tree.root);
 
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
@@ -42,7 +39,7 @@ namespace Assignment5
 
         private static void HeroTree()
         {
-            BinarySearchTree<Hero> heroTree = new BinarySearchTree<Hero>(new HeroComparer());
+            BinarySearchTree<Hero> tree = new BinarySearchTree<Hero>(new HeroComparer());
 
             MyList<Hero> heroList = new MyList<Hero>(10);
             heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
@@ -56,11 +53,11 @@ namespace Assignment5
             heroList[8] = new Hero { Name = "Graves", Health = 551, Attack = 61, Defense = 24 };
             heroList[9] = new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 };
 
-            //foreach (Hero hero in heroList)
-            //    heroTree.Add(hero, heroTree.root);
-
             foreach (Hero hero in heroList)
-                heroTree.Add(hero);
+                tree.Add(hero, tree.root);
+
+            //foreach (Hero hero in heroList)
+            //    tree.Add(hero);
         }
 
         private static void ETree()
