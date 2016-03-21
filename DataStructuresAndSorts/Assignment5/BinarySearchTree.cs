@@ -41,26 +41,22 @@ namespace Assignment5
             CalculateHeight(root);
         }
 
-        // TODO Make Recursive
-        public TreeNode<T> Contains(T item)
+        public TreeNode<T> Contains(T item, TreeNode<T> currentNode)
         {
-            TreeNode<T> crawler = root;
-
-            while (crawler != null)
+            if (currentNode != null)
             {
-                if (comparer.Compare(item, crawler.Data) == 0)
-                    return crawler;
-                else if (comparer.Compare(item, crawler.Data) < 0)
-                    crawler = crawler.Left;
+                if (comparer.Compare(item, currentNode.Data) == 0)
+                    return currentNode;
+                else if (comparer.Compare(item, currentNode.Data) < 0)
+                    return Contains(item, currentNode.Left);
                 else
-                    crawler = crawler.Right;
+                    return Contains(item, currentNode.Right);
             }
-            return null;
-        }
-
-        public TreeNode<T> RecursiveContains(T item)
-        {
-            throw new NotImplementedException();
+            else
+            {
+                Console.WriteLine("Value Not Found!");
+                return null;
+            }
         }
 
         // TODO Finish Remove function

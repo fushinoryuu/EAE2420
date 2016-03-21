@@ -8,7 +8,7 @@ namespace Assignment5
         public static void Main()
         {
             NumberTree();
-            HeroTree();
+            //HeroTree();
             //ETree();
         }
 
@@ -20,6 +20,8 @@ namespace Assignment5
 
             foreach (int number in tempList)
                 tree.Add(number, tree.root);
+
+            tree.Contains(1, tree.root);
 
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
