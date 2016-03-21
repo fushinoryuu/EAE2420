@@ -5,15 +5,15 @@ namespace Assignment5
 {
     class BinarySearchTree<T>
     {
-        //IComparer<T> comparer;
+        IComparer<T> comparer;
         public TreeNode<T> root;
         private int node_count;
 
-        public BinarySearchTree()//IComparer<T> comparer = null)
+        public BinarySearchTree(IComparer<T> comparer = null)
         {
             root = null;
             node_count = 0;
-            //this.comparer = comparer;
+            this.comparer = comparer;
         }
 
         // TODO Make Recursive
@@ -31,13 +31,17 @@ namespace Assignment5
                 while (crawler != null)
                 {
                     tracker = crawler;
-                    if (new_node.CompareTo(crawler.Data) >= 0)
-                        crawler = crawler.Right;
-                    else
+                    //if (new_node.CompareTo(crawler.Data) >= 0)
+                    //    crawler = crawler.Right;
+                    if (comparer.Compare(new_node.Data, crawler.Data) >= 0)
                         crawler = crawler.Left;
+                    else
+                        crawler = crawler.Right;
                 }
 
-                if (new_node.CompareTo(tracker.Data) >= 0)
+                //if (new_node.CompareTo(tracker.Data) >= 0)
+                //    tracker.Right = new_node;
+                if (comparer.Compare(new_node.Data, tracker.Data) >= 0)
                     tracker.Right = new_node;
                 else
                     tracker.Left = new_node;
@@ -54,10 +58,10 @@ namespace Assignment5
                 root = new TreeNode<T> { Data = item };
             else
             {
-                if (currentNode.CompareTo(item) > 0)
-                    RecursiveAdd(item, currentNode.Right, previousNode);
-                else if (currentNode.CompareTo(item) < 0)
-                    RecursiveAdd(item, currentNode.Left, previousNode);
+                //if (currentNode.CompareTo(item) > 0)
+                //    RecursiveAdd(item, currentNode.Right, previousNode);
+                //else if (currentNode.CompareTo(item) < 0)
+                //    RecursiveAdd(item, currentNode.Left, previousNode);
 
             }
 
@@ -72,18 +76,19 @@ namespace Assignment5
         // TODO Make Recursive
         public TreeNode<T> Contains(T item)
         {
-            TreeNode<T> crawler = root;
+            //TreeNode<T> crawler = root;
 
-            while (crawler != null)
-            {
-                if (crawler.CompareTo(item) == 0)
-                    return crawler;
-                else if (crawler.CompareTo(item) > 0)
-                    crawler = crawler.Right;
-                else
-                    crawler = crawler.Left;
-            }
-            return null;
+            //while (crawler != null)
+            //{
+            //    if (crawler.CompareTo(item) == 0)
+            //        return crawler;
+            //    else if (crawler.CompareTo(item) > 0)
+            //        crawler = crawler.Right;
+            //    else
+            //        crawler = crawler.Left;
+            //}
+            //return null;
+            throw new NotImplementedException();
         }
 
         public TreeNode<T> ContainsRecursive(T item)
@@ -170,6 +175,7 @@ namespace Assignment5
             //node.right = node.right.right;
         }
 
+        // TO DO: Get output without list.
         public string TraversePre(MyList<T> list, TreeNode<T> node)
         {
             list.Add(node.Data);
@@ -180,6 +186,7 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
+        // TO DO: Get output without list.
         public string TraverseIn(MyList<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
@@ -190,6 +197,7 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
+        // TO DO: Get output without list.
         public string TraversePost(MyList<T> list, TreeNode<T> node)
         {
             if (node.Left != null)

@@ -7,22 +7,18 @@ namespace Assignment5
     {
         public static void Main()
         {
-            BSTree();
-            ETree();
-            //CustomTree();
+            //BSTree();
+            //ETree();
+            CustomTree();
         }
 
         private static void BSTree()
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
-            //int[] tempList = new int[] { 50, 25, 75, 5, 15, 60, 90, 10, 20 };
 
             foreach (int number in tempList)
                 tree.Add(number);
-
-            //for (int i = 0; i < tempList.Length; i++)
-            //    tree.RecursiveAdd(tempList[i], tree.root);
 
             tree.Remove(tree.Contains(25));
 
@@ -44,7 +40,8 @@ namespace Assignment5
 
         private static void CustomTree()
         {
-            BinarySearchTree<Hero> tree = new BinarySearchTree<Hero>();
+            HeroComparer comparer = new HeroComparer();
+            BinarySearchTree<Hero> heroTree = new BinarySearchTree<Hero>(comparer);
 
             MyList<Hero> heroList = new MyList<Hero>(10);
             heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
@@ -59,7 +56,7 @@ namespace Assignment5
             heroList[9] = new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 };
 
             foreach (Hero hero in heroList)
-                tree.Add(hero);
+                heroTree.Add(hero);
         }
 
         private static void ETree()

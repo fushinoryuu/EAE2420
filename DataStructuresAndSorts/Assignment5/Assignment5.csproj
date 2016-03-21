@@ -39,7 +39,7 @@
     <Compile Include="BinarySearchTree.cs" />
     <Compile Include="Caller.cs" />
     <Compile Include="Hero.cs" />
-    <Compile Include="myComparer.cs" />
+    <Compile Include="HeroComparer.cs" />
     <Compile Include="Class_03-08.cs" />
     <Compile Include="ExpressionTree.cs" />
     <Compile Include="myList.cs" />
