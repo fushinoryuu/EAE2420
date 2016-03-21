@@ -21,8 +21,6 @@ namespace Assignment5
             foreach (int number in tempList)
                 tree.Add(number);
 
-            //tree.Remove(tree.Contains(25));
-
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
             TestPre_BST(preResult);

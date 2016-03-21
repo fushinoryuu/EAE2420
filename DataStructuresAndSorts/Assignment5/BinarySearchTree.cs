@@ -17,37 +17,37 @@ namespace Assignment5
         }
 
         // TODO Make Recursive
-        public void Add(T item)
-        {
-            TreeNode<T> new_node = new TreeNode<T> { Data = item };
+        //public void Add(T item)
+        //{
+        //    TreeNode<T> new_node = new TreeNode<T> { Data = item };
 
-            if (root == null)
-                root = new_node;
-            else
-            {
-                TreeNode<T> crawler = root;
-                TreeNode<T> tracker = crawler;
+        //    if (root == null)
+        //        root = new_node;
+        //    else
+        //    {
+        //        TreeNode<T> crawler = root;
+        //        TreeNode<T> tracker = crawler;
 
-                while (crawler != null)
-                {
-                    tracker = crawler;
+        //        while (crawler != null)
+        //        {
+        //            tracker = crawler;
 
-                    if (comparer.Compare(new_node.Data, crawler.Data) < 0)
-                        crawler = crawler.Left;
-                    else
-                        crawler = crawler.Right;
-                }
+        //            if (comparer.Compare(new_node.Data, crawler.Data) < 0)
+        //                crawler = crawler.Left;
+        //            else
+        //                crawler = crawler.Right;
+        //        }
 
-                if (comparer.Compare(new_node.Data, tracker.Data) < 0)
-                    tracker.Left = new_node;
-                else
-                    tracker.Right = new_node;
-            }
-            node_count++;
-            CalculateHeight(root);
-        }
+        //        if (comparer.Compare(new_node.Data, tracker.Data) < 0)
+        //            tracker.Left = new_node;
+        //        else
+        //            tracker.Right = new_node;
+        //    }
+        //    node_count++;
+        //    CalculateHeight(root);
+        //}
 
-        public void RecursiveAdd(T item, TreeNode<T> currentNode, TreeNode<T> previousNode = null)
+        public void Add(T item, TreeNode<T> currentNode = null, TreeNode<T> previousNode = null)
         {
             previousNode = currentNode;
 
@@ -55,7 +55,12 @@ namespace Assignment5
                 root = new TreeNode<T> { Data = item };
             else
             {
-
+                if (currentNode == null)
+                    return;
+                else if (comparer.Compare(item, currentNode.Data) < 0)
+                    Add(item, currentNode.Left, previousNode);
+                else
+                    Add(item, currentNode.Right, previousNode);
             }
             node_count++;
             CalculateHeight(root);
@@ -64,23 +69,21 @@ namespace Assignment5
         // TODO Make Recursive
         public TreeNode<T> Contains(T item)
         {
-            //TreeNode<T> crawler = root;
+            TreeNode<T> crawler = root;
 
-            //while (crawler != null)
-            //{
-            //    if (crawler.CompareTo(item) == 0)
-            //        return crawler;
-            //    else if (crawler.CompareTo(item) > 0)
-            //        crawler = crawler.Right;
-            //    else
-            //        crawler = crawler.Left;
-            //}
-            //return null;
-
-            throw new NotImplementedException();
+            while (crawler != null)
+            {
+                if (comparer.Compare(item, crawler.Data) == 0)
+                    return crawler;
+                else if (comparer.Compare(item, crawler.Data) < 0)
+                    crawler = crawler.Left;
+                else
+                    crawler = crawler.Right;
+            }
+            return null;
         }
 
-        public TreeNode<T> ContainsRecursive(T item)
+        public TreeNode<T> RecursiveContains(T item)
         {
             throw new NotImplementedException();
         }
@@ -89,7 +92,7 @@ namespace Assignment5
         public void Remove(TreeNode<T> node)
         {
             if (node == null)
-                Console.WriteLine("\nCould not remove the node you were looking for!\n");
+                Console.WriteLine("\nNode Not Found!\n");
             else
             {
                 CalculateHeight(root);
