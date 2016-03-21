@@ -22,4 +22,12 @@ namespace Assignment5
             return left.Name.CompareTo(right.Name);
         }
     }
+
+    class numberComparer : IComparer<int>
+    {
+        public int Compare(int left, int right)
+        {
+            return left - right;
+        }
+    }
 }

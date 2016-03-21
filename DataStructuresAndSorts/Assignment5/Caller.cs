@@ -7,20 +7,21 @@ namespace Assignment5
     {
         public static void Main()
         {
-            //BSTree();
+            BSTree();
             //ETree();
-            CustomTree();
+            //CustomTree();
         }
 
         private static void BSTree()
         {
-            BinarySearchTree<int> tree = new BinarySearchTree<int>();
+
+            BinarySearchTree<int> tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
             foreach (int number in tempList)
                 tree.Add(number);
 
-            tree.Remove(tree.Contains(25));
+            //tree.Remove(tree.Contains(25));
 
             MyList<int> preList = new MyList<int>(tree.NodeCount);
             string preResult = tree.TraversePre(preList, tree.root);
@@ -40,8 +41,7 @@ namespace Assignment5
 
         private static void CustomTree()
         {
-            HeroComparer comparer = new HeroComparer();
-            BinarySearchTree<Hero> heroTree = new BinarySearchTree<Hero>(comparer);
+            BinarySearchTree<Hero> heroTree = new BinarySearchTree<Hero>(new HeroComparer());
 
             MyList<Hero> heroList = new MyList<Hero>(10);
             heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
@@ -66,24 +66,21 @@ namespace Assignment5
                 Console.Write("Type into the console the following expression 5 + 2 * 8 – 6 / 4: \n");
                 string input = Console.ReadLine();
 
-                //Console.WriteLine("Expression to evaluate: 5 + 2 * 8 – 6 / 4");
-                //string input = "5 + 2 * 8 – 6 / 4";
-
                 ExpressionTree ETree = new ExpressionTree(input);
 
                 MyList<string> preList = new MyList<string>(ETree.NodeCount);
                 string preResult = ETree.TraversePre(preList, ETree.root);
-                //TestPre_ET(preResult);
+                TestPre_ET(preResult);
                 Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
                 MyList<string> inList = new MyList<string>(ETree.NodeCount);
                 string inResult = ETree.TraverseIn(inList, ETree.root);
-                //TestIn_ET(inResult);
+                TestIn_ET(inResult);
                 Console.WriteLine("In-order: [{0}]\n", inResult);
 
                 MyList<string> postList = new MyList<string>(ETree.NodeCount);
                 string postResult = ETree.TraversePost(postList, ETree.root);
-                //TestPost_ET(postResult);
+                TestPost_ET(postResult);
                 Console.WriteLine("Post-order: [{0}]\n", postResult);
 
                 ETree.Evaluate(ETree.root);

@@ -31,20 +31,17 @@ namespace Assignment5
                 while (crawler != null)
                 {
                     tracker = crawler;
-                    //if (new_node.CompareTo(crawler.Data) >= 0)
-                    //    crawler = crawler.Right;
-                    if (comparer.Compare(new_node.Data, crawler.Data) >= 0)
+
+                    if (comparer.Compare(new_node.Data, crawler.Data) < 0)
                         crawler = crawler.Left;
                     else
                         crawler = crawler.Right;
                 }
 
-                //if (new_node.CompareTo(tracker.Data) >= 0)
-                //    tracker.Right = new_node;
-                if (comparer.Compare(new_node.Data, tracker.Data) >= 0)
-                    tracker.Right = new_node;
-                else
+                if (comparer.Compare(new_node.Data, tracker.Data) < 0)
                     tracker.Left = new_node;
+                else
+                    tracker.Right = new_node;
             }
             node_count++;
             CalculateHeight(root);
@@ -58,19 +55,10 @@ namespace Assignment5
                 root = new TreeNode<T> { Data = item };
             else
             {
-                //if (currentNode.CompareTo(item) > 0)
-                //    RecursiveAdd(item, currentNode.Right, previousNode);
-                //else if (currentNode.CompareTo(item) < 0)
-                //    RecursiveAdd(item, currentNode.Left, previousNode);
 
             }
-
-            //list.Add(node.Data);
-            //if (node.Left != null)
-            //    TraversePre(list, node.Left);
-            //if (node.Right != null)
-            //    TraversePre(list, node.Right);
-            //return string.Join(", ", list);
+            node_count++;
+            CalculateHeight(root);
         }
 
         // TODO Make Recursive
@@ -88,6 +76,7 @@ namespace Assignment5
             //        crawler = crawler.Left;
             //}
             //return null;
+
             throw new NotImplementedException();
         }
 
