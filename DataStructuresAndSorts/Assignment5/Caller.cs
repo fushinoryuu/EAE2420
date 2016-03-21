@@ -9,16 +9,17 @@ namespace Assignment5
         {
             BSTree();
             ETree();
+            //CustomTree();
         }
 
         private static void BSTree()
         {
             BinarySearchTree<int> tree = new BinarySearchTree<int>();
-            //int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
-            int[] tempList = new int[] { 50, 25, 75, 5, 15, 60, 90, 10, 20 };
+            int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
+            //int[] tempList = new int[] { 50, 25, 75, 5, 15, 60, 90, 10, 20 };
 
-            for (int i = 0; i < tempList.Length; i++)
-                tree.Add(tempList[i]);
+            foreach (int number in tempList)
+                tree.Add(number);
 
             //for (int i = 0; i < tempList.Length; i++)
             //    tree.RecursiveAdd(tempList[i], tree.root);
@@ -39,6 +40,26 @@ namespace Assignment5
             string postResult = tree.TraversePost(postList, tree.root);
             TestPost_BST(postResult);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
+        }
+
+        private static void CustomTree()
+        {
+            BinarySearchTree<Hero> tree = new BinarySearchTree<Hero>();
+
+            MyList<Hero> heroList = new MyList<Hero>(10);
+            heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
+            heroList[1] = new Hero { Name = "Jinx", Health = 518, Attack = 58, Defense = 23 };
+            heroList[2] = new Hero { Name = "Varus", Health = 538, Attack = 55, Defense = 23 };
+            heroList[3] = new Hero { Name = "Vayne", Health = 498, Attack = 56, Defense = 19 };
+            heroList[4] = new Hero { Name = "Kalista", Health = 518, Attack = 63, Defense = 19 };
+            heroList[5] = new Hero { Name = "Jhin", Health = 540, Attack = 53, Defense = 20 };
+            heroList[6] = new Hero { Name = "Caitlyn", Health = 524, Attack = 54, Defense = 23 };
+            heroList[7] = new Hero { Name = "Draven", Health = 558, Attack = 56, Defense = 26 };
+            heroList[8] = new Hero { Name = "Graves", Health = 551, Attack = 61, Defense = 24 };
+            heroList[9] = new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 };
+
+            foreach (Hero hero in heroList)
+                tree.Add(hero);
         }
 
         private static void ETree()

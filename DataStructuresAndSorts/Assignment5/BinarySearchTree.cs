@@ -30,37 +30,43 @@ namespace Assignment5
 
                 while (crawler != null)
                 {
-                    //new_node.Parent = crawler;
                     tracker = crawler;
-                    if (new_node.CompareTo(crawler.Data) >= 0) //item >= crawler.data)
+                    if (new_node.CompareTo(crawler.Data) >= 0)
                         crawler = crawler.Right;
                     else
                         crawler = crawler.Left;
                 }
 
-                if (new_node.CompareTo(tracker.Data) >= 0)//item >= new_node.parent.data)
+                if (new_node.CompareTo(tracker.Data) >= 0)
                     tracker.Right = new_node;
                 else
                     tracker.Left = new_node;
             }
             node_count++;
             CalculateHeight(root);
-            Console.WriteLine("");
         }
 
-        public void RecursiveAdd(T item, TreeNode<T> node)
+        public void RecursiveAdd(T item, TreeNode<T> currentNode, TreeNode<T> previousNode = null)
         {
+            previousNode = currentNode;
+
             if (root == null)
                 root = new TreeNode<T> { Data = item };
             else
             {
-                TreeNode<T> tempNode = new TreeNode<T> { Data = item };
-                if (tempNode.CompareTo(node.Data) >= 0)
-                    RecursiveAdd(item, node.Right);
+                if (currentNode.CompareTo(item) > 0)
+                    RecursiveAdd(item, currentNode.Right, previousNode);
+                else if (currentNode.CompareTo(item) < 0)
+                    RecursiveAdd(item, currentNode.Left, previousNode);
 
-                else if (tempNode.CompareTo(node.Data) < 0)
-                    RecursiveAdd(item, node.Left);
             }
+
+            //list.Add(node.Data);
+            //if (node.Left != null)
+            //    TraversePre(list, node.Left);
+            //if (node.Right != null)
+            //    TraversePre(list, node.Right);
+            //return string.Join(", ", list);
         }
 
         // TODO Make Recursive
@@ -70,9 +76,9 @@ namespace Assignment5
 
             while (crawler != null)
             {
-                if (crawler.CompareTo(item) == 0) //item == crawler.data)
+                if (crawler.CompareTo(item) == 0)
                     return crawler;
-                else if (crawler.CompareTo(item) > 0) //item >= crawler.data)
+                else if (crawler.CompareTo(item) > 0)
                     crawler = crawler.Right;
                 else
                     crawler = crawler.Left;
@@ -128,7 +134,7 @@ namespace Assignment5
 
             else if (node.Left == null && node.Right == null)
                 node.Height = 1;
-            Console.WriteLine("Node value: {0} Node Height: {1}", node.Data, node.Height);
+
             CheckBalance(node);
         }
 
