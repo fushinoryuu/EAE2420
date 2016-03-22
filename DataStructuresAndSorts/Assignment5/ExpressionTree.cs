@@ -6,7 +6,6 @@ namespace Assignment5
     class ExpressionTree
     {
         public TreeNode<string> root;
-        private int node_count;
 
         public ExpressionTree(string input)
         {
@@ -49,8 +48,6 @@ namespace Assignment5
 
             private void BuildTree(ExpressionTree tree)
             {
-                tree.node_count = numberStack.Count + operatorStack.Count;
-
                 while (operatorStack.Count != 0)
                 {
                     TreeNode<string> tempRoot = operatorStack.Pop();
@@ -60,14 +57,6 @@ namespace Assignment5
                 }
 
                 tree.root = numberStack.Pop();
-            }
-        }
-
-        public int NodeCount
-        {
-            get
-            {
-                return node_count;
             }
         }
 

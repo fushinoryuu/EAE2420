@@ -72,17 +72,17 @@ namespace Assignment5
 
                 ExpressionTree ETree = new ExpressionTree(input);
 
-                MyList<string> preList = new MyList<string>(ETree.NodeCount);
+                MyList<string> preList = new MyList<string>(10);
                 string preResult = ETree.TraversePre(preList, ETree.root);
                 TestPre_ET(preResult);
                 Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
-                MyList<string> inList = new MyList<string>(ETree.NodeCount);
+                MyList<string> inList = new MyList<string>(10);
                 string inResult = ETree.TraverseIn(inList, ETree.root);
                 TestIn_ET(inResult);
                 Console.WriteLine("In-order: [{0}]\n", inResult);
 
-                MyList<string> postList = new MyList<string>(ETree.NodeCount);
+                MyList<string> postList = new MyList<string>(10);
                 string postResult = ETree.TraversePost(postList, ETree.root);
                 TestPost_ET(postResult);
                 Console.WriteLine("Post-order: [{0}]\n", postResult);
