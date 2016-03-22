@@ -7,12 +7,11 @@ namespace Assignment5
     {
         IComparer<T> comparer;
         public TreeNode<T> root;
-        private int node_count;
+
 
         public BinarySearchTree(IComparer<T> comparer = null)
         {
             root = null;
-            node_count = 0;
             this.comparer = comparer;
         }
 
@@ -40,8 +39,7 @@ namespace Assignment5
                         Add(item, currentNode.Right);
                 }
             }
-            node_count++;
-            CalculateHeight(currentNode);
+            //CalculateHeight(currentNode);
             Console.WriteLine("");
         }
 
@@ -77,15 +75,6 @@ namespace Assignment5
         public void Clear()
         {
             root = null;
-            node_count = 0;
-        }
-
-        public int NodeCount
-        {
-            get
-            {
-                return node_count;
-            }
         }
 
         private void CalculateHeight(TreeNode<T> node)
@@ -128,7 +117,7 @@ namespace Assignment5
 
                 else if (node.Left == null && node.Right != null)
                     if (node.Right.Height > 1)
-                        Rotate(node);
+                        LeftRotate(node);
 
                     else if (node.Left != null && node.Right != null)
                         if (node.Left.Height > node.Right.Height + 1)

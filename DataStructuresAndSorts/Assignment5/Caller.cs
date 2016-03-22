@@ -16,25 +16,25 @@ namespace Assignment5
         {
 
             BinarySearchTree<int> tree = new BinarySearchTree<int>(new numberComparer());
-            //int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
-            int[] tempList = new int[] { 1, 2, 3 };
+            int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
+            //int[] tempList = new int[] { 1, 2, 3 };
 
             foreach (int number in tempList)
                 tree.Add(number, tree.root);
 
             tree.Contains(1, tree.root);
 
-            MyList<int> preList = new MyList<int>(tree.NodeCount);
+            MyList<int> preList = new MyList<int>(10);
             string preResult = tree.TraversePre(preList, tree.root);
             //TestPre_BST(preResult);
             Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
-            MyList<int> inList = new MyList<int>(tree.NodeCount);
+            MyList<int> inList = new MyList<int>(10);
             string inResult = tree.TraverseIn(inList, tree.root);
             //TestIn_BST(inResult);
             Console.WriteLine("In-order: [{0}]\n", inResult);
 
-            MyList<int> postList = new MyList<int>(tree.NodeCount);
+            MyList<int> postList = new MyList<int>(10);
             string postResult = tree.TraversePost(postList, tree.root);
             //TestPost_BST(postResult);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
