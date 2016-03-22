@@ -46,6 +46,23 @@ namespace Assignment5
                 BuildTree(tree);
             }
 
+            private void BuildNodez(ExpressionTree tree, string[] expressionArray)
+            {
+                foreach (string item in expressionArray)
+                {
+                    double tempNumber;
+                    if (double.TryParse(item, out tempNumber))
+                    {
+                        numberStack.Push(new TreeNode<string> { Data = tempNumber.ToString() });
+                    }
+                    else if (item == "*" || item == "/")
+                    {
+                        
+                    }
+                }
+                BuildTree(tree);
+            }
+
             private void BuildTree(ExpressionTree tree)
             {
                 while (operatorStack.Count != 0)

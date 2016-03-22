@@ -7,42 +7,42 @@ namespace Assignment5
     {
         public static void Main()
         {
-            NumberTree();
+            //NumberTree();
             //HeroTree();
-            //ETree();
+            ETree();
         }
 
         private static void NumberTree()
         {
 
-            BinarySearchTree<int> tree = new BinarySearchTree<int>(new numberComparer());
+            BinarySearchTree<int> binary_search_tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
             //int[] tempList = new int[] { 1, 2, 3 };
 
             foreach (int number in tempList)
-                tree.Add(number, tree.root);
+                binary_search_tree.Add(number, binary_search_tree.root);
 
-            tree.Contains(1, tree.root);
+            binary_search_tree.Contains(1, binary_search_tree.root);
 
             MyList<int> preList = new MyList<int>(10);
-            string preResult = tree.TraversePre(preList, tree.root);
+            string preResult = binary_search_tree.TraversePre(preList, binary_search_tree.root);
             //TestPre_BST(preResult);
             Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
             MyList<int> inList = new MyList<int>(10);
-            string inResult = tree.TraverseIn(inList, tree.root);
+            string inResult = binary_search_tree.TraverseIn(inList, binary_search_tree.root);
             //TestIn_BST(inResult);
             Console.WriteLine("In-order: [{0}]\n", inResult);
 
             MyList<int> postList = new MyList<int>(10);
-            string postResult = tree.TraversePost(postList, tree.root);
+            string postResult = binary_search_tree.TraversePost(postList, binary_search_tree.root);
             //TestPost_BST(postResult);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
         }
 
         private static void HeroTree()
         {
-            BinarySearchTree<Hero> tree = new BinarySearchTree<Hero>(new HeroComparer());
+            BinarySearchTree<Hero> hero_tree = new BinarySearchTree<Hero>(new HeroComparer());
 
             MyList<Hero> heroList = new MyList<Hero>(10);
             heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
@@ -57,7 +57,7 @@ namespace Assignment5
             heroList[9] = new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 };
 
             foreach (Hero hero in heroList)
-                tree.Add(hero, tree.root);
+                hero_tree.Add(hero, hero_tree.root);
 
             //foreach (Hero hero in heroList)
             //    tree.Add(hero);
@@ -70,25 +70,25 @@ namespace Assignment5
                 Console.Write("Type into the console the following expression 5 + 2 * 8 – 6 / 4: \n");
                 string input = Console.ReadLine();
 
-                ExpressionTree ETree = new ExpressionTree(input);
+                ExpressionTree expression_tree = new ExpressionTree(input);
 
                 MyList<string> preList = new MyList<string>(10);
-                string preResult = ETree.TraversePre(preList, ETree.root);
+                string preResult = expression_tree.TraversePre(preList, expression_tree.root);
                 TestPre_ET(preResult);
                 Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
                 MyList<string> inList = new MyList<string>(10);
-                string inResult = ETree.TraverseIn(inList, ETree.root);
+                string inResult = expression_tree.TraverseIn(inList, expression_tree.root);
                 TestIn_ET(inResult);
                 Console.WriteLine("In-order: [{0}]\n", inResult);
 
                 MyList<string> postList = new MyList<string>(10);
-                string postResult = ETree.TraversePost(postList, ETree.root);
+                string postResult = expression_tree.TraversePost(postList, expression_tree.root);
                 TestPost_ET(postResult);
                 Console.WriteLine("Post-order: [{0}]\n", postResult);
 
-                ETree.Evaluate(ETree.root);
-                Console.WriteLine(ETree.root.Data);
+                expression_tree.Evaluate(expression_tree.root);
+                Console.WriteLine(expression_tree.root.Data);
             }
             catch (InvalidOperationException)
             {

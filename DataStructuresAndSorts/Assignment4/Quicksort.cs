@@ -21,7 +21,6 @@
                 if (numbers[i] < pivot)
                 {
                     wall++;
-                    swap_numbers(numbers, i, wall);
                 }
             }
             swap_numbers(numbers, low, wall);

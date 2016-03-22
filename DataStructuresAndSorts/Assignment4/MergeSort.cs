@@ -4,47 +4,45 @@ namespace Assignment4
 {
     class MergeSort : ISorter
     {
-        public void sort(int[] numbers, int left, int right)
+        public void sort(int[] numbers, int low, int high)
         {
-            int mid;
-
-            if (left < right)
+            if (low < high)
             {
-                mid = (right + left) / 2;
-                sort(numbers, left, mid);
-                sort(numbers, (mid + 1), right);
+                int middle = (high + low) / 2;
+                sort(numbers, low, middle);
+                sort(numbers, middle + 1, high);
 
-                merge(numbers, left, (mid + 1), right);
+                merge(numbers, low, middle + 1, high);
             }
         }
 
-        private static void merge(int[] numbers, int left, int middle, int right)
+        private void merge(int[] numbers, int low, int middle, int high)
         {
             int[] temp = new int[numbers.Length];
             int i, left_end, num_elements, tmp_pos;
 
             left_end = (middle - 1);
-            tmp_pos = left;
-            num_elements = (right - left + 1);
+            tmp_pos = low;
+            num_elements = (high - low + 1);
 
-            while ((left <= left_end) && (middle <= right))
+            while ((low <= left_end) && (middle <= high))
             {
-                if (numbers[left] <= numbers[middle])
-                    temp[tmp_pos++] = numbers[left++];
+                if (numbers[low] <= numbers[middle])
+                    temp[tmp_pos++] = numbers[low++];
                 else
                     temp[tmp_pos++] = numbers[middle++];
             }
 
-            while (left <= left_end)
-                temp[tmp_pos++] = numbers[left++];
+            while (low <= left_end)
+                temp[tmp_pos++] = numbers[low++];
 
-            while (middle <= right)
+            while (middle <= high)
                 temp[tmp_pos++] = numbers[middle++];
 
             for (i = 0; i < num_elements; i++)
             {
-                numbers[right] = temp[right];
-                right--;
+                numbers[high] = temp[high];
+                high--;
             }
         }
     }
