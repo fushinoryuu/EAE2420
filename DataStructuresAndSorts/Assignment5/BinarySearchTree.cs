@@ -42,12 +42,12 @@ namespace Assignment5
             //CalculateHeight(currentNode);
         }
 
-        public TreeNode<T> Contains(T item, TreeNode<T> currentNode)
+        public bool Contains(T item, TreeNode<T> currentNode)
         {
             if (currentNode != null)
             {
                 if (comparer.Compare(item, currentNode.Data) == 0)
-                    return currentNode;
+                    return true;
                 else if (comparer.Compare(item, currentNode.Data) < 0)
                     return Contains(item, currentNode.Left);
                 else
@@ -55,8 +55,7 @@ namespace Assignment5
             }
             else
             {
-                Console.WriteLine("Value Not Found!");
-                return null;
+                return false;
             }
         }
 

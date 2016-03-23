@@ -8,7 +8,7 @@ namespace Assignment5
         public static void Main()
         {
             NumberTree();
-            //HeroTree();
+            HeroTree();
             ExpressionTree();
         }
 
@@ -17,28 +17,45 @@ namespace Assignment5
             BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
+            Console.WriteLine("Adding the following numbers to Binary Search Tree: [{0}]\n",
+                string.Join(", ", tempList));
+
             foreach (int number in tempList)
                 number_tree.Add(number, number_tree.root);
 
             MyList<int> preList = new MyList<int>(10);
             MyList<int> inList = new MyList<int>(10);
             MyList<int> postList = new MyList<int>(10);
-            string error = "BINARY SEARCH TREE: Order doesn't match!";
+            string traverseError = "BINARY SEARCH TREE: Order doesn't match!";
+            string nullError = "BINARY SEARCH TREE: Tree is not null!";
+            string containsError = "BINARY SEARCH TREE: Result not as expected!";
             string preExpected = "50, 25, 15, 45, 30, 49, 70, 90, 80";
             string inExpected = "15, 25, 30, 45, 49, 50, 70, 80, 90";
             string postExpected = "15, 30, 49, 45, 25, 80, 90, 70, 50";
 
+            bool containsResult = number_tree.Contains(25, number_tree.root);
+            TestContains(containsResult, true, containsError);
+            Console.WriteLine("Checking if 25 is in the tree... {0}\n", containsResult);
+
+            containsResult = number_tree.Contains(44, number_tree.root);
+            TestContains(containsResult, false, containsError);
+            Console.WriteLine("Checking if 44 is in the tree... {0}\n", containsResult);
+
             string preResult = number_tree.TraversePre(preList, number_tree.root);
-            TestTraversals(preResult, preExpected, error);
-            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
+            TestTraversals(preResult, preExpected, traverseError);
+            Console.WriteLine("Pre-order: [{0}]\n", preResult);
             
             string inResult = number_tree.TraverseIn(inList, number_tree.root);
-            TestTraversals(inResult, inExpected, error);
+            TestTraversals(inResult, inExpected, traverseError);
             Console.WriteLine("In-order: [{0}]\n", inResult);
             
             string postResult = number_tree.TraversePost(postList, number_tree.root);
-            TestTraversals(postResult, postExpected, error);
+            TestTraversals(postResult, postExpected, traverseError);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
+
+            Console.WriteLine("Clearing the Binary Search Tree...\n");
+            number_tree.Clear();
+            TestNullTree(number_tree.root, nullError);
         }
 
         private static void HeroTree()
@@ -59,14 +76,11 @@ namespace Assignment5
 
             foreach (Hero hero in heroList)
                 hero_tree.Add(hero, hero_tree.root);
-
-            //foreach (Hero hero in heroList)
-            //    tree.Add(hero);
         }
 
         private static void ExpressionTree()
         {
-            Console.Write("Type into the console the following expression 5 + 2 * 8 – 6 / 4: \n");
+            Console.Write("Type into the console the following expression '5 + 2 * 8 – 6 / 4' : ");
             string input = Console.ReadLine();
 
             ExpressionTree expression_tree = new ExpressionTree(input);
@@ -92,11 +106,22 @@ namespace Assignment5
             TestTraversals(postResult, postExpected, error);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
 
+            Console.WriteLine("Evaluating {0} \n", input);
             expression_tree.Evaluate(expression_tree.root);
-            Console.WriteLine(expression_tree.root.Data);
+            Console.WriteLine("Result = {0}\n", expression_tree.root.Data);
         }
 
         private static void TestTraversals(string actual, string expected, string error)
+        {
+            Debug.Assert(actual == expected, error);
+        }
+
+        private static void TestNullTree(TreeNode<int> root, string error)
+        {
+            Debug.Assert(root == null, error);
+        }
+
+        private static void TestContains(bool actual, bool expected, string error)
         {
             Debug.Assert(actual == expected, error);
         }
