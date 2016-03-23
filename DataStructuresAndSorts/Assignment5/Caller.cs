@@ -7,36 +7,37 @@ namespace Assignment5
     {
         public static void Main()
         {
-            //NumberTree();
+            NumberTree();
             //HeroTree();
-            ETree();
+            ExpressionTree();
         }
 
         private static void NumberTree()
         {
-
-            BinarySearchTree<int> binary_search_tree = new BinarySearchTree<int>(new numberComparer());
+            BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
-            //int[] tempList = new int[] { 1, 2, 3 };
 
             foreach (int number in tempList)
-                binary_search_tree.Add(number, binary_search_tree.root);
-
-            binary_search_tree.Contains(1, binary_search_tree.root);
+                number_tree.Add(number, number_tree.root);
 
             MyList<int> preList = new MyList<int>(10);
-            string preResult = binary_search_tree.TraversePre(preList, binary_search_tree.root);
-            //TestPre_BST(preResult);
-            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
-
             MyList<int> inList = new MyList<int>(10);
-            string inResult = binary_search_tree.TraverseIn(inList, binary_search_tree.root);
-            //TestIn_BST(inResult);
-            Console.WriteLine("In-order: [{0}]\n", inResult);
-
             MyList<int> postList = new MyList<int>(10);
-            string postResult = binary_search_tree.TraversePost(postList, binary_search_tree.root);
-            //TestPost_BST(postResult);
+            string error = "BINARY SEARCH TREE: Order doesn't match!";
+            string preExpected = "50, 25, 15, 45, 30, 49, 70, 90, 80";
+            string inExpected = "15, 25, 30, 45, 49, 50, 70, 80, 90";
+            string postExpected = "15, 30, 49, 45, 25, 80, 90, 70, 50";
+
+            string preResult = number_tree.TraversePre(preList, number_tree.root);
+            TestTraversals(preResult, preExpected, error);
+            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
+            
+            string inResult = number_tree.TraverseIn(inList, number_tree.root);
+            TestTraversals(inResult, inExpected, error);
+            Console.WriteLine("In-order: [{0}]\n", inResult);
+            
+            string postResult = number_tree.TraversePost(postList, number_tree.root);
+            TestTraversals(postResult, postExpected, error);
             Console.WriteLine("Post-order: [{0}]\n", postResult);
         }
 
@@ -63,68 +64,41 @@ namespace Assignment5
             //    tree.Add(hero);
         }
 
-        private static void ETree()
+        private static void ExpressionTree()
         {
-            try
-            {
-                Console.Write("Type into the console the following expression 5 + 2 * 8 – 6 / 4: \n");
-                string input = Console.ReadLine();
+            Console.Write("Type into the console the following expression 5 + 2 * 8 – 6 / 4: \n");
+            string input = Console.ReadLine();
 
-                ExpressionTree expression_tree = new ExpressionTree(input);
+            ExpressionTree expression_tree = new ExpressionTree(input);
 
-                MyList<string> preList = new MyList<string>(10);
-                string preResult = expression_tree.TraversePre(preList, expression_tree.root);
-                TestPre_ET(preResult);
-                Console.WriteLine("\nPre-order: [{0}]\n", preResult);
+            MyList<string> preList = new MyList<string>(10);
+            MyList<string> inList = new MyList<string>(10);
+            MyList<string> postList = new MyList<string>(10);
+            string error = "EXPRESSION TREE: Order doesn't match!";
+            string preExpected = "-, +, 5, *, 2, 8, /, 6, 4";
+            string inExpected = "5, +, 2, *, 8, -, 6, /, 4";
+            string postExpected = "5, 2, 8, *, +, 6, 4, /, -";
 
-                MyList<string> inList = new MyList<string>(10);
-                string inResult = expression_tree.TraverseIn(inList, expression_tree.root);
-                TestIn_ET(inResult);
-                Console.WriteLine("In-order: [{0}]\n", inResult);
+            string preResult = expression_tree.TraversePre(preList, expression_tree.root);
+            TestTraversals(preResult, preExpected, error);
+            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
 
-                MyList<string> postList = new MyList<string>(10);
-                string postResult = expression_tree.TraversePost(postList, expression_tree.root);
-                TestPost_ET(postResult);
-                Console.WriteLine("Post-order: [{0}]\n", postResult);
+            
+            string inResult = expression_tree.TraverseIn(inList, expression_tree.root);
+            TestTraversals(inResult, inExpected, error);
+            Console.WriteLine("In-order: [{0}]\n", inResult);
+                        
+            string postResult = expression_tree.TraversePost(postList, expression_tree.root);
+            TestTraversals(postResult, postExpected, error);
+            Console.WriteLine("Post-order: [{0}]\n", postResult);
 
-                expression_tree.Evaluate(expression_tree.root);
-                Console.WriteLine(expression_tree.root.Data);
-            }
-            catch (InvalidOperationException)
-            {
-                Console.WriteLine("\nInput can't be empty, please try again.\n");
-                ETree();
-            }
+            expression_tree.Evaluate(expression_tree.root);
+            Console.WriteLine(expression_tree.root.Data);
         }
 
-        private static void TestPre_BST(string result)
+        private static void TestTraversals(string actual, string expected, string error)
         {
-            Debug.Assert(result == "50, 25, 15, 45, 30, 49, 70, 90, 80", "BINARY SEARCH TREE: Order doesn't match!");
-        }
-
-        private static void TestIn_BST(string result)
-        {
-            Debug.Assert(result == "15, 25, 30, 45, 49, 50, 70, 80, 90", "BINARY SEARCH TREE: Order doesn't match!");
-        }
-
-        private static void TestPost_BST(string result)
-        {
-            Debug.Assert(result == "15, 30, 49, 45, 25, 80, 90, 70, 50", "BINARY SEARCH TREE: Order doesn't match!");
-        }
-
-        private static void TestPre_ET(string result)
-        {
-            Debug.Assert(result == "+, 5, *, 2, -, 8, /, 6, 4", "EXPRESSION TREE: Order doesn't match!");
-        }
-
-        private static void TestIn_ET(string result)
-        {
-            Debug.Assert(result == "5, +, 2, *, 8, -, 6, /, 4", "EXPRESSION TREE: Order doesn't match!");
-        }
-
-        private static void TestPost_ET(string result)
-        {
-            Debug.Assert(result == "5, 2, 8, 6, 4, /, -, *, +", "EXPRESSION TREE: Order doesn't match!");
+            Debug.Assert(actual == expected, error);
         }
     }
 }

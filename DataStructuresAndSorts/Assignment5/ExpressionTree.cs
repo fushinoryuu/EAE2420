@@ -44,6 +44,7 @@ namespace Assignment5
                     }
                 }
                 BuildTree(tree);
+
             }
 
             private void BuildTree(ExpressionTree tree)
@@ -53,26 +54,26 @@ namespace Assignment5
                     TreeNode<string> tempRoot = operatorStack.Pop();
                     tempRoot.Right = numberStack.Pop();
                     tempRoot.Left = numberStack.Pop();
+
+                    if((tempRoot.Data == "*" || tempRoot.Data == "/") && 
+                        (tempRoot.Right.Data == "+" || tempRoot.Right.Data == "-"))
+                    {
+                        tempRoot = tree.RotateLeft(tempRoot);
+                    }
                     numberStack.Push(tempRoot);
                 }
-
-                tree.root = numberStack.Pop();
-            }
-
-            private void BuildDaTree(ExpressionTree tree)
-            {
-                while (operatorStack.Count != 0)
-                {
-
-                }
+                TreeNode<string> subTree = numberStack.Pop();
+                tree.root = tree.RotateLeft(subTree);
             }
         }
 
-        private void RotateLeft(TreeNode<string> currentNode)
+        private TreeNode<string> RotateLeft(TreeNode<string> currentNode)
         {
             TreeNode<string> tempNode = currentNode;
-
-
+            currentNode = currentNode.Right;
+            tempNode.Right = currentNode.Left;
+            currentNode.Left = tempNode;
+            return currentNode;
         }
 
         // TODO Finish Evaluate

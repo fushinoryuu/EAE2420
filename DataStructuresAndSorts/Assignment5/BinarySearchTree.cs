@@ -40,7 +40,6 @@ namespace Assignment5
                 }
             }
             //CalculateHeight(currentNode);
-            Console.WriteLine("");
         }
 
         public TreeNode<T> Contains(T item, TreeNode<T> currentNode)
