@@ -76,7 +76,6 @@ namespace Assignment5
             return currentNode;
         }
 
-        // TODO Finish Evaluate
         public void Evaluate(TreeNode<string> node)
         {
             if (node.Left != null)
