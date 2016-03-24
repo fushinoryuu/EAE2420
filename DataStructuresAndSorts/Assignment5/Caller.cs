@@ -43,15 +43,15 @@ namespace Assignment5
 
             string preResult = number_tree.TraversePre(preList, number_tree.root);
             TestTraversals(preResult, preExpected, traverseError);
-            Console.WriteLine("Pre-order: [{0}]\n", preResult);
+            Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
             
             string inResult = number_tree.TraverseIn(inList, number_tree.root);
             TestTraversals(inResult, inExpected, traverseError);
-            Console.WriteLine("In-order: [{0}]\n", inResult);
+            Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
             
             string postResult = number_tree.TraversePost(postList, number_tree.root);
             TestTraversals(postResult, postExpected, traverseError);
-            Console.WriteLine("Post-order: [{0}]\n", postResult);
+            Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
 
             Console.WriteLine("Clearing the Binary Search Tree...\n");
             number_tree.Clear();
@@ -80,34 +80,39 @@ namespace Assignment5
 
         private static void ExpressionTree()
         {
-            Console.Write("Type into the console the following expression '5 + 2 * 8 – 6 / 4' : ");
+            Console.WriteLine("Type into the console the following expression '5 + 2 * 8 – 6 / 4' :\n");
             string input = Console.ReadLine();
+
+            Console.WriteLine("\nTurning expression to an expression tree...\n", 
+                input);
 
             ExpressionTree expression_tree = new ExpressionTree(input);
 
             MyList<string> preList = new MyList<string>(10);
             MyList<string> inList = new MyList<string>(10);
             MyList<string> postList = new MyList<string>(10);
-            string error = "EXPRESSION TREE: Order doesn't match!";
+            string traverseError = "EXPRESSION TREE: Order doesn't match!";
+            string resultError = "EXPRESSION TREE: Result is not correct!";
             string preExpected = "-, +, 5, *, 2, 8, /, 6, 4";
             string inExpected = "5, +, 2, *, 8, -, 6, /, 4";
             string postExpected = "5, 2, 8, *, +, 6, 4, /, -";
 
             string preResult = expression_tree.TraversePre(preList, expression_tree.root);
-            TestTraversals(preResult, preExpected, error);
-            Console.WriteLine("\nPre-order: [{0}]\n", preResult);
+            TestTraversals(preResult, preExpected, traverseError);
+            Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
 
             
             string inResult = expression_tree.TraverseIn(inList, expression_tree.root);
-            TestTraversals(inResult, inExpected, error);
-            Console.WriteLine("In-order: [{0}]\n", inResult);
+            TestTraversals(inResult, inExpected, traverseError);
+            Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
                         
             string postResult = expression_tree.TraversePost(postList, expression_tree.root);
-            TestTraversals(postResult, postExpected, error);
-            Console.WriteLine("Post-order: [{0}]\n", postResult);
+            TestTraversals(postResult, postExpected, traverseError);
+            Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
 
-            Console.WriteLine("Evaluating {0} \n", input);
+            Console.WriteLine("Evaluating {0}...\n", input);
             expression_tree.Evaluate(expression_tree.root);
+            TestResult(double.Parse(expression_tree.root.Data), 19.5, resultError);
             Console.WriteLine("Result = {0}\n", expression_tree.root.Data);
         }
 
@@ -122,6 +127,11 @@ namespace Assignment5
         }
 
         private static void TestContains(bool actual, bool expected, string error)
+        {
+            Debug.Assert(actual == expected, error);
+        }
+
+        private static void TestResult(double actual, double expected, string error)
         {
             Debug.Assert(actual == expected, error);
         }
