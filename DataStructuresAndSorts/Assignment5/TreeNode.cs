@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Assignment5
+﻿namespace Assignment5
 {
     class TreeNode<T>
     {

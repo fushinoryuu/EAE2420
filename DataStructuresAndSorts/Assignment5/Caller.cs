@@ -17,7 +17,7 @@ namespace Assignment5
             BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
 
-            Console.WriteLine("Adding the following numbers to Binary Search Tree: [{0}]\n",
+            Console.WriteLine("Adding the following numbers to a Binary Search Tree: [{0}]\n",
                 string.Join(", ", tempList));
 
             foreach (int number in tempList)
@@ -56,6 +56,8 @@ namespace Assignment5
             Console.WriteLine("Clearing the Binary Search Tree...\n");
             number_tree.Clear();
             TestNullTree(number_tree.root, nullError);
+
+            Console.WriteLine("-------------------------------------------------------\n");
         }
 
         private static void HeroTree()
@@ -74,8 +76,41 @@ namespace Assignment5
             heroList[8] = new Hero { Name = "Graves", Health = 551, Attack = 61, Defense = 24 };
             heroList[9] = new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 };
 
+            Console.WriteLine("Adding the following Heros to a Binary Search Tree, being sorted by their attack damage:\n");
+
             foreach (Hero hero in heroList)
+            {
+                Console.WriteLine("Name: {0}, Health: {1}, Attack: {2}, Defense: {3}",
+                    hero.Name, hero.Health, hero.Attack, hero.Defense);
                 hero_tree.Add(hero, hero_tree.root);
+            }
+
+            MyList<string> preList = new MyList<string>(10);
+            MyList<string> inList = new MyList<string>(10);
+            MyList<string> postList = new MyList<string>(10);
+            string traverseError = "HERO TREE: Order doesn't match!";
+            string nullError = "HERO TREE: Tree is not null!";
+            string preExpected = "Ashe, Varus, Jhin, Caitlyn, Vayne, Draven, Jinx, Lucian, Kalista, Graves";
+            string inExpected = "Jhin, Caitlyn, Varus, Vayne, Draven, Ashe, Lucian, Jinx, Graves, Kalista";
+            string postExpected = "Caitlyn, Jhin, Draven, Vayne, Varus, Lucian, Graves, Kalista, Jinx, Ashe";
+
+            string preResult = hero_tree.TraversePre(preList, hero_tree.root);
+            TestTraversals(preResult, preExpected, traverseError);
+            Console.WriteLine("\nPre-order Traversal: [{0}]\n", preResult);
+
+            string inResult = hero_tree.TraverseIn(inList, hero_tree.root);
+            TestTraversals(inResult, inExpected, traverseError);
+            Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
+
+            string postResult = hero_tree.TraversePost(postList, hero_tree.root);
+            TestTraversals(postResult, postExpected, traverseError);
+            Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
+
+            Console.WriteLine("Clearing the Hero Binary Search Tree...\n");
+            hero_tree.Clear();
+            TestNullTree(hero_tree.root, nullError);
+
+            Console.WriteLine("-------------------------------------------------------\n");
         }
 
         private static void ExpressionTree()
@@ -122,6 +157,11 @@ namespace Assignment5
         }
 
         private static void TestNullTree(TreeNode<int> root, string error)
+        {
+            Debug.Assert(root == null, error);
+        }
+
+        private static void TestNullTree(TreeNode<Hero> root, string error)
         {
             Debug.Assert(root == null, error);
         }
