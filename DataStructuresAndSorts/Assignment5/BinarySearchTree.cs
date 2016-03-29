@@ -39,7 +39,8 @@ namespace Assignment5
                         Add(item, currentNode.Right);
                 }
             }
-            //CalculateHeight(currentNode);
+            CalculateHeight(currentNode);
+            Console.WriteLine();
         }
 
         private void CalculateHeight(TreeNode<T> node)
@@ -68,7 +69,9 @@ namespace Assignment5
         private void CheckBalance(TreeNode<T> node)
         {
             if (node.Left == null && node.Right == null)
+            {
                 return;
+            }
 
             //else if (node.Left == null && node.Right != null)
             //{

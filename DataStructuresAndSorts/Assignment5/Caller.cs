@@ -7,9 +7,20 @@ namespace Assignment5
     {
         public static void Main()
         {
-            NumberTree();
+            //NumberTree();
             //HeroTree();
             //ExpressionTree();
+            Test();
+        }
+
+        private static void Test()
+        {
+            BinarySearchTree<int> tree = new BinarySearchTree<int>(new numberComparer());
+
+            int[] list = new int[] { 1, 2, 3 };
+
+            foreach (int number in list)
+                tree.Add(number, tree.root);
         }
 
         private static void NumberTree()
