@@ -21,6 +21,11 @@ namespace Assignment5
 
             foreach (int number in list)
                 tree.Add(number, tree.root);
+
+            MyList<int> preList = new MyList<int>(10);
+
+            string preResult = tree.TraversePre(preList, tree.root);
+            Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
         }
 
         private static void NumberTree()

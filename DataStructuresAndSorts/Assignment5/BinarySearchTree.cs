@@ -73,25 +73,25 @@ namespace Assignment5
                 return;
             }
 
-            //else if (node.Left == null && node.Right != null)
-            //{
-            //    if (node.Right.Height > 1)
-            //        LeftRotate(node);
-            //}
+            else if (node.Left == null && node.Right != null)
+            {
+                if (node.Right.Height > 1)
+                    LeftRotate(node);
+            }
 
-            else if (node.Left != null && node.Right == null)
-                if (node.Left.Height > 1)
-                    Rotate(node);
+            //else if (node.Left != null && node.Right == null)
+            //    if (node.Left.Height > 1)
+            //        Rotate(node);
 
-                else if (node.Left == null && node.Right != null)
-                    if (node.Right.Height > 1)
-                        LeftRotate(node);
+            //    else if (node.Left == null && node.Right != null)
+            //        if (node.Right.Height > 1)
+            //            LeftRotate(node);
 
-                    else if (node.Left != null && node.Right != null)
-                        if (node.Left.Height > node.Right.Height + 1)
-                            Rotate(node.Left);
-                        else if (node.Right.Height > node.Left.Height + 1)
-                            Rotate(node.Right);
+            //        else if (node.Left != null && node.Right != null)
+            //            if (node.Left.Height > node.Right.Height + 1)
+            //                Rotate(node.Left);
+            //            else if (node.Right.Height > node.Left.Height + 1)
+            //                Rotate(node.Right);
         }
 
         // TODO Finish Rotate function
