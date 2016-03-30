@@ -36,9 +36,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AStar.cs" />
+    <Compile Include="Caller.cs" />
     <Compile Include="GraphNode.cs" />
-    <Compile Include="Heap.cs" />
-    <Compile Include="HeapNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

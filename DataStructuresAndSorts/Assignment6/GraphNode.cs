@@ -2,22 +2,17 @@
 {
     class GraphNode
     {
-        public string name { get; set; }
-        public double xy { get; set; }
-        public Connection[] connections { get; set; }
-        public double Heuristic { get; set; }
-
-
-        public GraphNode()
-        {
-
-        }
+        public string Name { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public Connection[] Connections { get; set; }
+        public float Heuristic { get; set; }
     }
 
     class Connection
     {
-        public double distance { get; set; }
-        public GraphNode target { get; set; }
-        public double cost { get; set; }
+        public float Distance { get; set; }
+        public GraphNode Target { get; set; }
+        public float Cost { get; set; }
     }
 }
