@@ -17,7 +17,18 @@ namespace Assignment6
 
         public void Add(T newItem, HeapNode<T> currentNode)
         {
+            if (root == null)
+            {
+                root = new HeapNode<T> { Value = newItem };
+                currentNode = root;
+            }
+            else
+            {
+                if (newItem.CompareTo(currentNode.Value) < 0)
+                {
 
+                }
+            }
         }
 
         public T HeapMaximum()
