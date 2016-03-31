@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="AStar.cs" />
     <Compile Include="Caller.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="GraphNode.cs" />
   </ItemGroup>
   <ItemGroup>

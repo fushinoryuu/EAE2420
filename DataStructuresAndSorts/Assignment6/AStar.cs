@@ -1,15 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment6
 {
     class AStar
     {
-        GraphNode A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P;
+        private GraphNode A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, goal, start;
+        private List<GraphNode> openList, closeList, nodeList;
 
         public AStar(string start, string end)
         {
+            openList = new List<GraphNode>();
+            closeList = new List<GraphNode>();
+            nodeList = new List<GraphNode>();
+
             BuildNodes();
             WireConnections();
+            SetGoals(start, end);
         }
 
         private void BuildNodes()
@@ -30,6 +37,23 @@ namespace Assignment6
             N = new GraphNode() { Name = "N", X = 4, Y = -9, Connections = new Connection[3] };
             O = new GraphNode() { Name = "O", X = 22, Y = 11, Connections = new Connection[2] };
             P = new GraphNode() { Name = "P", X = 18, Y = 3, Connections = new Connection[4] };
+
+            nodeList.Add(A);
+            nodeList.Add(B);
+            nodeList.Add(C);
+            nodeList.Add(D);
+            nodeList.Add(E);
+            nodeList.Add(F);
+            nodeList.Add(G);
+            nodeList.Add(H);
+            nodeList.Add(I);
+            nodeList.Add(J);
+            nodeList.Add(K);
+            nodeList.Add(L);
+            nodeList.Add(M);
+            nodeList.Add(N);
+            nodeList.Add(O);
+            nodeList.Add(P);
         }
 
         private void WireConnections()
@@ -99,6 +123,22 @@ namespace Assignment6
             P.Connections[1] = new Connection() { Target = C };
             P.Connections[2] = new Connection() { Target = O };
             P.Connections[3] = new Connection() { Target = M };
+        }
+
+        private void SetGoals(string start, string end)
+        {
+            foreach (GraphNode currentNode in nodeList)
+            {
+                if (currentNode.Name == start)
+                {
+                    this.start = currentNode;
+                    openList.Add(this.start);
+                }
+                else if (currentNode.Name == end)
+                {
+                    this.goal = currentNode;
+                }
+            }
         }
     }
 }
