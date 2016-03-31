@@ -7,14 +7,14 @@ namespace Assignment6
         public static void Main()
         {
             Console.WriteLine("Pick your starting node:");
-            string startingNode = Console.ReadLine();
-            startingNode = startingNode.ToUpper();
+            string inputStart = Console.ReadLine();
+            inputStart = inputStart.ToUpper();
 
             Console.WriteLine("Pick the end node:");
-            string endingNode = Console.ReadLine();
-            endingNode = endingNode.ToUpper();
+            string inputEnd = Console.ReadLine();
+            inputEnd = inputEnd.ToUpper();
 
-            AStar pathfinder = new AStar(startingNode, endingNode);
+            AStar pathfinder = new AStar(inputStart, inputEnd);
         }
     }
 }

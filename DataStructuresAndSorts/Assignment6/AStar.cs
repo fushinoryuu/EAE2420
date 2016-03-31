@@ -6,20 +6,20 @@ namespace Assignment6
     class AStar
     {
         private GraphNode A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, goal, start;
-        private List<GraphNode> openList, closeList, nodeList;
+        private List<GraphNode> openList, closeList;
 
-        public AStar(string start, string end)
+        public AStar(string inputStart, string inputEnd)
         {
             openList = new List<GraphNode>();
             closeList = new List<GraphNode>();
-            nodeList = new List<GraphNode>();
+            List<GraphNode> nodeList = new List<GraphNode>();
 
-            BuildNodes();
+            BuildNodes(nodeList);
             WireConnections();
-            SetGoals(start, end);
+            SetGoals(nodeList, inputStart, inputEnd);
         }
 
-        private void BuildNodes()
+        private void BuildNodes(List<GraphNode> nodeList)
         {
             A = new GraphNode() { Name = "A", X = -19, Y = 11, Connections = new Connection[2] };
             B = new GraphNode() { Name = "B", X = -13, Y = 13, Connections = new Connection[2] };
@@ -125,20 +125,35 @@ namespace Assignment6
             P.Connections[3] = new Connection() { Target = M };
         }
 
-        private void SetGoals(string start, string end)
+        private void SetGoals(List<GraphNode> nodeList, string inputStart, string inputEnd)
         {
             foreach (GraphNode currentNode in nodeList)
             {
-                if (currentNode.Name == start)
+                if (currentNode.Name == inputStart)
                 {
-                    this.start = currentNode;
-                    openList.Add(this.start);
+                    start = currentNode;
+                    openList.Add(start);
                 }
-                else if (currentNode.Name == end)
+                else if (currentNode.Name == inputEnd)
                 {
-                    this.goal = currentNode;
+                    goal = currentNode;
                 }
             }
+        }
+
+        private void PickNextNode()
+        {
+
+        }
+
+        private void ProcessNode()
+        {
+
+        }
+
+        private double CalcDistance(GraphNode start, GraphNode target)
+        {
+            return Math.Sqrt(Math.Pow(target.X - start.X, 2) + Math.Pow(target.Y - start.Y, 2));
         }
     }
 }
