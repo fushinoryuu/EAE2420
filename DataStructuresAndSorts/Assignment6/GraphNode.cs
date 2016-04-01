@@ -13,7 +13,7 @@
     {
         public GraphNode Target { get; set; }
         public GraphNode From { get; set; }
-        public double Distance { get; set; }
-        public double Cost { get; set; }
+        public double CostSoFar { get; set; }
+        public double TotalEstimatedCost { get; set; }
     }
 }

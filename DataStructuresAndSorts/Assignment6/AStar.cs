@@ -17,6 +17,7 @@ namespace Assignment6
             BuildNodes(nodeList);
             WireConnections();
             SetGoals(nodeList, inputStart, inputEnd);
+            Initialize();
         }
 
         private void BuildNodes(List<GraphNode> nodeList)
@@ -132,7 +133,6 @@ namespace Assignment6
                 if (currentNode.Name == inputStart)
                 {
                     start = currentNode;
-                    openList.Add(start);
                 }
                 else if (currentNode.Name == inputEnd)
                 {
@@ -141,9 +141,19 @@ namespace Assignment6
             }
         }
 
+        private void Initialize()
+        {
+            start.Connections[0].CostSoFar = 0;
+            start.Heuristic = CalcDistance(start, goal);
+            start.Connections[0].TotalEstimatedCost = start.Connections[0].CostSoFar + start.Heuristic;
+            start.Connections[0].From = null;
+            openList.Add(start);
+            PickNextNode();
+        }
+
         private void PickNextNode()
         {
-
+            
         }
 
         private void ProcessNode(GraphNode currentNode)
@@ -151,19 +161,14 @@ namespace Assignment6
 
         }
 
-        private void CalcCostSoFar()
+        private double CalcCostSoFar()
         {
-
+            throw new NotImplementedException();
         }
 
-        private void CalcHeuristic()
+        private double CalcTotalCost()
         {
-
-        }
-
-        private void CalcTotalCost()
-        {
-
+            throw new NotImplementedException();
         }
 
         private double CalcDistance(GraphNode start, GraphNode target)
