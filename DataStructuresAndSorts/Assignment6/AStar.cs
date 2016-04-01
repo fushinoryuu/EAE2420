@@ -146,7 +146,22 @@ namespace Assignment6
 
         }
 
-        private void ProcessNode()
+        private void ProcessNode(GraphNode currentNode)
+        {
+
+        }
+
+        private void CalcCostSoFar()
+        {
+
+        }
+
+        private void CalcHeuristic()
+        {
+
+        }
+
+        private void CalcTotalCost()
         {
 
         }
