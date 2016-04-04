@@ -17,7 +17,7 @@ namespace Assignment6
             BuildNodes(nodeList);
             WireConnections();
             SetGoals(nodeList, inputStart, inputEnd);
-            Initialize();
+            ProcessNode(start);
         }
 
         private void BuildNodes(List<GraphNode> nodeList)
@@ -129,26 +129,10 @@ namespace Assignment6
         private void SetGoals(List<GraphNode> nodeList, string inputStart, string inputEnd)
         {
             foreach (GraphNode currentNode in nodeList)
-            {
                 if (currentNode.Name == inputStart)
-                {
                     start = currentNode;
-                }
                 else if (currentNode.Name == inputEnd)
-                {
                     goal = currentNode;
-                }
-            }
-        }
-
-        private void Initialize()
-        {
-            start.Connections[0].CostSoFar = 0;
-            start.Heuristic = CalcDistance(start, goal);
-            start.Connections[0].TotalEstimatedCost = start.Connections[0].CostSoFar + start.Heuristic;
-            start.Connections[0].From = null;
-            openList.Add(start);
-            PickNextNode();
         }
 
         /// <summary>
@@ -159,9 +143,21 @@ namespace Assignment6
             
         }
 
-        private void ProcessNode(GraphNode currentNode)
+        private void ProcessNode(GraphNode current_node)
         {
-
+            for (int connectionIndex = 0; connectionIndex < current_node.Connections.Length; connectionIndex++)
+            {
+                current_node.Connections[connectionIndex].CostSoFar = CalcDistance(start, current_node);
+                current_node.Heuristic = CalcDistance(current_node, goal);
+                current_node.Connections[connectionIndex].TotalEstimatedCost = 
+                    current_node.Connections[connectionIndex].CostSoFar + current_node.Heuristic;
+                if (current_node.Name == start.Name)
+                    current_node.Connections[connectionIndex].From = null;
+                else
+                    current_node.Connections[connectionIndex].From = current_node; // FIX
+            }
+            openList.Add(current_node);
+            PickNextNode();
         }
 
         private double CalcDistance(GraphNode start, GraphNode target)
