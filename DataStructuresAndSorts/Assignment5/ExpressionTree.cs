@@ -24,11 +24,10 @@ namespace Assignment5
                 string[] expressionArray = new string[input.Length];
                 expressionArray = input.Split();
 
-                // BuildNodes(tree, expressionArray);
-                BuildTree(tree, expressionArray);
+                BuildNodes(tree, expressionArray);
             }
 
-            private void BuildTree(ExpressionTree tree, string[] expressionArray)
+            private void BuildNodes(ExpressionTree tree, string[] expressionArray)
             {
                 foreach (string item in expressionArray)
                 {
@@ -40,17 +39,34 @@ namespace Assignment5
                     }
                     else
                     {
-                        if (operatorStack.Count != 0 && (item == "*" || item == "/") &&
-                            (operatorStack.Peek().Data == "+" || operatorStack.Peek().Data == "-"))
+                        TreeNode<string> operator_node = new TreeNode<string> { Data = item };
+
+                        if (operatorStack.Count != 0 && (item == "-" || item == "+") &&
+                            (operatorStack.Peek().Data == "*" || operatorStack.Peek().Data == "/"))
                         {
-                            //TO DO Finishi the logic for inserting nodes in the correct order. 
+                            TreeNode<string> subTree = operatorStack.Pop();
+                            subTree.Right = numberStack.Pop();
+                            subTree.Left = numberStack.Pop();
+                            numberStack.Push(subTree);
+                            operatorStack.Push(operator_node);
                         }
                         else
                         {
-                            TreeNode<string> operator_node = new TreeNode<string> { Data = item };
                             operatorStack.Push(operator_node);
                         }
                     }
+                }
+                BuildTree(tree);
+            }
+
+            private void BuildTree(ExpressionTree tree)
+            {
+                while (operatorStack.Count != 0)
+                {
+                    TreeNode<string> subRoot = operatorStack.Pop();
+                    subRoot.Right = numberStack.Pop();
+                    subRoot.Left = numberStack.Pop();
+                    numberStack.Push(subRoot);
                 }
                 tree.root = numberStack.Pop();
             }

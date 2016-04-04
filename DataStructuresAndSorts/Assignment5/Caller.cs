@@ -9,8 +9,8 @@ namespace Assignment5
         {
             //NumberTree();
             //HeroTree();
-            //ExpressionTree();
-            Test();
+            ExpressionTree();
+            //Test();
         }
 
         private static void Test()

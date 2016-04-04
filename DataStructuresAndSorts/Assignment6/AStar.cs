@@ -151,6 +151,9 @@ namespace Assignment6
             PickNextNode();
         }
 
+        /// <summary>
+        /// Find the node with the lowest total extimated cost. 
+        /// </summary>
         private void PickNextNode()
         {
             
@@ -159,16 +162,6 @@ namespace Assignment6
         private void ProcessNode(GraphNode currentNode)
         {
 
-        }
-
-        private double CalcCostSoFar()
-        {
-            throw new NotImplementedException();
-        }
-
-        private double CalcTotalCost()
-        {
-            throw new NotImplementedException();
         }
 
         private double CalcDistance(GraphNode start, GraphNode target)
