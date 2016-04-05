@@ -38,7 +38,11 @@
   <ItemGroup>
     <Compile Include="AStar.cs" />
     <Compile Include="Caller.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="GraphNode.cs" />
+    <Compile Include="NewAStar.cs" />
+    <Compile Include="NewConnection.cs" />
+    <Compile Include="NewGraphNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
