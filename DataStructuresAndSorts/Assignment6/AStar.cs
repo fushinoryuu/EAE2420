@@ -141,7 +141,7 @@ namespace Assignment6
             {
                 current_node.Connections[index].CostSoFar = CalcDistance(Start, current_node);
                 current_node.Heuristic = CalcDistance(current_node, Goal);
-                current_node.Connections[index].TotalEstimatedCost =
+                current_node.Connections[index].TotalEstimatedCost = 
                     current_node.Connections[index].CostSoFar + current_node.Heuristic;
                 if (current_node.Name == Start.Name)
                     current_node.Connections[index].From = null;
