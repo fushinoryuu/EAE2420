@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace Assignment7
 {
-    class myHashTable<TKey, TValue> : IDictionary<TKey, TValue>
+    class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue>
     {
+        LinkedList<KeyValuePair<TKey, TValue>>[] baseArray;
+
         public TValue this[TKey key]
         {
             get
@@ -31,7 +33,7 @@ namespace Assignment7
         {
             get
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 

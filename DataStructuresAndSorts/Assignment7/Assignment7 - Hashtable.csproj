@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caller.cs" />
-    <Compile Include="myHashTable.cs" />
+    <Compile Include="MyHashTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
