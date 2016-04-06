@@ -37,9 +37,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caller.cs" />
-    <Compile Include="NewAStar.cs" />
-    <Compile Include="NewConnection.cs" />
-    <Compile Include="NewGraphNode.cs" />
+    <Compile Include="AStar.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="GraphNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

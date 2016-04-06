@@ -16,7 +16,7 @@ namespace Assignment6
             inputEnd = inputEnd.ToUpper();
             Console.WriteLine();
 
-            NewAStar pathfinder = new NewAStar(inputStart, inputEnd);
+            AStar pathfinder = new AStar(inputStart, inputEnd);
             string solution = pathfinder.ReconstructPath();
 
             Console.WriteLine("The Path is: {0}\n", solution);

@@ -1,8 +1,8 @@
 ﻿namespace Assignment6
 {
-    class NewConnection
+    class Connection
     {
-        public NewGraphNode Target { get; set; }
+        public GraphNode Target { get; set; }
         //public NewGraphNode From { get; set; }
     }
 }

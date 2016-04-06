@@ -1,10 +1,10 @@
 ﻿namespace Assignment6
 {
-    class NewGraphNode
+    class GraphNode
     {
         public string Name { get; set; }
-        public NewConnection[] Connections { get; set; }
-        public NewGraphNode Parent { get; set; }
+        public Connection[] Connections { get; set; }
+        public GraphNode Parent { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public double Heuristic { get; set; } // Heuristic or H
