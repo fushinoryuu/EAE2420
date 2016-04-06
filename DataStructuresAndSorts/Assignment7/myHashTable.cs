@@ -6,7 +6,20 @@ namespace Assignment7
 {
     class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue>
     {
-        LinkedList<KeyValuePair<TKey, TValue>>[] baseArray;
+        LinkedList<KeyValuePair<TKey, TValue>>[] BaseArray;
+        private int ElementCount;
+
+        public MyHashTable(int initial_size)
+        {
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[initial_size];
+            ElementCount = 0;
+        }
+
+        public MyHashTable()
+        {
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[10];
+            ElementCount = 0;
+        }
 
         public TValue this[TKey key]
         {
@@ -25,7 +38,7 @@ namespace Assignment7
         {
             get
             {
-                throw new NotImplementedException();
+                return ElementCount;
             }
         }
 
