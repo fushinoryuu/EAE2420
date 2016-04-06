@@ -5,15 +5,16 @@ namespace Assignment6
 {
     class AStar
     {
-        private GraphNode NodeA, NodeB, NodeC, NodeD, NodeE, NodeF, NodeG, NodeH, NodeI, NodeJ, NodeK, NodeL, NodeM, NodeN, NodeO, NodeP, Goal, Start;
+        private GraphNode NodeA, NodeB, NodeC, NodeD, NodeE, NodeF, NodeG, NodeH, NodeI, NodeJ, 
+            NodeK, NodeL, NodeM, NodeN, NodeO, NodeP, Goal, Start;
         private List<GraphNode> OpenList, CloseList;
-        private List<String> SolutionList;
+        private List<string> SolutionList;
 
         public AStar(string input_start, string input_end)
         {
             OpenList = new List<GraphNode>();
             CloseList = new List<GraphNode>();
-            SolutionList = new List<String>();
+            SolutionList = new List<string>();
             List<GraphNode> node_list = new List<GraphNode>();
 
             BuildNodes(node_list);
@@ -163,7 +164,8 @@ namespace Assignment6
 
             foreach (Connection connection in current_node.Connections)
             {
-                Console.WriteLine("Current Node: {0} Connection: {1}", current_node.Name, connection.Target.Name);
+                Console.WriteLine("Current Node: {0} Connection: {1}", current_node.Name, 
+                    connection.Target.Name);
                 if (connection.Target != Start)
                     connection.Target.Parent = current_node;
             }
@@ -175,7 +177,7 @@ namespace Assignment6
         {
             if (current_node == Goal)
             {
-                Console.WriteLine("Found Goal\n");
+                Console.WriteLine("Found Goal!\n");
                 return;
             }
 
@@ -183,9 +185,14 @@ namespace Assignment6
             {
                 for (int index = 0; index < current_node.Connections.Length; index++)
                 {
-                    current_node.Connections[index].Target.CostSoFar = current_node.CostSoFar + CalcDistance(current_node, current_node.Connections[index].Target);
-                    current_node.Connections[index].Target.Heuristic = CalcDistance(current_node.Connections[index].Target, Goal);
-                    current_node.Connections[index].Target.TotalEstimatedCost = current_node.Connections[index].Target.CostSoFar + current_node.Connections[index].Target.Heuristic;
+                    current_node.Connections[index].Target.CostSoFar = current_node.CostSoFar + 
+                        CalcDistance(current_node, current_node.Connections[index].Target);
+
+                    current_node.Connections[index].Target.Heuristic = 
+                        CalcDistance(current_node.Connections[index].Target, Goal);
+
+                    current_node.Connections[index].Target.TotalEstimatedCost = 
+                        current_node.Connections[index].Target.CostSoFar + current_node.Connections[index].Target.Heuristic;
 
                     if (InList(current_node.Connections[index].Target, OpenList))
                     {
@@ -211,7 +218,7 @@ namespace Assignment6
         {
             foreach (GraphNode node in list)
                 if (node == looking_for)
-                    LowerEstimate(looking_for, node);
+                    return LowerEstimate(looking_for, node);
             return false;
         }
 
