@@ -22,10 +22,12 @@ namespace Assignment6
             Console.WriteLine("Pick your starting node:");
             string inputStart = Console.ReadLine();
             inputStart = inputStart.ToUpper();
+            Console.WriteLine();
 
             Console.WriteLine("Pick the end node:");
             string inputEnd = Console.ReadLine();
             inputEnd = inputEnd.ToUpper();
+            Console.WriteLine();
 
             NewAStar pathfinder = new NewAStar(inputStart, inputEnd);
         }

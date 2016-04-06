@@ -3,6 +3,6 @@
     class NewConnection
     {
         public NewGraphNode Target { get; set; }
-        public NewGraphNode From { get; set; }
+        //public NewGraphNode From { get; set; }
     }
 }
