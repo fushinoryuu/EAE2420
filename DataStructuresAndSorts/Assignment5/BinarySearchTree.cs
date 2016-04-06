@@ -94,7 +94,6 @@ namespace Assignment5
             //                Rotate(node.Right);
         }
 
-        // TODO Finish Rotate function
         private void Rotate(TreeNode<T> node)
         {
 

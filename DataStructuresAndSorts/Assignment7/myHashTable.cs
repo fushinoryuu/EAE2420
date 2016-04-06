@@ -21,6 +21,7 @@ namespace Assignment7
             ElementCount = 0;
         }
 
+        // TODO Indexer
         public TValue this[TKey key]
         {
             get
@@ -50,6 +51,7 @@ namespace Assignment7
             }
         }
 
+        // TODO ICollection<TKey>
         public ICollection<TKey> Keys
         {
             get
@@ -58,6 +60,7 @@ namespace Assignment7
             }
         }
 
+        // TODO ICollection<TValue>
         public ICollection<TValue> Values
         {
             get
@@ -66,51 +69,61 @@ namespace Assignment7
             }
         }
 
+        // TODO Add
         public void Add(KeyValuePair<TKey, TValue> item)
         {
             throw new NotImplementedException();
         }
 
+        // TODO Add
         public void Add(TKey key, TValue value)
         {
             throw new NotImplementedException();
         }
 
+        // TODO Clear
         public void Clear()
         {
             throw new NotImplementedException();
         }
 
+        // TODO Contains
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
             throw new NotImplementedException();
         }
 
+        // TODO ContainsKey
         public bool ContainsKey(TKey key)
         {
             throw new NotImplementedException();
         }
 
+        // TODO CopyTo
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
             throw new NotImplementedException();
         }
 
+        // TODO IEnumerator
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             throw new NotImplementedException();
         }
 
+        // TODO Remove
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
             throw new NotImplementedException();
         }
 
+        // TODO Remove
         public bool Remove(TKey key)
         {
             throw new NotImplementedException();
         }
 
+        // TODO TryGetValue
         public bool TryGetValue(TKey key, out TValue value)
         {
             throw new NotImplementedException();
@@ -118,7 +131,7 @@ namespace Assignment7
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
