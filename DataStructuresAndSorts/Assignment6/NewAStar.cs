@@ -163,12 +163,11 @@ namespace Assignment6
 
             foreach (NewConnection connection in current_node.Connections)
             {
-                connection.Target.Parent = current_node;
-                Console.WriteLine(current_node.Name);
-                //if (connection.Target.Parent != Start)
-                //    connection.Target.Parent = current_node;
+                Console.WriteLine("Current Node: {0} Connection: {1}", current_node.Name, connection.Target.Name);
+                if (connection.Target != Start)
+                    connection.Target.Parent = current_node;
             }
-
+            Console.WriteLine();
             ProcessOutBound(current_node);
         }
 
@@ -177,7 +176,7 @@ namespace Assignment6
             if (current_node == Goal)
             {
                 Console.WriteLine("Found Goal\n");
-                ReconstructPath(current_node);
+                return;
             }
 
             else
@@ -228,19 +227,10 @@ namespace Assignment6
             return Math.Sqrt(Math.Pow(target.X - start.X, 2) + Math.Pow(target.Y - start.Y, 2));
         }
 
-        private void ReconstructPath(NewGraphNode current)
+        public string ReconstructPath()
         {
-            //SolutionList.Add(current.Name);
+            NewGraphNode runner = Goal;
 
-            //NewGraphNode runner = current.Parent;
-            //while (runner != Start)
-            //{
-            //    SolutionList.Add(runner.Name);
-            //    runner = runner.Parent;
-            //}
-
-            NewGraphNode runner = current;
-            
             while (runner != null)
             {
                 SolutionList.Add(runner.Name);
@@ -248,8 +238,7 @@ namespace Assignment6
             }
 
             SolutionList.Reverse();
-
-            Console.WriteLine("The Path is: {0} \n", string.Join(", ", SolutionList));
+            return string.Join(", ", SolutionList);
         }
     }
 }
