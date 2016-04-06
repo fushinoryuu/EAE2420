@@ -150,27 +150,27 @@ namespace Assignment6
 
         private void FindLowestNode()
         {
-            GraphNode current_node = OpenList[0];
+            GraphNode lowest_node = OpenList[0];
             
-            foreach (GraphNode node in OpenList)
+            foreach (GraphNode list_node in OpenList)
             {
-                if (node.TotalEstimatedCost < current_node.TotalEstimatedCost)
+                if (list_node.TotalEstimatedCost < lowest_node.TotalEstimatedCost)
                 {
-                    current_node = node;
+                    lowest_node = list_node;
                 }
             }
 
-            OpenList.Remove(current_node);
+            OpenList.Remove(lowest_node);
 
-            foreach (Connection connection in current_node.Connections)
+            foreach (Connection connection in lowest_node.Connections)
             {
-                Console.WriteLine("Current Node: {0} Connection: {1}", current_node.Name, 
+                Console.WriteLine("Current Node: {0} Connection: {1}", lowest_node.Name, 
                     connection.Target.Name);
                 if (connection.Target != Start)
-                    connection.Target.Parent = current_node;
+                    connection.Target.Parent = lowest_node;
             }
             Console.WriteLine();
-            ProcessOutBound(current_node);
+            ProcessOutBound(lowest_node);
         }
 
         private void ProcessOutBound(GraphNode current_node)
