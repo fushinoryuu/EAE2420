@@ -7,11 +7,13 @@ namespace Assignment6
     {
         private NewGraphNode NodeA, NodeB, NodeC, NodeD, NodeE, NodeF, NodeG, NodeH, NodeI, NodeJ, NodeK, NodeL, NodeM, NodeN, NodeO, NodeP, Goal, Start;
         private List<NewGraphNode> OpenList, CloseList;
+        private List<String> SolutionList;
 
         public NewAStar(string input_start, string input_end)
         {
             OpenList = new List<NewGraphNode>();
             CloseList = new List<NewGraphNode>();
+            SolutionList = new List<String>();
             List<NewGraphNode> node_list = new List<NewGraphNode>();
 
             BuildNodes(node_list);
@@ -130,15 +132,17 @@ namespace Assignment6
         private void SetGoals(List<NewGraphNode> nodeList, string inputStart, string inputEnd)
         {
             foreach (NewGraphNode currentNode in nodeList)
+            {
                 if (currentNode.Name == inputStart)
                     Start = currentNode;
-                else if (currentNode.Name == inputEnd)
+                if (currentNode.Name == inputEnd)
                     Goal = currentNode;
+            }
         }
 
         private void Initialize()
         {
-            Start.F = 0;
+            Start.TotalEstimatedCost = 0;
             OpenList.Add(Start);
             FindLowestNode();
         }
@@ -149,7 +153,7 @@ namespace Assignment6
             
             foreach (NewGraphNode node in OpenList)
             {
-                if (node.F < q.F)
+                if (node.TotalEstimatedCost < q.TotalEstimatedCost)
                 {
                     q = node;
                 }
@@ -157,9 +161,10 @@ namespace Assignment6
 
             OpenList.Remove(q);
 
-            for (int i = 0; i < q.Connections.Length; i++)
+            foreach (NewConnection connection in q.Connections)
             {
-                q.Connections[i].From = q;
+                connection.From = q;
+                q.Parent = q;
             }
 
             ProcessOutBound(q);
@@ -169,21 +174,69 @@ namespace Assignment6
         {
             if (q == Goal)
             {
-                Console.WriteLine("Found Node");
-                return;
+                Console.WriteLine("Found Goal");
+                ReconstructPath(q);
             }
 
+            for (int index = 0; index < q.Connections.Length; index++)
+            {
+                q.Connections[index].Target.CostSoFar = q.CostSoFar + CalcDistance(q, q.Connections[index].Target);
+                q.Connections[index].Target.Heuristic = CalcDistance(q.Connections[index].Target, Goal);
+                q.Connections[index].Target.TotalEstimatedCost = q.Connections[index].Target.CostSoFar + q.Connections[index].Target.Heuristic;
+                
+                if (InList(q.Connections[index].Target, OpenList))
+                {
+                    //do nothing
+                }
 
+                if (InList(q.Connections[index].Target, CloseList))
+                {
+                    //do nothing
+                }
+
+                else
+                {
+                    OpenList.Add(q.Connections[index].Target);
+                }
+            }
+            CloseList.Add(q);
+            FindLowestNode();
         }
 
+        private bool InList(NewGraphNode looking_for, List<NewGraphNode> list)
+        {
+            foreach (NewGraphNode node in list)
+                if (node == looking_for)
+                    LowerEstimate(looking_for, node);
+            return false;
+        }
+
+        private bool LowerEstimate(NewGraphNode first, NewGraphNode second)
+        {
+            if (first.TotalEstimatedCost < second.TotalEstimatedCost)
+                return true;
+            return false;
+        }
+        
         private double CalcDistance(NewGraphNode start, NewGraphNode target)
         {
             return Math.Sqrt(Math.Pow(target.X - start.X, 2) + Math.Pow(target.Y - start.Y, 2));
         }
 
-        private void ReconstructPath(NewGraphNode came_from, NewGraphNode current)
+        private void ReconstructPath(NewGraphNode current)
         {
+            SolutionList.Add(current.Name);
 
+            NewGraphNode runner = current.Parent;
+            while (runner != Start)
+            {
+                SolutionList.Add(runner.Name);
+                runner = runner.Parent;
+            }
+
+            SolutionList.Reverse();
+
+            Console.WriteLine("The Path is: {0} \n", string.Join(", ", SolutionList));
         }
     }
 }
