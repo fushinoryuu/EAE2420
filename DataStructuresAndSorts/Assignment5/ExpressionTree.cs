@@ -40,40 +40,36 @@ namespace Assignment5
                     else
                     {
                         TreeNode<string> operator_node = new TreeNode<string> { Data = item };
-                        operatorStack.Push(operator_node);
+
+                        if (operatorStack.Count != 0 && (item == "-" || item == "+") &&
+                            (operatorStack.Peek().Data == "*" || operatorStack.Peek().Data == "/"))
+                        {
+                            TreeNode<string> subTree = operatorStack.Pop();
+                            subTree.Right = numberStack.Pop();
+                            subTree.Left = numberStack.Pop();
+                            numberStack.Push(subTree);
+                            operatorStack.Push(operator_node);
+                        }
+                        else
+                        {
+                            operatorStack.Push(operator_node);
+                        }
                     }
                 }
                 BuildTree(tree);
-
             }
 
             private void BuildTree(ExpressionTree tree)
             {
                 while (operatorStack.Count != 0)
                 {
-                    TreeNode<string> tempRoot = operatorStack.Pop();
-                    tempRoot.Right = numberStack.Pop();
-                    tempRoot.Left = numberStack.Pop();
-
-                    if((tempRoot.Data == "*" || tempRoot.Data == "/") && 
-                        (tempRoot.Right.Data == "+" || tempRoot.Right.Data == "-"))
-                    {
-                        tempRoot = tree.RotateLeft(tempRoot);
-                    }
-                    numberStack.Push(tempRoot);
+                    TreeNode<string> subRoot = operatorStack.Pop();
+                    subRoot.Right = numberStack.Pop();
+                    subRoot.Left = numberStack.Pop();
+                    numberStack.Push(subRoot);
                 }
-                TreeNode<string> subTree = numberStack.Pop();
-                tree.root = tree.RotateLeft(subTree);
+                tree.root = numberStack.Pop();
             }
-        }
-
-        private TreeNode<string> RotateLeft(TreeNode<string> currentNode)
-        {
-            TreeNode<string> tempNode = currentNode;
-            currentNode = currentNode.Right;
-            tempNode.Right = currentNode.Left;
-            currentNode.Left = tempNode;
-            return currentNode;
         }
 
         public void Evaluate(TreeNode<string> node)

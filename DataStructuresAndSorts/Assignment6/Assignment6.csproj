@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{32360FD5-BE25-4769-8F5F-50277B9303B7}</ProjectGuid>
+    <ProjectGuid>{DDF5FCC8-BC69-41EE-9AAB-BF9E4A7922D8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Assignment5</RootNamespace>
-    <AssemblyName>Assignment5</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Assignment6</RootNamespace>
+    <AssemblyName>Assignment6</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -36,13 +36,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinarySearchTree.cs" />
     <Compile Include="Caller.cs" />
-    <Compile Include="Hero.cs" />
-    <Compile Include="myComparers.cs" />
-    <Compile Include="ExpressionTree.cs" />
-    <Compile Include="myList.cs" />
-    <Compile Include="TreeNode.cs" />
+    <Compile Include="AStar.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="GraphNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

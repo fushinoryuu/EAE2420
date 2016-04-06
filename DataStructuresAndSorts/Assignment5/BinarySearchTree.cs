@@ -39,6 +39,79 @@ namespace Assignment5
                         Add(item, currentNode.Right);
                 }
             }
+            CalculateHeight(currentNode);
+            Console.WriteLine();
+        }
+
+        private void CalculateHeight(TreeNode<T> node)
+        {
+            if (node.Left != null)
+                CalculateHeight(node.Left);
+            if (node.Right != null)
+                CalculateHeight(node.Right);
+
+            if (node.Left != null && node.Right != null)
+                node.Height = Math.Max(node.Left.Height, node.Right.Height) + 1;
+
+            else if (node.Left != null && node.Right == null)
+                node.Height = node.Left.Height + 1;
+
+            else if (node.Left == null && node.Right != null)
+                node.Height = node.Right.Height + 1;
+
+            else if (node.Left == null && node.Right == null)
+                node.Height = 1;
+            Console.WriteLine("Node Value: {0} Node Height: {1}", node.Data, node.Height);
+            CheckBalance(node);
+        }
+
+        // TO DO Fix StackOverFlow
+        private void CheckBalance(TreeNode<T> node)
+        {
+            if (node.Left == null && node.Right == null)
+            {
+                return;
+            }
+
+            else if (node.Left == null && node.Right != null)
+            {
+                if (node.Right.Height > 1)
+                    LeftRotate(node);
+            }
+
+            //else if (node.Left != null && node.Right == null)
+            //    if (node.Left.Height > 1)
+            //        Rotate(node);
+
+            //    else if (node.Left == null && node.Right != null)
+            //        if (node.Right.Height > 1)
+            //            LeftRotate(node);
+
+            //        else if (node.Left != null && node.Right != null)
+            //            if (node.Left.Height > node.Right.Height + 1)
+            //                Rotate(node.Left);
+            //            else if (node.Right.Height > node.Left.Height + 1)
+            //                Rotate(node.Right);
+        }
+
+        // TODO Finish Rotate function
+        private void Rotate(TreeNode<T> node)
+        {
+
+        }
+
+        private void LeftRotate(TreeNode<T> node)
+        {
+            TreeNode<T> subRoot = node;
+            node = node.Right;
+            node.Left = subRoot;
+        }
+
+        private void RightRotate(TreeNode<T> node)
+        {
+            TreeNode<T> subRoot = node;
+            node = node.Left;
+            node.Right = subRoot;
         }
 
         public bool Contains(T item, TreeNode<T> currentNode)
