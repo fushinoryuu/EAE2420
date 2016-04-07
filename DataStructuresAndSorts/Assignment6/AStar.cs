@@ -139,11 +139,17 @@ namespace Assignment6
             BuildNodes(node_list);
             WireConnections();
             SetGoals(node_list, input_start, input_end);
+            RunAStar();
         }
 
         private void RunAStar()
         {
+            GraphNode current_node = Start;
 
+            while (current_node != Goal)
+            {
+
+            }
         }
 
         private GraphNode FindLowestNode()
@@ -157,11 +163,10 @@ namespace Assignment6
                     lowest_node = list_node;
                 }
             }
-
             return lowest_node;
         }
 
-        private void SetParent(GraphNode lowest_node)
+        private void SetFrom(GraphNode lowest_node)
         {
             foreach (Connection connection in lowest_node.Connections)
             {
