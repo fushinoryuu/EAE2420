@@ -5,23 +5,15 @@ namespace Assignment6
 {
     class AStar
     {
-        private GraphNode NodeA, NodeB, NodeC, NodeD, NodeE, NodeF, NodeG, NodeH, NodeI, NodeJ, 
+        private GraphNode NodeA, NodeB, NodeC, NodeD, NodeE, NodeF, NodeG, NodeH, NodeI, NodeJ,
             NodeK, NodeL, NodeM, NodeN, NodeO, NodeP, Goal, Start;
-        private List<GraphNode> OpenList, CloseList;
-        private List<string> SolutionList;
+        private List<GraphNode> OpenList = new List<GraphNode>();
+        private List<GraphNode> CloseList = new List<GraphNode>();
+        private List<string> SolutionList = new List<string>();
 
         public AStar(string input_start, string input_end)
         {
-            OpenList = new List<GraphNode>();
-            CloseList = new List<GraphNode>();
-            SolutionList = new List<string>();
-            List<GraphNode> node_list = new List<GraphNode>();
-
-            BuildNodes(node_list);
-            WireConnections();
-            SetGoals(node_list, input_start, input_end);
-
-            Initialize();
+            Initialize(input_start, input_end);
         }
 
         private void BuildNodes(List<GraphNode> node_list)
@@ -127,7 +119,7 @@ namespace Assignment6
             NodeP.Connections[0] = new Connection() { Target = NodeH };
             NodeP.Connections[1] = new Connection() { Target = NodeC };
             NodeP.Connections[2] = new Connection() { Target = NodeO };
-            NodeP.Connections[3] = new Connection() { Target = NodeM };            
+            NodeP.Connections[3] = new Connection() { Target = NodeM };
         }
 
         private void SetGoals(List<GraphNode> nodeList, string inputStart, string inputEnd)
@@ -141,17 +133,23 @@ namespace Assignment6
             }
         }
 
-        private void Initialize()
+        private void Initialize(string input_start, string input_end)
         {
-            Start.TotalEstimatedCost = 0;
-            OpenList.Add(Start);
-            FindLowestNode();
+            List<GraphNode> node_list = new List<GraphNode>();
+            BuildNodes(node_list);
+            WireConnections();
+            SetGoals(node_list, input_start, input_end);
         }
 
-        private void FindLowestNode()
+        private void RunAStar()
+        {
+
+        }
+
+        private GraphNode FindLowestNode()
         {
             GraphNode lowest_node = OpenList[0];
-            
+
             foreach (GraphNode list_node in OpenList)
             {
                 if (list_node.TotalEstimatedCost < lowest_node.TotalEstimatedCost)
@@ -160,57 +158,45 @@ namespace Assignment6
                 }
             }
 
-            OpenList.Remove(lowest_node);
-
-            foreach (Connection connection in lowest_node.Connections)
-            {
-                Console.WriteLine("Current Node: {0} Connection: {1}", lowest_node.Name, 
-                    connection.Target.Name);
-                if (connection.Target != Start)
-                    connection.Target.Parent = lowest_node;
-            }
-            Console.WriteLine();
-            ProcessOutBound(lowest_node);
+            return lowest_node;
         }
 
-        private void ProcessOutBound(GraphNode current_node)
+        private void SetParent(GraphNode lowest_node)
         {
-            if (current_node == Goal)
+            foreach (Connection connection in lowest_node.Connections)
             {
-                Console.WriteLine("Found Goal!\n");
-                return;
+                Console.WriteLine("Current Node: {0} Connection: {1}", lowest_node.Name,
+                    connection.Target.Name);
+                if (connection.Target != Start)
+                    connection.Target.CameFrom = lowest_node;
             }
+            Console.WriteLine();
+            ProcessConnections(lowest_node);
+        }
 
-            else
-            {
-                for (int index = 0; index < current_node.Connections.Length; index++)
+        private void ProcessConnections(GraphNode current_node)
+        {
+            foreach (Connection connection in current_node.Connections)
+            { 
+                connection.Target.CostSoFar = current_node.CostSoFar + CalcDistance(current_node, connection.Target);
+
+                connection.Target.Heuristic = CalcDistance(connection.Target, Goal);
+
+                // Update node if faster route, back to open list
+                if (InList(connection.Target, OpenList))
                 {
-                    current_node.Connections[index].Target.CostSoFar = current_node.CostSoFar + 
-                        CalcDistance(current_node, current_node.Connections[index].Target);
-
-                    current_node.Connections[index].Target.Heuristic = 
-                        CalcDistance(current_node.Connections[index].Target, Goal);
-
-                    current_node.Connections[index].Target.TotalEstimatedCost = 
-                        current_node.Connections[index].Target.CostSoFar + current_node.Connections[index].Target.Heuristic;
-
-                    if (InList(current_node.Connections[index].Target, OpenList))
-                    {
-                        //do nothing
-                    }
-
-                    if (InList(current_node.Connections[index].Target, CloseList))
-                    {
-                        //do nothing
-                    }
-
-                    else
-                    {
-                        OpenList.Add(current_node.Connections[index].Target);
-                    }
+                    //do nothing
                 }
-                CloseList.Add(current_node);
-                FindLowestNode();
+
+                if (InList(connection.Target, CloseList))
+                {
+                    //do nothing
+                }
+
+                else
+                {
+                    OpenList.Add(connection.Target);
+                }
             }
         }
 
@@ -228,7 +214,7 @@ namespace Assignment6
                 return true;
             return false;
         }
-        
+
         private double CalcDistance(GraphNode start, GraphNode target)
         {
             return Math.Sqrt(Math.Pow(target.X - start.X, 2) + Math.Pow(target.Y - start.Y, 2));
@@ -241,7 +227,7 @@ namespace Assignment6
             while (runner != null)
             {
                 SolutionList.Add(runner.Name);
-                runner = runner.Parent;
+                runner = runner.CameFrom;
             }
 
             SolutionList.Reverse();
