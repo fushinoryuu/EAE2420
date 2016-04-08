@@ -122,7 +122,7 @@ namespace Assignment6
             NodeP.Connections[3] = new Connection() { Target = NodeM };
         }
 
-        private void SetGoals(List<GraphNode> nodeList, string inputStart, string inputEnd)
+        private void SetEndpoints(List<GraphNode> nodeList, string inputStart, string inputEnd)
         {
             foreach (GraphNode currentNode in nodeList)
             {
@@ -138,10 +138,17 @@ namespace Assignment6
             List<GraphNode> node_list = new List<GraphNode>();
             BuildNodes(node_list);
             WireConnections();
-            SetGoals(node_list, input_start, input_end);
+            SetEndpoints(node_list, input_start, input_end);
             RunAStar();
         }
 
+        /// <summary>
+        /// Calc values
+        /// process first node
+        /// add to open list
+        /// is lowest node = goal
+        /// process outbound
+        /// </summary>
         private void RunAStar()
         {
             GraphNode current_node = Start;
@@ -152,18 +159,37 @@ namespace Assignment6
             }
         }
 
+        private void ProcessNode(GraphNode current_node)
+        {
+
+        }
+
+        // TODO Fix
+        private void ProcessConnections(GraphNode current_node)
+        {
+            foreach (Connection connection in current_node.Connections)
+            {
+                connection.Target.CostSoFar = current_node.CostSoFar +
+                    CalculateDistance(current_node, connection.Target);
+
+                connection.Target.Heuristic = CalculateDistance(connection.Target, Goal);
+            }
+        }
+
         private GraphNode FindLowestNode()
         {
             GraphNode lowest_node = OpenList[0];
 
             foreach (GraphNode list_node in OpenList)
-            {
                 if (list_node.TotalEstimatedCost < lowest_node.TotalEstimatedCost)
-                {
                     lowest_node = list_node;
-                }
-            }
+
             return lowest_node;
+        }
+
+        private void RemoveNode(GraphNode node)
+        {
+            OpenList.Remove(node);
         }
 
         private void SetFrom(GraphNode lowest_node)
@@ -176,51 +202,17 @@ namespace Assignment6
                     connection.Target.CameFrom = lowest_node;
             }
             Console.WriteLine();
-            ProcessConnections(lowest_node);
-        }
-
-        private void ProcessConnections(GraphNode current_node)
-        {
-            foreach (Connection connection in current_node.Connections)
-            { 
-                connection.Target.CostSoFar = current_node.CostSoFar + CalcDistance(current_node, connection.Target);
-
-                connection.Target.Heuristic = CalcDistance(connection.Target, Goal);
-
-                // Update node if faster route, back to open list
-                if (InList(connection.Target, OpenList))
-                {
-                    //do nothing
-                }
-
-                if (InList(connection.Target, CloseList))
-                {
-                    //do nothing
-                }
-
-                else
-                {
-                    OpenList.Add(connection.Target);
-                }
-            }
         }
 
         private bool InList(GraphNode looking_for, List<GraphNode> list)
         {
             foreach (GraphNode node in list)
                 if (node == looking_for)
-                    return LowerEstimate(looking_for, node);
+                    return true;
             return false;
         }
 
-        private bool LowerEstimate(GraphNode first, GraphNode second)
-        {
-            if (first.TotalEstimatedCost < second.TotalEstimatedCost)
-                return true;
-            return false;
-        }
-
-        private double CalcDistance(GraphNode start, GraphNode target)
+        private double CalculateDistance(GraphNode start, GraphNode target)
         {
             return Math.Sqrt(Math.Pow(target.X - start.X, 2) + Math.Pow(target.Y - start.Y, 2));
         }
