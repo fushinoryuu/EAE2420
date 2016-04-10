@@ -7,18 +7,18 @@ namespace Assignment7
     class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue>
     {
         LinkedList<KeyValuePair<TKey, TValue>>[] BaseArray;
-        private int ElementCount;
+        private int ElementCount = 0;
+        private int CurentSize = 10;
 
         public MyHashTable(int initial_size)
         {
             BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[initial_size];
-            ElementCount = 0;
+            CurentSize = initial_size;
         }
 
         public MyHashTable()
         {
-            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[10];
-            ElementCount = 0;
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[CurentSize];
         }
 
         // TODO Indexer
@@ -81,10 +81,9 @@ namespace Assignment7
             throw new NotImplementedException();
         }
 
-        // TODO Clear
         public void Clear()
         {
-            throw new NotImplementedException();
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[CurentSize];
         }
 
         // TODO Contains
