@@ -24,13 +24,47 @@ namespace Assignment7
         {
             get
             {
-                throw new NotImplementedException();
+                int bucket = Hash(key);
+
+                if (UnderlyingArray[bucket] == null)
+                {
+                    throw new KeyNotFoundException();
+                }
+
+                foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
+                {
+                    if (pair.Key.Equals(key))
+                    {
+                        return pair.Value;
+                    }
+                }
+                throw new KeyNotFoundException();
             }
 
             set
             {
-                throw new NotImplementedException();
+                int bucket = Hash(key);
+
+                if (UnderlyingArray[bucket] == null)
+                    UnderlyingArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
+
+                if (UnderlyingArray[bucket].Count == 0)
+                    UnderlyingArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
+
+                else
+                {
+                    foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
+                    {
+                        
+                    }
+                }
             }
+        }
+
+        private int Hash(TKey key)
+        {
+            int hash = key.GetHashCode();
+            return hash % UnderlyingArray.Length;
         }
 
         public int Count
@@ -82,6 +116,7 @@ namespace Assignment7
         public void Clear()
         {
             UnderlyingArray = new LinkedList<KeyValuePair<TKey, TValue>>[7];
+            ElementCount = 0;
         }
 
         // TODO Contains

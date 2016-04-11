@@ -26,9 +26,9 @@ namespace Assignment7
             second_list[1] = new Hero { Name = "Fiora", Attack = 60 };
             second_list[2] = new Hero { Name = "Darius", Attack = 56 };
             second_list[3] = new Hero { Name = "Vi", Attack = 56 };
-            second_list[4] = new Hero { Name = "Trundle", Attack = 60 };
+            second_list[4] = new Hero { Name = "Jinx", Attack = 58 }; // duplicate
             second_list[5] = new Hero { Name = "Shyvana", Attack = 61 };
-            second_list[6] = new Hero { Name = "Nasus", Attack = 59 };
+            second_list[6] = new Hero { Name = "Caitlyn", Attack = 50 }; // duplicate, attack
             second_list[7] = new Hero { Name = "Pantheon", Attack = 56 };
             second_list[8] = new Hero { Name = "Riven", Attack = 56 };
             second_list[9] = new Hero { Name = "Illaoi", Attack = 60 };
