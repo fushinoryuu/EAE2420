@@ -24,26 +24,21 @@ namespace Assignment7
         {
             get
             {
-                int bucket = Hash(key);
+                int bucket = FindEntry(key);
 
                 if (UnderlyingArray[bucket] == null)
-                {
                     throw new KeyNotFoundException();
-                }
 
                 foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
-                {
                     if (pair.Key.Equals(key))
-                    {
                         return pair.Value;
-                    }
-                }
+
                 throw new KeyNotFoundException();
             }
 
             set
             {
-                int bucket = Hash(key);
+                int bucket = FindEntry(key);
 
                 if (UnderlyingArray[bucket] == null)
                     UnderlyingArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
@@ -61,7 +56,15 @@ namespace Assignment7
             }
         }
 
-        private int Hash(TKey key)
+        private bool InList(LinkedList<KeyValuePair<TKey, TValue>> list, TKey key)
+        {
+            foreach (KeyValuePair<TKey, TValue> pair in list)
+                if (pair.Key.Equals(key))
+                    return true;
+            return false;
+        }
+
+        private int FindEntry(TKey key)
         {
             int hash = key.GetHashCode();
             return hash % UnderlyingArray.Length;
@@ -104,7 +107,21 @@ namespace Assignment7
         // TODO Add
         public void Add(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            int bucket = FindEntry(item.Key);
+
+            if (UnderlyingArray[bucket] == null)
+                UnderlyingArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
+
+            if (UnderlyingArray[bucket].Count == 0)
+                UnderlyingArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(item.Key, item.Value));
+
+            else
+            {
+                foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
+                {
+
+                }
+            }
         }
 
         // TODO Add
