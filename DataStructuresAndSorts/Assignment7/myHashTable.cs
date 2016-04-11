@@ -172,10 +172,25 @@ namespace Assignment7
             throw new NotImplementedException();
         }
 
-        // TODO TryGetValue
         public bool TryGetValue(TKey key, out TValue value)
         {
-            throw new NotImplementedException();
+            int bucket = FindEntry(key);
+
+            if (UnderlyingArray[bucket] == null)
+            {
+                value = default(TValue);
+                return false;
+            }
+
+            foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
+                if (pair.Key.Equals(key))
+                {
+                    value = pair.Value;
+                    return true;
+                }
+
+            value = default(TValue);
+            return false;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
