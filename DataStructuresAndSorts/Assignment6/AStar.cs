@@ -164,7 +164,6 @@ namespace Assignment6
 
         }
 
-        // TODO Fix
         private void ProcessConnections(GraphNode current_node)
         {
             foreach (Connection connection in current_node.Connections)
