@@ -180,7 +180,7 @@ namespace Assignment7
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            for ( int index = 0; index < BaseArray.Length; index++)
+            for (int index = 0; index < BaseArray.Length; index++)
                 foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
                     if (pair.Value.Equals(item))
                     {
@@ -190,10 +190,20 @@ namespace Assignment7
             return false;
         }
 
-        // TODO Remove
         public bool Remove(TKey key)
         {
-            throw new NotImplementedException();
+            int index = FindEntry(key);
+
+            if (BaseArray[index] == null)
+                return false;
+
+            foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
+                if (pair.Key.Equals(key))
+                {
+                    BaseArray[index].Remove(pair);
+                    return true;
+                }
+            return false;
         }
 
         public bool TryGetValue(TKey key, out TValue value)
