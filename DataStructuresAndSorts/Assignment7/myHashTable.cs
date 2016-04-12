@@ -161,10 +161,17 @@ namespace Assignment7
             throw new NotImplementedException();
         }
 
-        // TODO IEnumerator
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < UnderlyingArray.Length; index++)
+            {
+                if (UnderlyingArray[index] != null)
+                {
+                    LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
+                    foreach (KeyValuePair<TKey, TValue> pair in list)
+                        yield return pair;
+                }
+            }
         }
 
         // TODO Remove
