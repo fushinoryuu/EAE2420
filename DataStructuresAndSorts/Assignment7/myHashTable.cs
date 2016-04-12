@@ -164,14 +164,12 @@ namespace Assignment7
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             for (int index = 0; index < UnderlyingArray.Length; index++)
-            {
                 if (UnderlyingArray[index] != null)
                 {
                     LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
                     foreach (KeyValuePair<TKey, TValue> pair in list)
                         yield return pair;
                 }
-            }
         }
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
