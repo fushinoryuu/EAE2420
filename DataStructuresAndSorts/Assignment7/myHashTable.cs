@@ -177,17 +177,12 @@ namespace Assignment7
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
             for ( int index = 0; index < UnderlyingArray.Length; index++)
-            {
-                LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
-                foreach (KeyValuePair<TKey, TValue> pair in list)
-                {
+                foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[index])
                     if (pair.Value.Equals(item))
                     {
-                        list.Remove(item);
+                        UnderlyingArray[index].Remove(item);
                         return true;
                     }
-                }
-            }
             return false;
         }
 
