@@ -66,7 +66,7 @@ namespace Assignment7
 
         private int FindEntry(TKey key)
         {
-            int hash = key.GetHashCode();
+            int hash = Math.Abs(key.GetHashCode());
             return hash % UnderlyingArray.Length;
         }
 
@@ -136,10 +136,17 @@ namespace Assignment7
             ElementCount = 0;
         }
 
-        // TODO Contains
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            for (int index = 0; index < UnderlyingArray.Length; index++)
+                if (UnderlyingArray[index] != null)
+                {
+                    LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
+                    foreach (KeyValuePair<TKey, TValue> pair in list)
+                        if (pair.Key.Equals(item.Key) && pair.Value.Equals(item.Value))
+                            return true;
+                }
+            return false;
         }
 
         // TODO ContainsKey
