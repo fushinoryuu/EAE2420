@@ -174,10 +174,21 @@ namespace Assignment7
             }
         }
 
-        // TODO Remove
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            throw new NotImplementedException();
+            for ( int index = 0; index < UnderlyingArray.Length; index++)
+            {
+                LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
+                foreach (KeyValuePair<TKey, TValue> pair in list)
+                {
+                    if (pair.Value.Equals(item))
+                    {
+                        list.Remove(item);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         // TODO Remove
