@@ -19,7 +19,7 @@ namespace Assignment7
         {
             get
             {
-                int bucket = FindEntry(key);
+                int bucket = GetHash(key);
 
                 if (BaseArray[bucket] == null)
                     throw new KeyNotFoundException();
@@ -33,7 +33,7 @@ namespace Assignment7
 
             set
             {
-                int bucket = FindEntry(key);
+                int bucket = GetHash(key);
 
                 if (BaseArray[bucket] == null)
                     BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
@@ -59,10 +59,15 @@ namespace Assignment7
             return false;
         }
 
-        private int FindEntry(TKey key)
+        private int GetHash(TKey key)
         {
             int hash = Math.Abs(key.GetHashCode());
             return hash % BaseArray.Length;
+        }
+
+        private double GetRatio()
+        {
+            return ElementCount / BaseArray.Length;
         }
 
         public int Count
@@ -102,7 +107,7 @@ namespace Assignment7
         // TODO Add
         public void Add(KeyValuePair<TKey, TValue> item)
         {
-            int bucket = FindEntry(item.Key);
+            int bucket = GetHash(item.Key);
 
             if (BaseArray[bucket] == null)
                 BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
@@ -199,7 +204,7 @@ namespace Assignment7
 
         public bool Remove(TKey key)
         {
-            int index = FindEntry(key);
+            int index = GetHash(key);
 
             if (BaseArray[index] == null)
                 return false;
@@ -215,7 +220,7 @@ namespace Assignment7
 
         public bool TryGetValue(TKey key, out TValue value)
         {
-            int bucket = FindEntry(key);
+            int bucket = GetHash(key);
 
             if (BaseArray[bucket] == null)
             {
