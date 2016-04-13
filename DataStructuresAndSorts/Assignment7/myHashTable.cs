@@ -143,15 +143,17 @@ namespace Assignment7
 
         public int GetNextPrime()
         {
-            int current = BaseArray.Length;
-            int next = (2 * current) + 1;
+            bool skipped = false;
 
-            while(!IsPrime(next))
+            for (int i = BaseArray.Length + 2; i < 1000; i += 2)
             {
-                current++;
-                next = (2 * current) + 1;
+                bool prime = IsPrime(i);
+                if (prime == true && skipped == true)
+                    return i;
+                else if (prime && !skipped)
+                    skipped = true;
             }
-            return next;
+            return (2 * BaseArray.Length) + 1;
         }
 
         public bool IsPrime(int candidate)

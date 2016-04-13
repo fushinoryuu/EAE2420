@@ -21,9 +21,11 @@ namespace Assignment7
             //foreach (int number in array)
             //    number_table.Add(number.GetHashCode(), number);
 
-            number_table[55] = 1;
-            number_table[55] = 5;
-            Console.WriteLine(number_table[55]);
+            //number_table[55] = 1;
+            //number_table[55] = 5;
+            //Console.WriteLine(number_table[55]);
+
+            number_table.GetNextPrime();
         }
 
         private static void RandomNumber(int[] array)
