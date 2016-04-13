@@ -106,6 +106,9 @@ namespace Assignment7
 
         public void Add(KeyValuePair<TKey, TValue> item)
         {
+            if (GetRatio() > .75)
+                Resize();
+
             int index = GetHash(item.Key);
 
             if (BaseArray[index] == null)
@@ -125,6 +128,7 @@ namespace Assignment7
                     }
                 }
                 BaseArray[index].AddLast(item);
+                ElementCount++;
             }
         }
 
