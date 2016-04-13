@@ -24,7 +24,6 @@ namespace Assignment7
             number_table[55] = 1;
             number_table[55] = 5;
             Console.WriteLine(number_table[55]);
-
         }
 
         private static void RandomNumber(int[] array)

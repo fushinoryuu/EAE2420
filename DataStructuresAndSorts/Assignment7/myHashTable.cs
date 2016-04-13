@@ -11,7 +11,7 @@ namespace Assignment7
 
         public MyHashTable()
         {
-            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[47];
         }
 
         // TODO Indexer
@@ -39,13 +39,16 @@ namespace Assignment7
                     BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
 
                 if (BaseArray[bucket].Count == 0)
+                {
                     BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
+                    ElementCount++;
+                }
 
                 else
                 {
                     foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
                     {
-                        
+
                     }
                 }
             }
@@ -138,9 +141,33 @@ namespace Assignment7
             throw new NotImplementedException();
         }
 
-        private int GetNextPrime()
+        public int GetNextPrime()
         {
-            return (2 * BaseArray.Length) + 1;
+            int current = BaseArray.Length;
+            int next = (2 * current) + 1;
+
+            while(!IsPrime(next))
+            {
+                current++;
+                next = (2 * current) + 1;
+            }
+            return next;
+        }
+
+        public bool IsPrime(int candidate)
+        {
+            if ((candidate & 1) == 0)
+            {
+                if (candidate == 2)
+                    return true;
+                else
+                    return false;
+            }
+                
+            for (int i = 3; (i * i) <= candidate; i += 2)
+                if ((candidate % i) == 0)
+                    return false;
+            return candidate != 1;
         }
         
         private void Resize()
