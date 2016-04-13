@@ -28,12 +28,12 @@ namespace Assignment7
             number_table[55] = 4;
             number_table[55] = 4;
 
-            Console.WriteLine("Values in the Hashtable: [{0}]\n", string.Join(", ", number_table));
+            Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", number_table));
         }
 
         public static void HeroTable()
         {
-            MyHashTable<Hero, string> hero_table = new MyHashTable<Hero, string>();
+            MyHashTable<string, int> hero_table = new MyHashTable<string, int>();
 
             List<Hero> adc_list = new List<Hero>();
             adc_list.Add(new Hero { Name = "Ashe", Attack = 57 });
@@ -61,13 +61,15 @@ namespace Assignment7
 
             foreach (Hero adc in adc_list)
             {
-                hero_table.Add(new KeyValuePair<Hero, string>(adc, adc.Name));
+                hero_table.Add(new KeyValuePair<string, int>(adc.Name, adc.Attack));
             }
 
             foreach (Hero bruiser in bruiser_list)
             {
-                hero_table.Add(new KeyValuePair<Hero, string>(bruiser, bruiser.Name));
+                hero_table.Add(new KeyValuePair<string, int>(bruiser.Name, bruiser.Attack));
             }
+
+            Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", hero_table));
         }
 
         private static void RandomNumber(int[] array)

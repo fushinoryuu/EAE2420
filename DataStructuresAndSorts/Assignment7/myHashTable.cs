@@ -95,12 +95,16 @@ namespace Assignment7
             }
         }
 
-        // TODO ICollection<TKey>
         public ICollection<TKey> Keys
         {
             get
             {
-                throw new NotImplementedException();
+                List<TKey> ret = new List<TKey>(Count);
+                for (int bucket = 0; bucket < BaseArray.Length; bucket++)
+                    if (BaseArray[bucket] != null)
+                        foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                            ret.Add(pair.Key);
+                return ret;
             }
         }
 
@@ -133,7 +137,7 @@ namespace Assignment7
                 {
                     if (pair.Equals(item) == true)
                     {
-                        Console.WriteLine("This item is alread in the dictionary. Value: {0}\n", item.Value);
+                        Console.WriteLine("This item is alread in the dictionary. Key: {0} - Value: {0}\n", item.Key, item.Value);
                         return;
                     }
                 }
