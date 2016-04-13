@@ -127,13 +127,20 @@ namespace Assignment7
 
         private int GetNextPrime()
         {
-            return 2 * BaseArray.Length + 1;
+            return (2 * BaseArray.Length) + 1;
         }
         
-        // TODO Resize
         private void Resize()
         {
-            
+            LinkedList<KeyValuePair<TKey, TValue>>[] old_array = BaseArray;
+            LinkedList<KeyValuePair<TKey, TValue>>[] new_array = new LinkedList<KeyValuePair<TKey, TValue>>[GetNextPrime()];
+            BaseArray = new_array;
+            ElementCount = 0;
+
+            for (int index = 0; index < old_array.Length; index++)
+                if (old_array[index] != null)
+                    foreach (KeyValuePair<TKey, TValue> pair in old_array[index])
+                        Add(pair);
         }
 
         public void Clear()
