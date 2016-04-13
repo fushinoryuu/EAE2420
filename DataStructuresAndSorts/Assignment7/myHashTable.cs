@@ -104,23 +104,27 @@ namespace Assignment7
             }
         }
 
-        // TODO Add
         public void Add(KeyValuePair<TKey, TValue> item)
         {
-            int bucket = GetHash(item.Key);
+            int index = GetHash(item.Key);
 
-            if (BaseArray[bucket] == null)
-                BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
+            if (BaseArray[index] == null)
+                BaseArray[index] = new LinkedList<KeyValuePair<TKey, TValue>>();
 
-            if (BaseArray[bucket].Count == 0)
-                BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(item.Key, item.Value));
+            if (BaseArray[index].Count == 0)
+                BaseArray[index].AddFirst(new KeyValuePair<TKey, TValue>(item.Key, item.Value));
 
             else
             {
-                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
                 {
-
+                    if (pair.Equals(item) == true)
+                    {
+                        Console.WriteLine("This item is alread in the dictionary. Value: {0}\n", item.Value);
+                        return;
+                    }
                 }
+                BaseArray[index].AddLast(item);
             }
         }
 
