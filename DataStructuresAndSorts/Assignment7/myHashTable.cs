@@ -11,7 +11,7 @@ namespace Assignment7
 
         public MyHashTable()
         {
-            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[47];
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
         }
 
         // TODO Indexer
@@ -48,8 +48,14 @@ namespace Assignment7
                 {
                     foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
                     {
-
+                        if (pair.Value.Equals(value))
+                        {
+                            Console.WriteLine("They are equal");
+                            return;
+                        }
                     }
+                    BaseArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
+                    ElementCount++;
                 }
             }
         }
@@ -107,22 +113,23 @@ namespace Assignment7
             }
         }
 
+        // TO DO Fix
         public void Add(KeyValuePair<TKey, TValue> item)
         {
             if (GetRatio() > .75)
                 Resize();
 
-            int index = GetHash(item.Key);
+            int bucket = GetHash(item.Key);
 
-            if (BaseArray[index] == null)
-                BaseArray[index] = new LinkedList<KeyValuePair<TKey, TValue>>();
+            if (BaseArray[bucket] == null)
+                BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
 
-            if (BaseArray[index].Count == 0)
-                BaseArray[index].AddFirst(new KeyValuePair<TKey, TValue>(item.Key, item.Value));
+            if (BaseArray[bucket].Count == 0)
+                BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(item.Key, item.Value));
 
             else
             {
-                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
+                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
                 {
                     if (pair.Equals(item) == true)
                     {
@@ -130,7 +137,7 @@ namespace Assignment7
                         return;
                     }
                 }
-                BaseArray[index].AddLast(item);
+                BaseArray[bucket].AddLast(item);
                 ElementCount++;
             }
         }
@@ -159,12 +166,10 @@ namespace Assignment7
         public bool IsPrime(int candidate)
         {
             if ((candidate & 1) == 0)
-            {
                 if (candidate == 2)
                     return true;
                 else
                     return false;
-            }
                 
             for (int i = 3; (i * i) <= candidate; i += 2)
                 if ((candidate % i) == 0)
