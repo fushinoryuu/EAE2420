@@ -150,10 +150,9 @@ namespace Assignment7
             }
         }
 
-        // TODO Add
         public void Add(TKey key, TValue value)
         {
-            throw new NotImplementedException();
+            Add(new KeyValuePair<TKey, TValue>(key, value));
         }
 
         public int GetNextPrime()

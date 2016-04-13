@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assignment7
 {
-    class Caller
+    class MainClass
     {
         public static void Main()
         {

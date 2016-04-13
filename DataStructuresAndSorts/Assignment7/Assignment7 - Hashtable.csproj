@@ -36,7 +36,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caller.cs" />
+    <Compile Include="MainClass.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="MyHashTable.cs" />
   </ItemGroup>
