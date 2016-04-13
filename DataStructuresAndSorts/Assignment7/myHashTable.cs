@@ -99,21 +99,25 @@ namespace Assignment7
         {
             get
             {
-                List<TKey> ret = new List<TKey>(Count);
+                List<TKey> list = new List<TKey>(Count);
                 for (int bucket = 0; bucket < BaseArray.Length; bucket++)
                     if (BaseArray[bucket] != null)
                         foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
-                            ret.Add(pair.Key);
-                return ret;
+                            list.Add(pair.Key);
+                return list;
             }
         }
 
-        // TODO ICollection<TValue>
         public ICollection<TValue> Values
         {
             get
             {
-                throw new NotImplementedException();
+                List<TValue> list = new List<TValue>(Count);
+                for (int bucket = 0; bucket < BaseArray.Length; bucket++)
+                    if (BaseArray[bucket] != null)
+                        foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                            list.Add(pair.Value);
+                return list;
             }
         }
 
