@@ -14,7 +14,6 @@ namespace Assignment7
             BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
         }
 
-        // TODO Indexer
         public TValue this[TKey key]
         {
             get
@@ -33,30 +32,7 @@ namespace Assignment7
 
             set
             {
-                int bucket = GetHash(key);
-
-                if (BaseArray[bucket] == null)
-                    BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
-
-                if (BaseArray[bucket].Count == 0)
-                {
-                    BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
-                    ElementCount++;
-                }
-
-                else
-                {
-                    foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
-                    {
-                        if (pair.Value.Equals(value))
-                        {
-                            Console.WriteLine("They are equal");
-                            return;
-                        }
-                    }
-                    BaseArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
-                    ElementCount++;
-                }
+                Insert(key, value, false);
             }
         }
 
@@ -121,38 +97,43 @@ namespace Assignment7
             }
         }
 
-        // TO DO Fix
         public void Add(KeyValuePair<TKey, TValue> item)
         {
-            if (GetRatio() > .75)
-                Resize();
+            Insert(item.Key, item.Value, true);
+        }
 
-            int bucket = GetHash(item.Key);
+        public void Add(TKey key, TValue value)
+        {
+            Insert(key, value, true);
+        }
+
+        // TODO Fix - Throw exception if duplicate. 
+        private void Insert(TKey key, TValue value, bool add)
+        {
+            int bucket = GetHash(key);
 
             if (BaseArray[bucket] == null)
                 BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
 
             if (BaseArray[bucket].Count == 0)
-                BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(item.Key, item.Value));
+            {
+                BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
+                ElementCount++;
+            }
 
             else
             {
                 foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
                 {
-                    if (pair.Equals(item) == true)
+                    if (pair.Value.Equals(value))
                     {
-                        Console.WriteLine("This item is alread in the dictionary. Key: {0} - Value: {0}\n", item.Key, item.Value);
+                        Console.WriteLine("They are equal");
                         return;
                     }
                 }
-                BaseArray[bucket].AddLast(item);
+                BaseArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
                 ElementCount++;
             }
-        }
-
-        public void Add(TKey key, TValue value)
-        {
-            Add(new KeyValuePair<TKey, TValue>(key, value));
         }
 
         public int GetNextPrime()
@@ -224,6 +205,7 @@ namespace Assignment7
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
+            // Not needed.
             throw new NotImplementedException();
         }
 
@@ -242,7 +224,7 @@ namespace Assignment7
         {
             for (int index = 0; index < BaseArray.Length; index++)
                 foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
-                    if (pair.Value.Equals(item))
+                    if (pair.Equals(item)) //(pair.Value.Equals(item))
                     {
                         BaseArray[index].Remove(item);
                         return true;
