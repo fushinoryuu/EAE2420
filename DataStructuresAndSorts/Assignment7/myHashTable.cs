@@ -197,10 +197,14 @@ namespace Assignment7
             return false;
         }
 
-        // TODO ContainsKey
         public bool ContainsKey(TKey key)
         {
-            throw new NotImplementedException();
+            var temp = Keys;
+
+            foreach (TKey entry in temp)
+                if (entry.Equals(key))
+                    return true;
+            return false;
         }
 
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
