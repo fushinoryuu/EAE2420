@@ -10,12 +10,17 @@ namespace Assignment7
             NumberTable();
             //HeroTable();
 
-            //test();
+            test();
         }
 
         public static void test()
         {
-            Dictionary<int, int> table = new Dictionary<int, int>();
+            Dictionary<int, int> table = new Dictionary<int, int>(5);
+
+            int[] array = new int[] { 5, 8, 19, 39, 13, 99, 40, 38, 84, 66, 75, 1, 45, 0 };
+
+            foreach (int number in array)
+                table.Add(number, number);
 
             table[55] = 1;
             table[55] = 1;
@@ -24,20 +29,18 @@ namespace Assignment7
             table[55] = 4;
             table[55] = 4;
 
-            table.Add(55, 5);
-
-            Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", table));
+            Console.WriteLine("\nValues in the TEST Hashtable: {0}\n", string.Join(", ", table));
+            Console.WriteLine("\nElements in the TEST Hashtable: {0}\n", table.Count);
         }
 
         public static void NumberTable()
         {
             MyHashTable<int, int> number_table = new MyHashTable<int, int>();
 
-            //int[] array = new int[20];
-            //RandomNumber(array);
+            int[] array = new int[] { 5, 8, 19, 39, 13, 99, 40, 38, 84, 66, 75, 1, 45, 0 };
 
-            //foreach (int number in array)
-            //    number_table.Add(new KeyValuePair<int, int>(number, number));
+            foreach (int number in array)
+                number_table.Add(new KeyValuePair<int, int>(number, number));
 
             number_table[55] = 1;
             number_table[55] = 1;
@@ -46,9 +49,8 @@ namespace Assignment7
             number_table[55] = 4;
             number_table[55] = 4;
 
-            number_table.Add(55, 5);
-
             Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", number_table));
+            Console.WriteLine("\nElements in the Hashtable: {0}\n", number_table.Count);
         }
 
         public static void HeroTable()
@@ -90,14 +92,6 @@ namespace Assignment7
             }
 
             Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", hero_table));
-        }
-
-        private static void RandomNumber(int[] array)
-        {
-            Random rand_int = new Random();
-
-            for (int i = 0; i < array.Length; i++)
-                array[i] = rand_int.Next(1, 100);
         }
     }
 }

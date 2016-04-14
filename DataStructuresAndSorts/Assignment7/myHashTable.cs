@@ -109,6 +109,9 @@ namespace Assignment7
 
         private void Insert(TKey key, TValue value, bool add)
         {
+            if (GetRatio() > .75)
+                Resize();
+
             int bucket = GetHash(key);
 
             if (BaseArray[bucket] == null)
