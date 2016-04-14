@@ -167,7 +167,7 @@ namespace Assignment7
 
         public void Clear()
         {
-            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[7];
+            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
             ElementCount = 0;
         }
 
