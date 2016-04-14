@@ -52,7 +52,8 @@ namespace Assignment7
 
         private double GetRatio()
         {
-            return ElementCount / BaseArray.Length;
+            double ratio = (double)ElementCount / (double)BaseArray.Length;
+            return ratio;
         }
 
         public int Count
