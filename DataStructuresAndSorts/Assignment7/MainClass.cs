@@ -10,7 +10,7 @@ namespace Assignment7
             NumberTable();
             //HeroTable();
 
-            test();
+            //test();
         }
 
         public static void test()

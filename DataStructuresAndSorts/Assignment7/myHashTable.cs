@@ -119,27 +119,24 @@ namespace Assignment7
                 return;
             }
 
-            else
+            LinkedList<KeyValuePair<TKey, TValue>> list = BaseArray[bucket];
+
+            for (LinkedListNode<KeyValuePair<TKey, TValue>> pair = list.First; pair != null; pair = pair.Next)
             {
-                LinkedList<KeyValuePair<TKey, TValue>> list = BaseArray[bucket];
-
-                for (LinkedListNode<KeyValuePair<TKey, TValue>> pair = list.First; pair.Next != null; pair = pair.Next)
+                if (pair.Value.Key.Equals(key) && add)
                 {
-                    if (pair.Value.Key.Equals(key) && add)
-                    {
-                        throw new ArgumentException();
-                    }
-
-                    else if (pair.Value.Key.Equals(key) && !add)
-                    {
-                        list.Remove(pair);
-                        list.AddLast(new KeyValuePair<TKey, TValue>(key, value));
-                        return;
-                    }
+                    throw new ArgumentException();
                 }
-                BaseArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
-                ElementCount++;
+
+                else if (pair.Value.Key.Equals(key) && !add)
+                {
+                    list.Remove(pair);
+                    list.AddLast(new KeyValuePair<TKey, TValue>(key, value));
+                    return;
+                }
             }
+            BaseArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
+            ElementCount++;
         }
 
         public int GetNextPrime()
