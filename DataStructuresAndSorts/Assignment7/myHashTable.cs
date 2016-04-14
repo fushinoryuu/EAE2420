@@ -36,26 +36,6 @@ namespace Assignment7
             }
         }
 
-        private bool InList(LinkedList<KeyValuePair<TKey, TValue>> list, TKey key)
-        {
-            foreach (KeyValuePair<TKey, TValue> pair in list)
-                if (pair.Key.Equals(key))
-                    return true;
-            return false;
-        }
-
-        private int GetHash(TKey key)
-        {
-            int hash = Math.Abs(key.GetHashCode());
-            return hash % BaseArray.Length;
-        }
-
-        private double GetRatio()
-        {
-            double ratio = (double)ElementCount / (double)BaseArray.Length;
-            return ratio;
-        }
-
         public int Count
         {
             get
@@ -283,6 +263,26 @@ namespace Assignment7
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private bool InList(LinkedList<KeyValuePair<TKey, TValue>> list, TKey key)
+        {
+            foreach (KeyValuePair<TKey, TValue> pair in list)
+                if (pair.Key.Equals(key))
+                    return true;
+            return false;
+        }
+
+        private int GetHash(TKey key)
+        {
+            int hash = Math.Abs(key.GetHashCode());
+            return hash % BaseArray.Length;
+        }
+
+        private double GetRatio()
+        {
+            double ratio = (double)ElementCount / (double)BaseArray.Length;
+            return ratio;
         }
     }
 }
