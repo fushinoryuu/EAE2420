@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment4", "Assignment4\Assignment4.csproj", "{7B11E9B4-6DD7-4A66-91B0-FAAFC0BB7561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment4 - List", "Assignment4\Assignment4 - List.csproj", "{7B11E9B4-6DD7-4A66-91B0-FAAFC0BB7561}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment5", "Assignment5\Assignment5.csproj", "{32360FD5-BE25-4769-8F5F-50277B9303B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment5 - Trees", "Assignment5\Assignment5 - Trees.csproj", "{32360FD5-BE25-4769-8F5F-50277B9303B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment6", "Assignment6\Assignment6.csproj", "{DDF5FCC8-BC69-41EE-9AAB-BF9E4A7922D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment6 - Graph", "Assignment6\Assignment6 - Graph.csproj", "{DDF5FCC8-BC69-41EE-9AAB-BF9E4A7922D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment7", "Assignment7\Assignment7.csproj", "{EA78B4C4-6B12-4491-9211-E254691520E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment7 - Hashtable", "Assignment7\Assignment7 - Hashtable.csproj", "{EA78B4C4-6B12-4491-9211-E254691520E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

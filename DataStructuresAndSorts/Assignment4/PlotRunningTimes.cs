@@ -19,7 +19,7 @@ namespace Assignment4
                 list = new int[elements];
 
                 for (int i = 0; i < list.Length; i++)
-                    list[i] = randint.Next(1, 200);
+                    list[i] = randint.Next(1, elements);
 
                 if (name == "Merge Sort")
                 {
@@ -45,8 +45,8 @@ namespace Assignment4
 
                 elements -= 10000;
             }
-            Console.WriteLine(" ");
-            file.WriteLine(" ");
+            Console.WriteLine();
+            file.WriteLine();
             file.Close();
         }
     }
