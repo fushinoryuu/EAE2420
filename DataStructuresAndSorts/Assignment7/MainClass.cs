@@ -7,8 +7,26 @@ namespace Assignment7
     {
         public static void Main()
         {
-            //NumberTable();
-            HeroTable();
+            NumberTable();
+            //HeroTable();
+
+            test();
+        }
+
+        public static void test()
+        {
+            Dictionary<int, int> table = new Dictionary<int, int>();
+
+            table[55] = 1;
+            table[55] = 1;
+            table[55] = 2;
+            table[55] = 3;
+            table[55] = 4;
+            table[55] = 4;
+
+            table.Add(55, 5);
+
+            Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", table));
         }
 
         public static void NumberTable()

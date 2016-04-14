@@ -107,27 +107,33 @@ namespace Assignment7
             Insert(key, value, true);
         }
 
-        // TODO Fix - Throw exception if duplicate. 
         private void Insert(TKey key, TValue value, bool add)
         {
             int bucket = GetHash(key);
 
             if (BaseArray[bucket] == null)
-                BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
-
-            if (BaseArray[bucket].Count == 0)
             {
+                BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
                 BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
                 ElementCount++;
+                return;
             }
 
             else
             {
-                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                LinkedList<KeyValuePair<TKey, TValue>> list = BaseArray[bucket];
+
+                for (LinkedListNode<KeyValuePair<TKey, TValue>> pair = list.First; pair.Next != null; pair = pair.Next)
                 {
-                    if (pair.Value.Equals(value))
+                    if (pair.Value.Key.Equals(key) && add)
                     {
-                        Console.WriteLine("They are equal");
+                        throw new ArgumentException();
+                    }
+
+                    else if (pair.Value.Key.Equals(key) && !add)
+                    {
+                        list.Remove(pair);
+                        list.AddLast(new KeyValuePair<TKey, TValue>(key, value));
                         return;
                     }
                 }
