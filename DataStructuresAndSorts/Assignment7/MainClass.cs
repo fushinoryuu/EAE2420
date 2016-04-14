@@ -38,6 +38,8 @@ namespace Assignment7
 
             TestCount(29, number_table.Count, "Element count doesn't match!");
             Console.WriteLine("Elements in the Hashtable: {0}\n", number_table.Count);
+
+            Console.WriteLine("---------------------------------------------------------\n");
         }
 
         public static void HeroTable()
