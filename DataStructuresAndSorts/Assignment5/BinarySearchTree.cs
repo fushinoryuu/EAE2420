@@ -15,7 +15,12 @@ namespace Assignment5
             this.comparer = comparer;
         }
 
-        public void Add(T item, TreeNode<T> currentNode)
+        public void Add(T item)
+        {
+            AddHelper(item, root);
+        }
+
+        private void AddHelper(T item, TreeNode<T> currentNode)
         {
             if (root == null)
             {
@@ -29,28 +34,33 @@ namespace Assignment5
                     if (currentNode.Left == null)
                         currentNode.Left = new TreeNode<T> { Data = item };
                     else
-                        Add(item, currentNode.Left);
+                        AddHelper(item, currentNode.Left);
                 }
                 else if ((comparer.Compare(item, currentNode.Data) >= 0) || (item.CompareTo(currentNode.Data) >= 0))
                 {
                     if (currentNode.Right == null)
                         currentNode.Right = new TreeNode<T> { Data = item };
                     else
-                        Add(item, currentNode.Right);
+                        AddHelper(item, currentNode.Right);
                 }
             }
         }
 
-        public bool Contains(T item, TreeNode<T> currentNode)
+        public bool Contains(T item)
+        {
+            return ContainsHelper(item, root);
+        }
+
+        private bool ContainsHelper(T item, TreeNode<T> currentNode)
         {
             if (currentNode != null)
             {
                 if (comparer.Compare(item, currentNode.Data) == 0)
                     return true;
                 else if (comparer.Compare(item, currentNode.Data) < 0)
-                    return Contains(item, currentNode.Left);
+                    return ContainsHelper(item, currentNode.Left);
                 else
-                    return Contains(item, currentNode.Right);
+                    return ContainsHelper(item, currentNode.Right);
             }
             else
             {

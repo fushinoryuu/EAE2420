@@ -14,14 +14,14 @@ namespace Assignment5
 
         private static void NumberTree()
         {
-            BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new numberComparer());
+            BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new NumberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
             
             Console.WriteLine("Adding the following numbers to a Binary Search Tree: [{0}]\n",
                 string.Join(", ", tempList));
 
             foreach (int number in tempList)
-                number_tree.Add(number, number_tree.root);
+                number_tree.Add(number);
             
             string traverseError = "BINARY SEARCH TREE: Order doesn't match!";
             string nullError = "BINARY SEARCH TREE: Tree is not null!";
@@ -30,11 +30,11 @@ namespace Assignment5
             string inExpected = "15, 25, 30, 45, 49, 50, 70, 80, 90";
             string postExpected = "15, 30, 49, 45, 25, 80, 90, 70, 50";
 
-            bool containsResult = number_tree.Contains(25, number_tree.root);
+            bool containsResult = number_tree.Contains(25);
             TestContains(containsResult, true, containsError);
             Console.WriteLine("Checking if 25 is in the tree... {0}\n", containsResult);
 
-            containsResult = number_tree.Contains(44, number_tree.root);
+            containsResult = number_tree.Contains(44);
             TestContains(containsResult, false, containsError);
             Console.WriteLine("Checking if 44 is in the tree... {0}\n", containsResult);
 
@@ -79,7 +79,7 @@ namespace Assignment5
             {
                 Console.WriteLine("Name: {0}, Health: {1}, Attack: {2}, Defense: {3}",
                     hero.Name, hero.Health, hero.Attack, hero.Defense);
-                hero_tree.Add(hero, hero_tree.root);
+                hero_tree.Add(hero);
             }
 
             string traverseError = "HERO TREE: Order doesn't match!";
