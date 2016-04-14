@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Assignment5
 {
@@ -7,10 +6,9 @@ namespace Assignment5
     {
         public TreeNode<string> root;
 
-        public ExpressionTree(string input)
+        public ExpressionTree()
         {
             root = null;
-            ExpressionParser parser = new ExpressionParser(this, input);
         }
 
         public void Evaluate(TreeNode<string> node)

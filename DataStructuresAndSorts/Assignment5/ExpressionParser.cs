@@ -6,17 +6,27 @@ namespace Assignment5
     {
         private Stack<TreeNode<string>> numberStack, operatorStack;
 
-        public ExpressionParser(ExpressionTree tree, string input)
+        public ExpressionParser()
         {
             numberStack = new Stack<TreeNode<string>>();
             operatorStack = new Stack<TreeNode<string>>();
+        }
+
+        public ExpressionTree Parse(string input)
+        {
             string[] expressionArray = new string[input.Length];
             expressionArray = input.Split();
 
-            BuildNodes(tree, expressionArray);
+            BuildNodes(expressionArray);
+            BuildTree();
+            BuildTree();
+
+            ExpressionTree tree = new ExpressionTree();
+            tree.root = numberStack.Pop();
+            return tree;
         }
 
-        private void BuildNodes(ExpressionTree tree, string[] expressionArray)
+        private void BuildNodes(string[] expressionArray)
         {
             foreach (string item in expressionArray)
             {
@@ -40,15 +50,12 @@ namespace Assignment5
                         operatorStack.Push(operator_node);
                     }
                     else
-                    {
                         operatorStack.Push(operator_node);
-                    }
                 }
             }
-            BuildTree(tree);
         }
 
-        private void BuildTree(ExpressionTree tree)
+        private void BuildTree()
         {
             while (operatorStack.Count != 0)
             {
@@ -57,7 +64,6 @@ namespace Assignment5
                 subRoot.Left = numberStack.Pop();
                 numberStack.Push(subRoot);
             }
-            tree.root = numberStack.Pop();
         }
     }
 }

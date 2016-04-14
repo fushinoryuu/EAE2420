@@ -10,22 +10,6 @@ namespace Assignment5
             //NumberTree();
             //HeroTree();
             ExpressionTree();
-            //Test();
-        }
-
-        private static void Test()
-        {
-            BinarySearchTree<int> tree = new BinarySearchTree<int>(new numberComparer());
-
-            int[] list = new int[] { 1, 2, 3 };
-
-            foreach (int number in list)
-                tree.Add(number, tree.root);
-
-            MyList<int> preList = new MyList<int>(10);
-
-            string preResult = tree.TraversePre(preList, tree.root);
-            Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
         }
 
         private static void NumberTree()
@@ -137,7 +121,8 @@ namespace Assignment5
             Console.WriteLine("\nTurning expression to an expression tree...\n", 
                 input);
 
-            ExpressionTree expression_tree = new ExpressionTree(input);
+            ExpressionParser parser = new ExpressionParser();
+            ExpressionTree expression_tree = parser.Parse(input);
 
             MyList<string> preList = new MyList<string>(10);
             MyList<string> inList = new MyList<string>(10);
