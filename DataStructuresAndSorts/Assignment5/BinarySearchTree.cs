@@ -39,78 +39,6 @@ namespace Assignment5
                         Add(item, currentNode.Right);
                 }
             }
-            CalculateHeight(currentNode);
-            Console.WriteLine();
-        }
-
-        private void CalculateHeight(TreeNode<T> node)
-        {
-            if (node.Left != null)
-                CalculateHeight(node.Left);
-            if (node.Right != null)
-                CalculateHeight(node.Right);
-
-            if (node.Left != null && node.Right != null)
-                node.Height = Math.Max(node.Left.Height, node.Right.Height) + 1;
-
-            else if (node.Left != null && node.Right == null)
-                node.Height = node.Left.Height + 1;
-
-            else if (node.Left == null && node.Right != null)
-                node.Height = node.Right.Height + 1;
-
-            else if (node.Left == null && node.Right == null)
-                node.Height = 1;
-            Console.WriteLine("Node Value: {0} Node Height: {1}", node.Data, node.Height);
-            CheckBalance(node);
-        }
-
-        // TO DO Fix StackOverFlow
-        private void CheckBalance(TreeNode<T> node)
-        {
-            if (node.Left == null && node.Right == null)
-            {
-                return;
-            }
-
-            else if (node.Left == null && node.Right != null)
-            {
-                if (node.Right.Height > 1)
-                    LeftRotate(node);
-            }
-
-            //else if (node.Left != null && node.Right == null)
-            //    if (node.Left.Height > 1)
-            //        Rotate(node);
-
-            //    else if (node.Left == null && node.Right != null)
-            //        if (node.Right.Height > 1)
-            //            LeftRotate(node);
-
-            //        else if (node.Left != null && node.Right != null)
-            //            if (node.Left.Height > node.Right.Height + 1)
-            //                Rotate(node.Left);
-            //            else if (node.Right.Height > node.Left.Height + 1)
-            //                Rotate(node.Right);
-        }
-
-        private void Rotate(TreeNode<T> node)
-        {
-
-        }
-
-        private void LeftRotate(TreeNode<T> node)
-        {
-            TreeNode<T> subRoot = node;
-            node = node.Right;
-            node.Left = subRoot;
-        }
-
-        private void RightRotate(TreeNode<T> node)
-        {
-            TreeNode<T> subRoot = node;
-            node = node.Left;
-            node.Right = subRoot;
         }
 
         public bool Contains(T item, TreeNode<T> currentNode)
@@ -135,64 +63,52 @@ namespace Assignment5
             root = null;
         }
 
-        public string TraversePre(MyList<T> list, TreeNode<T> node)
+        public string TraversePre()
+        {
+            MyList<T> list = new MyList<T>(10);
+            PreHelper(list, root);
+            return string.Join(", ", list);
+        }
+
+        private void PreHelper(MyList<T> list, TreeNode<T> node)
         {
             list.Add(node.Data);
             if (node.Left != null)
-                TraversePre(list, node.Left);
+                PreHelper(list, node.Left);
             if (node.Right != null)
-                TraversePre(list, node.Right);
+                PreHelper(list, node.Right);
+        }
+
+        public string TraverseIn()
+        {
+            MyList<T> list = new MyList<T>(10);
+            InHelper(list, root);
             return string.Join(", ", list);
         }
 
-        public string TraverseIn(MyList<T> list, TreeNode<T> node)
+        private void InHelper(MyList<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
-                TraverseIn(list, node.Left);
+                InHelper(list, node.Left);
             list.Add(node.Data);
             if (node.Right != null)
-                TraverseIn(list, node.Right);
+                InHelper(list, node.Right);
+        }
+
+        public string TraversePost()
+        {
+            MyList<T> list = new MyList<T>(10);
+            PostHelper(list, root);
             return string.Join(", ", list);
         }
 
-        public string TraversePost(MyList<T> list, TreeNode<T> node)
+        private void PostHelper(MyList<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
-                TraversePost(list, node.Left);
+                PostHelper(list, node.Left);
             if (node.Right != null)
-                TraversePost(list, node.Right);
+                PostHelper(list, node.Right);
             list.Add(node.Data);
-            return string.Join(", ", list);
-        }
-
-        public string TraversePre(MyList<string> list, TreeNode<Hero> node)
-        {
-            list.Add(node.Data.Name);
-            if (node.Left != null)
-                TraversePre(list, node.Left);
-            if (node.Right != null)
-                TraversePre(list, node.Right);
-            return string.Join(", ", list);
-        }
-
-        public string TraverseIn(MyList<string> list, TreeNode<Hero> node)
-        {
-            if (node.Left != null)
-                TraverseIn(list, node.Left);
-            list.Add(node.Data.Name);
-            if (node.Right != null)
-                TraverseIn(list, node.Right);
-            return string.Join(", ", list);
-        }
-
-        public string TraversePost(MyList<string> list, TreeNode<Hero> node)
-        {
-            if (node.Left != null)
-                TraversePost(list, node.Left);
-            if (node.Right != null)
-                TraversePost(list, node.Right);
-            list.Add(node.Data.Name);
-            return string.Join(", ", list);
         }
     }
 }

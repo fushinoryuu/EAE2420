@@ -52,34 +52,52 @@ namespace Assignment5
             }
         }
 
-        public string TraversePre(MyList<string> list, TreeNode<string> node)
+        public string TraversePre()
         {
-            list.Add(node.Data);
-            if (node.Left != null)
-                TraversePre(list, node.Left);
-            if (node.Right != null)
-                TraversePre(list, node.Right);
+            MyList<string> list = new MyList<string>(10);
+            PreHelper(list, root);
             return string.Join(", ", list);
         }
 
-        public string TraverseIn(MyList<string> list, TreeNode<string> node)
+        private void PreHelper(MyList<string> list, TreeNode<string> node)
         {
-            if (node.Left != null)
-                TraverseIn(list, node.Left);
             list.Add(node.Data);
+            if (node.Left != null)
+                PreHelper(list, node.Left);
             if (node.Right != null)
-                TraverseIn(list, node.Right);
+                PreHelper(list, node.Right);
+        }
+
+        public string TraverseIn()
+        {
+            MyList<string> list = new MyList<string>(10);
+            InHelper(list, root);
             return string.Join(", ", list);
         }
 
-        public string TraversePost(MyList<string> list, TreeNode<string> node)
+        private void InHelper(MyList<string> list, TreeNode<string> node)
         {
             if (node.Left != null)
-                TraversePost(list, node.Left);
-            if (node.Right != null)
-                TraversePost(list, node.Right);
+                InHelper(list, node.Left);
             list.Add(node.Data);
+            if (node.Right != null)
+                InHelper(list, node.Right);
+        }
+
+        public string TraversePost()
+        {
+            MyList<string> list = new MyList<string>(10);
+            PostHelper(list, root);
             return string.Join(", ", list);
+        }
+
+        private void PostHelper(MyList<string> list, TreeNode<string> node)
+        {
+            if (node.Left != null)
+                PostHelper(list, node.Left);
+            if (node.Right != null)
+                PostHelper(list, node.Right);
+            list.Add(node.Data);
         }
     }
 }

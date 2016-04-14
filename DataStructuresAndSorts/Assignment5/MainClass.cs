@@ -3,12 +3,12 @@ using System.Diagnostics;
 
 namespace Assignment5
 {
-    class Caller
+    class MainClass
     {
         public static void Main()
         {
-            //NumberTree();
-            //HeroTree();
+            NumberTree();
+            HeroTree();
             ExpressionTree();
         }
 
@@ -16,16 +16,13 @@ namespace Assignment5
         {
             BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new numberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
-
+            
             Console.WriteLine("Adding the following numbers to a Binary Search Tree: [{0}]\n",
                 string.Join(", ", tempList));
 
             foreach (int number in tempList)
                 number_tree.Add(number, number_tree.root);
-
-            MyList<int> preList = new MyList<int>(10);
-            MyList<int> inList = new MyList<int>(10);
-            MyList<int> postList = new MyList<int>(10);
+            
             string traverseError = "BINARY SEARCH TREE: Order doesn't match!";
             string nullError = "BINARY SEARCH TREE: Tree is not null!";
             string containsError = "BINARY SEARCH TREE: Result not as expected!";
@@ -41,15 +38,15 @@ namespace Assignment5
             TestContains(containsResult, false, containsError);
             Console.WriteLine("Checking if 44 is in the tree... {0}\n", containsResult);
 
-            string preResult = number_tree.TraversePre(preList, number_tree.root);
+            string preResult = number_tree.TraversePre();
             TestTraversals(preResult, preExpected, traverseError);
             Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
             
-            string inResult = number_tree.TraverseIn(inList, number_tree.root);
+            string inResult = number_tree.TraverseIn();
             TestTraversals(inResult, inExpected, traverseError);
             Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
             
-            string postResult = number_tree.TraversePost(postList, number_tree.root);
+            string postResult = number_tree.TraversePost();
             TestTraversals(postResult, postExpected, traverseError);
             Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
 
@@ -63,7 +60,7 @@ namespace Assignment5
         private static void HeroTree()
         {
             BinarySearchTree<Hero> hero_tree = new BinarySearchTree<Hero>(new HeroComparer());
-
+            
             MyList<Hero> heroList = new MyList<Hero>(10);
             heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
             heroList[1] = new Hero { Name = "Jinx", Health = 518, Attack = 58, Defense = 23 };
@@ -85,24 +82,21 @@ namespace Assignment5
                 hero_tree.Add(hero, hero_tree.root);
             }
 
-            MyList<string> preList = new MyList<string>(10);
-            MyList<string> inList = new MyList<string>(10);
-            MyList<string> postList = new MyList<string>(10);
             string traverseError = "HERO TREE: Order doesn't match!";
             string nullError = "HERO TREE: Tree is not null!";
             string preExpected = "Ashe, Varus, Jhin, Caitlyn, Vayne, Draven, Jinx, Lucian, Kalista, Graves";
             string inExpected = "Jhin, Caitlyn, Varus, Vayne, Draven, Ashe, Lucian, Jinx, Graves, Kalista";
             string postExpected = "Caitlyn, Jhin, Draven, Vayne, Varus, Lucian, Graves, Kalista, Jinx, Ashe";
 
-            string preResult = hero_tree.TraversePre(preList, hero_tree.root);
+            string preResult = hero_tree.TraversePre();
             TestTraversals(preResult, preExpected, traverseError);
             Console.WriteLine("\nPre-order Traversal: [{0}]\n", preResult);
 
-            string inResult = hero_tree.TraverseIn(inList, hero_tree.root);
+            string inResult = hero_tree.TraverseIn();
             TestTraversals(inResult, inExpected, traverseError);
             Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
 
-            string postResult = hero_tree.TraversePost(postList, hero_tree.root);
+            string postResult = hero_tree.TraversePost();
             TestTraversals(postResult, postExpected, traverseError);
             Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
 
@@ -124,25 +118,22 @@ namespace Assignment5
             ExpressionParser parser = new ExpressionParser();
             ExpressionTree expression_tree = parser.Parse(input);
 
-            MyList<string> preList = new MyList<string>(10);
-            MyList<string> inList = new MyList<string>(10);
-            MyList<string> postList = new MyList<string>(10);
             string traverseError = "EXPRESSION TREE: Order doesn't match!";
             string resultError = "EXPRESSION TREE: Result is not correct!";
             string preExpected = "-, +, 5, *, 2, 8, /, 6, 4";
             string inExpected = "5, +, 2, *, 8, -, 6, /, 4";
             string postExpected = "5, 2, 8, *, +, 6, 4, /, -";
 
-            string preResult = expression_tree.TraversePre(preList, expression_tree.root);
+            string preResult = expression_tree.TraversePre();
             TestTraversals(preResult, preExpected, traverseError);
             Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
 
             
-            string inResult = expression_tree.TraverseIn(inList, expression_tree.root);
+            string inResult = expression_tree.TraverseIn();
             TestTraversals(inResult, inExpected, traverseError);
             Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
                         
-            string postResult = expression_tree.TraversePost(postList, expression_tree.root);
+            string postResult = expression_tree.TraversePost();
             TestTraversals(postResult, postExpected, traverseError);
             Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
 

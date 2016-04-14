@@ -25,5 +25,10 @@ namespace Assignment5
 
             return Name.CompareTo(other.Name);
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
