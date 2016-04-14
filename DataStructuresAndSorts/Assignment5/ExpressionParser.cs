@@ -65,5 +65,32 @@ namespace Assignment5
                 numberStack.Push(subRoot);
             }
         }
+
+        private TreeNode<string> CheckPrecedence(TreeNode<string> curent_node)
+        {
+
+        }
+
+        private TreeNode<string> RotateLeft(TreeNode<string> current_node)
+        {
+            TreeNode<string> temp_node = current_node;
+
+            current_node = current_node.Right;
+            temp_node.Right = current_node.Left;
+            current_node.Left = temp_node;
+
+            return current_node;
+        }
+
+        private TreeNode<string> RotateRight(TreeNode<string> current_node)
+        {
+            TreeNode<string> temp_node = current_node;
+
+            current_node = current_node.Left;
+            temp_node.Left = current_node.Right;
+            current_node.Right = temp_node;
+
+            return current_node;
+        }
     }
 }

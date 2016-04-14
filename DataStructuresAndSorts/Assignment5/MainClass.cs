@@ -8,8 +8,8 @@ namespace Assignment5
     {
         public static void Main()
         {
-            NumberTree();
-            HeroTree();
+            //NumberTree();
+            //HeroTree();
             ExpressionTree();
         }
 
