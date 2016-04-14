@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Assignment5
@@ -61,17 +62,17 @@ namespace Assignment5
         {
             BinarySearchTree<Hero> hero_tree = new BinarySearchTree<Hero>(new HeroComparer());
             
-            MyList<Hero> heroList = new MyList<Hero>(10);
-            heroList[0] = new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 };
-            heroList[1] = new Hero { Name = "Jinx", Health = 518, Attack = 58, Defense = 23 };
-            heroList[2] = new Hero { Name = "Varus", Health = 538, Attack = 55, Defense = 23 };
-            heroList[3] = new Hero { Name = "Vayne", Health = 498, Attack = 56, Defense = 19 };
-            heroList[4] = new Hero { Name = "Kalista", Health = 518, Attack = 63, Defense = 19 };
-            heroList[5] = new Hero { Name = "Jhin", Health = 540, Attack = 53, Defense = 20 };
-            heroList[6] = new Hero { Name = "Caitlyn", Health = 524, Attack = 54, Defense = 23 };
-            heroList[7] = new Hero { Name = "Draven", Health = 558, Attack = 56, Defense = 26 };
-            heroList[8] = new Hero { Name = "Graves", Health = 551, Attack = 61, Defense = 24 };
-            heroList[9] = new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 };
+            List<Hero> heroList = new List<Hero>();
+            heroList.Add(new Hero { Name = "Ashe", Health = 528, Attack = 57, Defense = 21 });
+            heroList.Add(new Hero { Name = "Jinx", Health = 518, Attack = 58, Defense = 23 });
+            heroList.Add(new Hero { Name = "Varus", Health = 538, Attack = 55, Defense = 23 });
+            heroList.Add(new Hero { Name = "Vayne", Health = 498, Attack = 56, Defense = 19 });
+            heroList.Add(new Hero { Name = "Kalista", Health = 518, Attack = 63, Defense = 19 });
+            heroList.Add(new Hero { Name = "Jhin", Health = 540, Attack = 53, Defense = 20 });
+            heroList.Add(new Hero { Name = "Caitlyn", Health = 524, Attack = 54, Defense = 23 });
+            heroList.Add(new Hero { Name = "Draven", Health = 558, Attack = 56, Defense = 26 });
+            heroList.Add(new Hero { Name = "Graves", Health = 551, Attack = 61, Defense = 24 });
+            heroList.Add(new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 });
 
             Console.WriteLine("Adding the following Heros to a Binary Search Tree, being sorted by their attack damage:\n");
 

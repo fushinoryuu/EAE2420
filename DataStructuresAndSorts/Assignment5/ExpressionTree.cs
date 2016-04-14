@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment5
 {
@@ -54,12 +55,12 @@ namespace Assignment5
 
         public string TraversePre()
         {
-            MyList<string> list = new MyList<string>(10);
+            List<string> list = new List<string>();
             PreHelper(list, root);
             return string.Join(", ", list);
         }
 
-        private void PreHelper(MyList<string> list, TreeNode<string> node)
+        private void PreHelper(List<string> list, TreeNode<string> node)
         {
             list.Add(node.Data);
             if (node.Left != null)
@@ -70,12 +71,12 @@ namespace Assignment5
 
         public string TraverseIn()
         {
-            MyList<string> list = new MyList<string>(10);
+            List<string> list = new List<string>();
             InHelper(list, root);
             return string.Join(", ", list);
         }
 
-        private void InHelper(MyList<string> list, TreeNode<string> node)
+        private void InHelper(List<string> list, TreeNode<string> node)
         {
             if (node.Left != null)
                 InHelper(list, node.Left);
@@ -86,12 +87,12 @@ namespace Assignment5
 
         public string TraversePost()
         {
-            MyList<string> list = new MyList<string>(10);
+            List<string> list = new List<string>();
             PostHelper(list, root);
             return string.Join(", ", list);
         }
 
-        private void PostHelper(MyList<string> list, TreeNode<string> node)
+        private void PostHelper(List<string> list, TreeNode<string> node)
         {
             if (node.Left != null)
                 PostHelper(list, node.Left);

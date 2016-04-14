@@ -42,7 +42,6 @@
     <Compile Include="Hero.cs" />
     <Compile Include="myComparers.cs" />
     <Compile Include="ExpressionTree.cs" />
-    <Compile Include="myList.cs" />
     <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -75,12 +75,12 @@ namespace Assignment5
 
         public string TraversePre()
         {
-            MyList<T> list = new MyList<T>(10);
+            List<T> list = new List<T>();
             PreHelper(list, root);
             return string.Join(", ", list);
         }
 
-        private void PreHelper(MyList<T> list, TreeNode<T> node)
+        private void PreHelper(List<T> list, TreeNode<T> node)
         {
             list.Add(node.Data);
             if (node.Left != null)
@@ -91,12 +91,12 @@ namespace Assignment5
 
         public string TraverseIn()
         {
-            MyList<T> list = new MyList<T>(10);
+            List<T> list = new List<T>();
             InHelper(list, root);
             return string.Join(", ", list);
         }
 
-        private void InHelper(MyList<T> list, TreeNode<T> node)
+        private void InHelper(List<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
                 InHelper(list, node.Left);
@@ -107,12 +107,12 @@ namespace Assignment5
 
         public string TraversePost()
         {
-            MyList<T> list = new MyList<T>(10);
+            List<T> list = new List<T>();
             PostHelper(list, root);
             return string.Join(", ", list);
         }
 
-        private void PostHelper(MyList<T> list, TreeNode<T> node)
+        private void PostHelper(List<T> list, TreeNode<T> node)
         {
             if (node.Left != null)
                 PostHelper(list, node.Left);
