@@ -125,7 +125,7 @@ namespace Assignment7
             {
                 if (pair.Value.Key.Equals(key) && add)
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("An item with the same key has already been added.");
                 }
 
                 else if (pair.Value.Key.Equals(key) && !add)

@@ -46,6 +46,8 @@ namespace Assignment7
             number_table[55] = 4;
             number_table[55] = 4;
 
+            number_table.Add(55, 5);
+
             Console.WriteLine("Values in the Hashtable: {0}\n", string.Join(", ", number_table));
         }
 
