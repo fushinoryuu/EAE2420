@@ -163,7 +163,7 @@ namespace Assignment6
 
         private void ProcessNode(GraphNode current_node)
         {
-            current_node.CostSoFar = CalculateDistance(Start, current_node);
+            current_node.CostSoFar += CalculateDistance(Start, current_node);
             current_node.Heuristic = CalculateDistance(current_node, Goal);
 
             SetFrom(current_node);
@@ -205,7 +205,11 @@ namespace Assignment6
             {
                 if (InList(connection.Target, OpenList) || InList(connection.Target, CloseList))
                 {
-
+                    double temp_csf = connection.Target.CostSoFar + CalculateDistance(current_node, connection.Target);
+                    if (temp_csf < connection.Target.CostSoFar)
+                    {
+                        ProcessNode(connection.Target);
+                    }
                 }
                 else
                     ProcessNode(connection.Target);
