@@ -2,7 +2,7 @@
 
 namespace Assignment6
 {
-    class Caller
+    class MainClass
     {
         public static void Main()
         {

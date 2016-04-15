@@ -36,7 +36,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caller.cs" />
+    <Compile Include="MainClass.cs" />
     <Compile Include="AStar.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="GraphNode.cs" />
