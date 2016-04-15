@@ -5,11 +5,11 @@ namespace Assignment5
 {
     class ExpressionTree
     {
-        public TreeNode<string> root;
+        public TreeNode<string> Root;
 
         public ExpressionTree()
         {
-            root = null;
+            Root = null;
         }
 
         public void Evaluate(TreeNode<string> node)
@@ -56,7 +56,7 @@ namespace Assignment5
         public string TraversePre()
         {
             List<string> list = new List<string>();
-            PreHelper(list, root);
+            PreHelper(list, Root);
             return string.Join(", ", list);
         }
 
@@ -72,7 +72,7 @@ namespace Assignment5
         public string TraverseIn()
         {
             List<string> list = new List<string>();
-            InHelper(list, root);
+            InHelper(list, Root);
             return string.Join(", ", list);
         }
 
@@ -88,7 +88,7 @@ namespace Assignment5
         public string TraversePost()
         {
             List<string> list = new List<string>();
-            PostHelper(list, root);
+            PostHelper(list, Root);
             return string.Join(", ", list);
         }
 

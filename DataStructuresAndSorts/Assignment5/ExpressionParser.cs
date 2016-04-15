@@ -4,12 +4,12 @@ namespace Assignment5
 {
     class ExpressionParser
     {
-        private Stack<TreeNode<string>> numberStack, operatorStack;
+        private Stack<TreeNode<string>> NumberStack, OperatorStack;
 
         public ExpressionParser()
         {
-            numberStack = new Stack<TreeNode<string>>();
-            operatorStack = new Stack<TreeNode<string>>();
+            NumberStack = new Stack<TreeNode<string>>();
+            OperatorStack = new Stack<TreeNode<string>>();
         }
 
         public ExpressionTree Parse(string input)
@@ -19,10 +19,10 @@ namespace Assignment5
 
             BuildNodes(expressionArray);
             BuildTree();
-            BuildTree();
 
             ExpressionTree tree = new ExpressionTree();
-            tree.root = numberStack.Pop();
+            tree.Root = NumberStack.Pop();
+            tree.Root = RotateLeft(tree.Root);
             return tree;
         }
 
@@ -34,41 +34,40 @@ namespace Assignment5
                 if (double.TryParse(item, out tempNumber))
                 {
                     TreeNode<string> number_node = new TreeNode<string> { Data = tempNumber.ToString() };
-                    numberStack.Push(number_node);
+                    NumberStack.Push(number_node);
                 }
                 else
                 {
                     TreeNode<string> operator_node = new TreeNode<string> { Data = item };
-
-                    if (operatorStack.Count != 0 && (item == "-" || item == "+") &&
-                        (operatorStack.Peek().Data == "*" || operatorStack.Peek().Data == "/"))
-                    {
-                        TreeNode<string> subTree = operatorStack.Pop();
-                        subTree.Right = numberStack.Pop();
-                        subTree.Left = numberStack.Pop();
-                        numberStack.Push(subTree);
-                        operatorStack.Push(operator_node);
-                    }
-                    else
-                        operatorStack.Push(operator_node);
+                    OperatorStack.Push(operator_node);
                 }
             }
         }
 
         private void BuildTree()
         {
-            while (operatorStack.Count != 0)
+            while (OperatorStack.Count != 0)
             {
-                TreeNode<string> subRoot = operatorStack.Pop();
-                subRoot.Right = numberStack.Pop();
-                subRoot.Left = numberStack.Pop();
-                numberStack.Push(subRoot);
+                TreeNode<string> temp_root = OperatorStack.Pop();
+
+                temp_root.Right = NumberStack.Pop();
+                temp_root.Left = NumberStack.Pop();
+
+                temp_root = CheckPrecedence(temp_root);
+
+                NumberStack.Push(temp_root);
             }
         }
 
-        private TreeNode<string> CheckPrecedence(TreeNode<string> curent_node)
+        private TreeNode<string> CheckPrecedence(TreeNode<string> sub_root)
         {
+            if ((sub_root.Data == "*" || sub_root.Data == "/") && (sub_root.Right.Data == "+" || sub_root.Right.Data == "-"))
+                sub_root = RotateLeft(sub_root);
 
+            else if ((sub_root.Data == "*" || sub_root.Data == "/") && (sub_root.Left.Data == "+" || sub_root.Left.Data == "-"))
+                sub_root = RotateRight(sub_root);
+
+            return sub_root;
         }
 
         private TreeNode<string> RotateLeft(TreeNode<string> current_node)

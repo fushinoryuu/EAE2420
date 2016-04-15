@@ -139,9 +139,9 @@ namespace Assignment5
             Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
 
             Console.WriteLine("Evaluating {0}...\n", input);
-            expression_tree.Evaluate(expression_tree.root);
-            TestResult(double.Parse(expression_tree.root.Data), 19.5, resultError);
-            Console.WriteLine("Result = {0}\n", expression_tree.root.Data);
+            expression_tree.Evaluate(expression_tree.Root);
+            TestResult(double.Parse(expression_tree.Root.Data), 19.5, resultError);
+            Console.WriteLine("Result = {0}\n", expression_tree.Root.Data);
         }
 
         private static void TestTraversals(string actual, string expected, string error)
