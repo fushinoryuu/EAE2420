@@ -61,10 +61,12 @@ namespace Assignment5
 
         private TreeNode<string> CheckPrecedence(TreeNode<string> sub_root)
         {
-            if ((sub_root.Data == "*" || sub_root.Data == "/") && (sub_root.Right.Data == "+" || sub_root.Right.Data == "-"))
+            if ((sub_root.Data == "*" || sub_root.Data == "/" || sub_root.Data == "^") && 
+                (sub_root.Right.Data == "+" || sub_root.Right.Data == "-"))
                 sub_root = RotateLeft(sub_root);
 
-            else if ((sub_root.Data == "*" || sub_root.Data == "/") && (sub_root.Left.Data == "+" || sub_root.Left.Data == "-"))
+            else if ((sub_root.Data == "*" || sub_root.Data == "/" || sub_root.Data == "^") && 
+                (sub_root.Left.Data == "+" || sub_root.Left.Data == "-"))
                 sub_root = RotateRight(sub_root);
 
             return sub_root;

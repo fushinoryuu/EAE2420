@@ -8,13 +8,16 @@ namespace Assignment5
     {
         public static void Main()
         {
-            //NumberTree();
-            //HeroTree();
-            ExpressionTree();
+            NumberTree();
+            HeroTree();
+            FirstExpressionTree();
+            SecondExpressionTree();
+            ThirdExpressionTree();
         }
 
         private static void NumberTree()
         {
+            Console.WriteLine("BINARY SEARCH TREE USING INTS: \n  \n");
             BinarySearchTree<int> number_tree = new BinarySearchTree<int>(new NumberComparer());
             int[] tempList = new int[] { 50, 25, 70, 15, 45, 30, 49, 90, 80 };
             
@@ -60,6 +63,7 @@ namespace Assignment5
 
         private static void HeroTree()
         {
+            Console.WriteLine("BINARY SEARCH TREE USING OBJECTS: \n  \n");
             BinarySearchTree<Hero> hero_tree = new BinarySearchTree<Hero>(new HeroComparer());
             
             List<Hero> heroList = new List<Hero>();
@@ -74,7 +78,7 @@ namespace Assignment5
             heroList.Add(new Hero { Name = "Graves", Health = 551, Attack = 61, Defense = 24 });
             heroList.Add(new Hero { Name = "Lucian", Health = 554, Attack = 57, Defense = 24 });
 
-            Console.WriteLine("Adding the following Heros to a Binary Search Tree, being sorted by their attack damage:\n");
+            Console.WriteLine("Adding the following Heros to a Binary Search Tree, being compared by their attack damage first, then defense, and last health:\n");
 
             foreach (Hero hero in heroList)
             {
@@ -108,8 +112,9 @@ namespace Assignment5
             Console.WriteLine("-------------------------------------------------------\n");
         }
 
-        private static void ExpressionTree()
+        private static void FirstExpressionTree()
         {
+            Console.WriteLine("FIRST EXPRESSION TREE: \n  \n");
             Console.WriteLine("Type into the console the following expression '5 + 2 * 8 – 6 / 4' :\n");
             string input = Console.ReadLine();
 
@@ -142,6 +147,86 @@ namespace Assignment5
             expression_tree.Evaluate(expression_tree.Root);
             TestResult(double.Parse(expression_tree.Root.Data), 19.5, resultError);
             Console.WriteLine("Result = {0}\n", expression_tree.Root.Data);
+
+            Console.WriteLine("-------------------------------------------------------\n");
+        }
+
+        private static void SecondExpressionTree()
+        {
+            Console.WriteLine("SECOND EXPRESSION TREE: \n  \n");
+            Console.WriteLine("Type into the console the following expression '18 – 26 / 10 + 50 * 4' :\n");
+            string input = Console.ReadLine();
+
+            Console.WriteLine("\nTurning expression to an expression tree...\n",
+                input);
+
+            ExpressionParser parser = new ExpressionParser();
+            ExpressionTree expression_tree = parser.Parse(input);
+
+            string traverseError = "EXPRESSION TREE: Order doesn't match!";
+            string resultError = "EXPRESSION TREE: Result is not correct!";
+            string preExpected = "+, -, 18, /, 26, 10, *, 50, 4";
+            string inExpected = "18, -, 26, /, 10, +, 50, *, 4";
+            string postExpected = "18, 26, 10, /, -, 50, 4, *, +";
+
+            string preResult = expression_tree.TraversePre();
+            TestTraversals(preResult, preExpected, traverseError);
+            Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
+
+
+            string inResult = expression_tree.TraverseIn();
+            TestTraversals(inResult, inExpected, traverseError);
+            Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
+
+            string postResult = expression_tree.TraversePost();
+            TestTraversals(postResult, postExpected, traverseError);
+            Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
+
+            Console.WriteLine("Evaluating {0}...\n", input);
+            expression_tree.Evaluate(expression_tree.Root);
+            TestResult(double.Parse(expression_tree.Root.Data), 215.4, resultError);
+            Console.WriteLine("Result = {0}\n", expression_tree.Root.Data);
+
+            Console.WriteLine("-------------------------------------------------------\n");
+        }
+
+        private static void ThirdExpressionTree()
+        {
+            Console.WriteLine("THIRD EXPRESSION TREE: \n  \n");
+            Console.WriteLine("Type into the console the following expression '22 ^ 2 + 263 * 2 - 649 / 100' :\n");
+            string input = Console.ReadLine();
+
+            Console.WriteLine("\nTurning expression to an expression tree...\n",
+                input);
+
+            ExpressionParser parser = new ExpressionParser();
+            ExpressionTree expression_tree = parser.Parse(input);
+
+            string traverseError = "EXPRESSION TREE: Order doesn't match!";
+            string resultError = "EXPRESSION TREE: Result is not correct!";
+            string preExpected = "-, +, ^, 22, 2, *, 263, 2, /, 649, 100";
+            string inExpected = "22, ^, 2, +, 263, *, 2, -, 649, /, 100";
+            string postExpected = "22, 2, ^, 263, 2, *, +, 649, 100, /, -";
+
+            string preResult = expression_tree.TraversePre();
+            TestTraversals(preResult, preExpected, traverseError);
+            Console.WriteLine("Pre-order Traversal: [{0}]\n", preResult);
+
+
+            string inResult = expression_tree.TraverseIn();
+            TestTraversals(inResult, inExpected, traverseError);
+            Console.WriteLine("In-order Traversal: [{0}]\n", inResult);
+
+            string postResult = expression_tree.TraversePost();
+            TestTraversals(postResult, postExpected, traverseError);
+            Console.WriteLine("Post-order Traversal: [{0}]\n", postResult);
+
+            Console.WriteLine("Evaluating {0}...\n", input);
+            expression_tree.Evaluate(expression_tree.Root);
+            TestResult(double.Parse(expression_tree.Root.Data), 1003.51, resultError);
+            Console.WriteLine("Result = {0}\n", expression_tree.Root.Data);
+
+            Console.WriteLine("-------------------------------------------------------\n");
         }
 
         private static void TestTraversals(string actual, string expected, string error)

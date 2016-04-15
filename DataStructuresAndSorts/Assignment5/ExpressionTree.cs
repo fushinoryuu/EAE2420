@@ -18,6 +18,7 @@ namespace Assignment5
                 Evaluate(node.Left);
             if (node.Right != null)
                 Evaluate(node.Right);
+
             switch (node.Data)
             {
                 case "+":
