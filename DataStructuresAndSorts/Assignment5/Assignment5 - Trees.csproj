@@ -37,11 +37,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearchTree.cs" />
-    <Compile Include="Caller.cs" />
+    <Compile Include="MainClass.cs" />
+    <Compile Include="ExpressionParser.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="myComparers.cs" />
     <Compile Include="ExpressionTree.cs" />
-    <Compile Include="myList.cs" />
     <Compile Include="TreeNode.cs" />
   </ItemGroup>
   <ItemGroup>

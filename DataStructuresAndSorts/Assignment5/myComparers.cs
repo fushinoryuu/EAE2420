@@ -23,7 +23,7 @@ namespace Assignment5
         }
     }
 
-    class numberComparer : IComparer<int>
+    class NumberComparer : IComparer<int>
     {
         public int Compare(int left, int right)
         {

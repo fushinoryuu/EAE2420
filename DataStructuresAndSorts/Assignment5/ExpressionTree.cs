@@ -5,71 +5,11 @@ namespace Assignment5
 {
     class ExpressionTree
     {
-        public TreeNode<string> root;
+        public TreeNode<string> Root;
 
-        public ExpressionTree(string input)
+        public ExpressionTree()
         {
-            root = null;
-            ExpressionParser parser = new ExpressionParser(this, input);
-        }
-
-        private class ExpressionParser
-        {
-            private Stack<TreeNode<string>> numberStack, operatorStack;
-
-            public ExpressionParser(ExpressionTree tree, string input)
-            {
-                numberStack = new Stack<TreeNode<string>>();
-                operatorStack = new Stack<TreeNode<string>>();
-                string[] expressionArray = new string[input.Length];
-                expressionArray = input.Split();
-
-                BuildNodes(tree, expressionArray);
-            }
-
-            private void BuildNodes(ExpressionTree tree, string[] expressionArray)
-            {
-                foreach (string item in expressionArray)
-                {
-                    double tempNumber;
-                    if (double.TryParse(item, out tempNumber))
-                    {
-                        TreeNode<string> number_node = new TreeNode<string> { Data = tempNumber.ToString() };
-                        numberStack.Push(number_node);
-                    }
-                    else
-                    {
-                        TreeNode<string> operator_node = new TreeNode<string> { Data = item };
-
-                        if (operatorStack.Count != 0 && (item == "-" || item == "+") &&
-                            (operatorStack.Peek().Data == "*" || operatorStack.Peek().Data == "/"))
-                        {
-                            TreeNode<string> subTree = operatorStack.Pop();
-                            subTree.Right = numberStack.Pop();
-                            subTree.Left = numberStack.Pop();
-                            numberStack.Push(subTree);
-                            operatorStack.Push(operator_node);
-                        }
-                        else
-                        {
-                            operatorStack.Push(operator_node);
-                        }
-                    }
-                }
-                BuildTree(tree);
-            }
-
-            private void BuildTree(ExpressionTree tree)
-            {
-                while (operatorStack.Count != 0)
-                {
-                    TreeNode<string> subRoot = operatorStack.Pop();
-                    subRoot.Right = numberStack.Pop();
-                    subRoot.Left = numberStack.Pop();
-                    numberStack.Push(subRoot);
-                }
-                tree.root = numberStack.Pop();
-            }
+            Root = null;
         }
 
         public void Evaluate(TreeNode<string> node)
@@ -78,6 +18,7 @@ namespace Assignment5
                 Evaluate(node.Left);
             if (node.Right != null)
                 Evaluate(node.Right);
+
             switch (node.Data)
             {
                 case "+":
@@ -113,34 +54,52 @@ namespace Assignment5
             }
         }
 
-        public string TraversePre(MyList<string> list, TreeNode<string> node)
+        public string TraversePre()
         {
-            list.Add(node.Data);
-            if (node.Left != null)
-                TraversePre(list, node.Left);
-            if (node.Right != null)
-                TraversePre(list, node.Right);
+            List<string> list = new List<string>();
+            PreHelper(list, Root);
             return string.Join(", ", list);
         }
 
-        public string TraverseIn(MyList<string> list, TreeNode<string> node)
+        private void PreHelper(List<string> list, TreeNode<string> node)
         {
-            if (node.Left != null)
-                TraverseIn(list, node.Left);
             list.Add(node.Data);
+            if (node.Left != null)
+                PreHelper(list, node.Left);
             if (node.Right != null)
-                TraverseIn(list, node.Right);
+                PreHelper(list, node.Right);
+        }
+
+        public string TraverseIn()
+        {
+            List<string> list = new List<string>();
+            InHelper(list, Root);
             return string.Join(", ", list);
         }
 
-        public string TraversePost(MyList<string> list, TreeNode<string> node)
+        private void InHelper(List<string> list, TreeNode<string> node)
         {
             if (node.Left != null)
-                TraversePost(list, node.Left);
-            if (node.Right != null)
-                TraversePost(list, node.Right);
+                InHelper(list, node.Left);
             list.Add(node.Data);
+            if (node.Right != null)
+                InHelper(list, node.Right);
+        }
+
+        public string TraversePost()
+        {
+            List<string> list = new List<string>();
+            PostHelper(list, Root);
             return string.Join(", ", list);
+        }
+
+        private void PostHelper(List<string> list, TreeNode<string> node)
+        {
+            if (node.Left != null)
+                PostHelper(list, node.Left);
+            if (node.Right != null)
+                PostHelper(list, node.Right);
+            list.Add(node.Data);
         }
     }
 }
