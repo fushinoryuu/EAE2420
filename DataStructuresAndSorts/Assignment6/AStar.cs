@@ -161,26 +161,13 @@ namespace Assignment6
             }
         }
 
-        private void ProcessNode(GraphNode current_node)
+        private void ProcessNode(GraphNode current_node, GraphNode from_node)
         {
             current_node.CostSoFar += CalculateDistance(Start, current_node);
             current_node.Heuristic = CalculateDistance(current_node, Goal);
 
-            SetFrom(current_node);
+            current_node.CameFrom = from_node;
             OpenList.Add(current_node);
-        }
-
-        // TODO FIX
-        private void SetFrom(GraphNode current_node)
-        {
-            foreach (Connection connection in current_node.Connections)
-            {
-                Console.WriteLine("Current Node: {0} Connection: {1}", current_node.Name,
-                    connection.Target.Name);
-                if (connection.Target != Start)
-                    connection.Target.CameFrom = current_node;
-            }
-            Console.WriteLine();
         }
 
         private GraphNode FindBestNode()
@@ -208,24 +195,17 @@ namespace Assignment6
                     double temp_csf = connection.Target.CostSoFar + CalculateDistance(current_node, connection.Target);
                     if (temp_csf < connection.Target.CostSoFar)
                     {
-                        ProcessNode(connection.Target);
+                        ProcessNode(connection.Target, current_node);
                     }
                 }
                 else
-                    ProcessNode(connection.Target);
+                    ProcessNode(connection.Target, current_node);
             }
         }
         
         private void AddToCloseList(GraphNode node)
         {
             CloseList.Add(node);
-        }
-
-        private bool AtTargetNode(GraphNode node)
-        {
-            if (node == Goal)
-                return true;
-            return false;
         }
 
         private bool InList(GraphNode looking_for, List<GraphNode> list)
