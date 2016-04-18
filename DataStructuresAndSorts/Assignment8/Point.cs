@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return "X: " + X + ", Y: " + Y;
+            return "\nX: " + X + ", Y: " + Y;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Assignment8
     {
         public override void Update()
         {
-            Console.WriteLine("Which way to move? (WASD)");
+            Console.WriteLine("\nWhich way to move? (WASD)\n");
 
             char choice = Console.ReadKey().KeyChar;
 

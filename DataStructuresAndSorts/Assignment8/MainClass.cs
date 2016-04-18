@@ -8,12 +8,14 @@ namespace Assignment8
         {
             Entity player = new Entity();
             player.AddComponent(new KeyboardMover());
+            player.AddComponent(new KeepInBounds(5));
+            //Grid board = new Grid(15);
+            //board.DisplayGrid();
 
             while (true)
             {
-                Console.WriteLine(player.Position);
                 player.Update();
-                Console.ReadLine();
+                //board.DisplayGrid();
             }
         }
     }

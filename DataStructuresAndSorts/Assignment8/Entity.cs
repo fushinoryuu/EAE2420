@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment8
 {
@@ -18,10 +19,16 @@ namespace Assignment8
             new_component.Container = this;
         }
 
+        public void RemoveComponent()
+        {
+
+        }
+
         public void Update()
         {
             foreach (Component component in Components)
                 component.Update();
+            Console.WriteLine(Position);
         }
     }
 }
