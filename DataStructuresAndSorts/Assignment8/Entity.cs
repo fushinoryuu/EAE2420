@@ -8,9 +8,11 @@ namespace Assignment8
         public Point Position { get; set; }
         List<Component> Components = new List<Component>();
 
-        public Entity()
+        public Entity(int start_x, int start_y)
         {
             Position = new Point();
+            Position.X = start_x;
+            Position.Y = start_y;
         }
 
         public void AddComponent(Component new_component)

@@ -6,10 +6,13 @@ namespace Assignment8
     {
         static void Main()
         {
-            Entity player = new Entity();
+            int BoardSize = 15;
+            Random RandInt = new Random();
+
+            Entity player = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
             player.AddComponent(new KeyboardMover());
-            player.AddComponent(new KeepInBounds(5));
-            //Grid board = new Grid(15);
+            player.AddComponent(new KeepInBounds(BoardSize));
+            //Grid board = new Grid(BoardSize);
             //board.DisplayGrid();
 
             while (true)
