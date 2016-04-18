@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment6 - Graph", "Assi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment7 - Hashtable", "Assignment7\Assignment7 - Hashtable.csproj", "{EA78B4C4-6B12-4491-9211-E254691520E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment8", "Assignment8 - Components\Assignment8.csproj", "{2B8BAF82-D184-4DD8-AEB8-4680667DC927}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment8 - Components", "Assignment8 - Components\Assignment8 - Components.csproj", "{2B8BAF82-D184-4DD8-AEB8-4680667DC927}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
