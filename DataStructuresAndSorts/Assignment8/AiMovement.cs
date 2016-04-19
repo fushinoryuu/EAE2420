@@ -29,7 +29,7 @@ namespace Assignment8
 
             for (int i = 0; i < 2; i++)
             {
-                if (RandomBool == true)
+                if (RandomBool() == true)
                     result += "1";
                 else
                     result += "0";
@@ -37,12 +37,9 @@ namespace Assignment8
             return result;
         }
 
-        private bool RandomBool
+        private bool RandomBool()
         {
-            get
-            {
-                return new Random().Next() % 2 == 0;
-            }
+            return new Random().Next() % 2 == 0;
         }
     }
 }
