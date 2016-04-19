@@ -15,7 +15,8 @@ namespace Assignment8
         {
             if (Player.Position.X == Container.Position.X && Player.Position.Y == Container.Position.Y)
             {
-                Console.WriteLine("You dead");
+                Console.WriteLine("\n\nYOU DIED!!!");
+                System.Threading.Thread.Sleep(5000);
                 Environment.Exit(1);
             }
         }
