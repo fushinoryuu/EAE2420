@@ -5,8 +5,9 @@ namespace Assignment8
 {
     class Entity
     {
+        public string Name { get; set; }
         public Point Position { get; set; }
-        List<Component> Components = new List<Component>();
+        Stack<Component> Components = new Stack<Component>();
 
         public Entity(int start_x, int start_y)
         {
@@ -17,13 +18,13 @@ namespace Assignment8
 
         public void AddComponent(Component new_component)
         {
-            Components.Add(new_component);
+            Components.Push(new_component);
             new_component.Container = this;
         }
 
         public void RemoveComponent()
         {
-
+            Components.Pop();
         }
 
         public void Update()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment8
 {
@@ -8,17 +9,21 @@ namespace Assignment8
         {
             int BoardSize = 15;
             Random RandInt = new Random();
+            List<Entity> EntityList = new List<Entity>();
 
-            Entity player = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
-            player.AddComponent(new KeyboardMover());
-            player.AddComponent(new KeepInBounds(BoardSize));
-            //Grid board = new Grid(BoardSize);
-            //board.DisplayGrid();
+            Entity Player = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
+            Player.Name = "P";
+            Player.AddComponent(new KeyboardMover());
+            Player.AddComponent(new KeepInBounds(BoardSize));
+            EntityList.Add(Player);
+
+            Grid Board = new Grid(BoardSize, EntityList);
+            Board.Update();
 
             while (true)
             {
-                player.Update();
-                //board.DisplayGrid();
+                Player.Update();
+                Board.Update();
             }
         }
     }

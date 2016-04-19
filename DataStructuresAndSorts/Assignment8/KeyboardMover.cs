@@ -13,18 +13,18 @@ namespace Assignment8
             switch (choice)
             {
                 case 'w':
-                    Container.Position.Y++;
-                    break;
-                case 'a':
                     Container.Position.X--;
                     break;
-                case 's':
+                case 'a':
                     Container.Position.Y--;
                     break;
-                case 'd':
+                case 's':
                     Container.Position.X++;
                     break;
-                case 'q':
+                case 'd':
+                    Container.Position.Y++;
+                    break;
+                case 'p':
                     Environment.Exit(1);
                     break;
             }
