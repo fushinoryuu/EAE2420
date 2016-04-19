@@ -19,7 +19,7 @@ namespace Assignment8
             Entity Monster = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
             Monster.Name = "M";
             Monster.AddComponent(new KeepInBounds(BoardSize));
-            Monster.AddComponent(new KillPlayer(Player));
+            Monster.AddComponent(new KillOnContact(Player));
 
             EntityList.Add(Player);
             EntityList.Add(Monster);

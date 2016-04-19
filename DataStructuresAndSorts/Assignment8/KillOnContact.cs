@@ -2,11 +2,11 @@
 
 namespace Assignment8
 {
-    class KillPlayer : Component
+    class KillOnContact : Component
     {
         Entity player;
 
-        public KillPlayer(Entity player)
+        public KillOnContact(Entity player)
         {
             this.player = player;
         }

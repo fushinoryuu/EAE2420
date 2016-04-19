@@ -38,7 +38,7 @@
   <ItemGroup>
     <Compile Include="Component.cs" />
     <Compile Include="KeepInBounds.cs" />
-    <Compile Include="KillPlayer.cs" />
+    <Compile Include="KillOnContact.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="KeyboardMover.cs" />
