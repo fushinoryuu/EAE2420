@@ -16,7 +16,7 @@ namespace Assignment8
             if (player.Position.X == Container.Position.X && player.Position.Y == Container.Position.Y)
             {
                 Console.WriteLine("You dead");
-                //player.RemoveComponent();
+                Environment.Exit(1);
             }
         }
     }
