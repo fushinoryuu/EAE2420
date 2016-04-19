@@ -4,16 +4,16 @@ namespace Assignment8
 {
     class KillOnContact : Component
     {
-        Entity player;
+        Entity Player;
 
         public KillOnContact(Entity player)
         {
-            this.player = player;
+            Player = player;
         }
 
         public override void Update()
         {
-            if (player.Position.X == Container.Position.X && player.Position.Y == Container.Position.Y)
+            if (Player.Position.X == Container.Position.X && Player.Position.Y == Container.Position.Y)
             {
                 Console.WriteLine("You dead");
                 Environment.Exit(1);

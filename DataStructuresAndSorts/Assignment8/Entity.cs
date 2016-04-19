@@ -31,7 +31,7 @@ namespace Assignment8
         {
             foreach (Component component in Components)
                 component.Update();
-            Console.WriteLine(Position);
+            //Console.WriteLine(Name + Position);
         }
     }
 }
