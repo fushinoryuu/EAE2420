@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Assignment9
 {
@@ -77,17 +76,17 @@ namespace Assignment9
             }
         }
 
-        public int FindParet(int current_index)
+        private int FindParet(int current_index)
         {
             return current_index / 2;
         }
 
-        public int FindLeft(int current_index)
+        private int FindLeft(int current_index)
         {
             return current_index * 2;
         }
 
-        public int FindRight(int current_index)
+        private int FindRight(int current_index)
         {
             return (current_index * 2) + 1;
         }
