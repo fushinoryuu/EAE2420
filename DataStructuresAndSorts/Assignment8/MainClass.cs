@@ -39,7 +39,7 @@ namespace Assignment8
             Monster.Name = "S";
             Monster.AddComponent(new KeepInBounds(BoardSize));
             Monster.AddComponent(new KillOnContact(Player));
-            Monster.AddComponent(new AiMovement());
+            Monster.AddComponent(new AiMovementSlow());
 
             EntityList.Add(Player);
             EntityList.Add(Monster);
@@ -68,7 +68,7 @@ namespace Assignment8
             new_monster.Name = "S";
             new_monster.AddComponent(new WrapAround(board_size));
             new_monster.AddComponent(new KillOnContact(player));
-            new_monster.AddComponent(new AiMovement());
+            new_monster.AddComponent(new AiMovementSlow());
             list.Add(new_monster);
         }
 
@@ -78,7 +78,7 @@ namespace Assignment8
             list.Add(new_power);
         }
 
-        private static void AddLife()
+        private static void AddInvulnerable()
         {
 
         }

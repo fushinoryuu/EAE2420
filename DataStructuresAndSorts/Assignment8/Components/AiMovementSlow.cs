@@ -2,7 +2,7 @@
 
 namespace Assignment8
 {
-    class AiMovement : Component
+    class AiMovementSlow : Component
     {
         public override void Update()
         {
