@@ -13,7 +13,7 @@ namespace Assignment8
 
         private static void Instructions()
         {
-            Console.WriteLine("Use the WASD keys to move your character (P) around the grid.\n");
+            Console.WriteLine("Use the WASD keys to move your character (X) around the grid.\n");
             Console.WriteLine("Make sure that you don't collide with Monsters or you will die and the game ends.\n");
             Console.WriteLine("Monsters come in two types, Slow monsters (S) and Fast monsters (F) and can move \nrandomly in any direction.\n");
             Console.WriteLine("Slow monsters move 1 space at a time, while Fast monsters move 2 spaces at a time.\n");
@@ -33,7 +33,7 @@ namespace Assignment8
             List<Teleport> TeleportList = new List<Teleport>();
 
             Entity Player = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
-            Player.Name = "P";
+            Player.Name = "X";
             Player.AddComponent(new KeepInBounds(BoardSize));
             Player.AddComponent(new KeyboardMover());
 
@@ -51,7 +51,7 @@ namespace Assignment8
 
             while (true)
             {
-                if (Turns != 0 && Turns % 3 == 0)
+                if (Turns != 0 && Turns % 5 == 0)
                     AddTeleporter(TeleportList, Player, BoardSize);
 
                 foreach (Entity entity in EntityList)
@@ -103,7 +103,7 @@ namespace Assignment8
         private static void AddTeleporter(List<Teleport> list, Entity player, int board_size)
         {
             Teleport new_teleport = new Teleport(player, board_size, list);
-                        
+
             list.Add(new_teleport);
         }
 

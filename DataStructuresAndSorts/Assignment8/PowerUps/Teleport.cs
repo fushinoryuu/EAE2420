@@ -25,7 +25,7 @@ namespace Assignment8
 
         public override void Update()
         {
-            if (StepedOn())
+            if (StepedOn() && IsActive)
             {
                 Player.Position.X = new Random().Next(0, Bounds);
                 Player.Position.Y = new Random().Next(0, Bounds);
