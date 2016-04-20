@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Assignment8
 {
@@ -31,7 +30,6 @@ namespace Assignment8
         {
             foreach (Component component in Components)
                 component.Update();
-            //Console.WriteLine(Name + Position);
         }
     }
 }

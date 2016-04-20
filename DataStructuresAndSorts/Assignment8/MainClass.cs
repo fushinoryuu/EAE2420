@@ -35,10 +35,10 @@ namespace Assignment8
                 foreach (Entity entity in EntityList)
                     entity.Update();
                 AddMonster(EntityList, RandInt, Player, BoardSize);
-                //if (Turns % 3 == 0)
-                //    AddTeleporter(PowerUpList, Player, BoardSize);
-                //else if (Turns % 7 == 0)
-                //    AddLife();
+                if (Turns % 3 == 1)
+                    AddTeleporter(PowerUpList, Player, BoardSize);
+                else if (Turns % 7 == 1)
+                    AddLife();
                 Board.Update();
                 Turns++;
             }
@@ -57,7 +57,6 @@ namespace Assignment8
         private static void AddTeleporter(List<PowerUp> list, Entity player, int board_size)
         {
             PowerUp new_power = new Teleport(player, board_size);
-            new_power.Name = "T";
             list.Add(new_power);
         }
 
