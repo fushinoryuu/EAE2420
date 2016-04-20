@@ -34,11 +34,16 @@ namespace Assignment8
             {
                 foreach (Entity entity in EntityList)
                     entity.Update();
+
+                foreach (PowerUp powerup in PowerUpList)
+                    powerup.Update();
+
                 AddMonster(EntityList, RandInt, Player, BoardSize);
                 if (Turns % 3 == 1)
                     AddTeleporter(PowerUpList, Player, BoardSize);
                 else if (Turns % 7 == 1)
                     AddLife();
+
                 Board.Update();
                 Turns++;
             }
