@@ -17,11 +17,13 @@ namespace Assignment8
             Console.WriteLine("Make sure that you don't collide with Monsters or you will die and the game ends.\n");
             Console.WriteLine("Monsters come in two types, Slow monsters (S) and Fast monsters (F) and can move \nrandomly in any direction.\n");
             Console.WriteLine("Slow monsters move 1 space at a time, while Fast monsters move 2 spaces at a time.\n");
+            Console.WriteLine("More monsters get added every turn!\n");
             Console.WriteLine("Only monsters can wrap around the grid, the player can not.\n");
             Console.WriteLine("Collect Power Ups to stay alive longer by walking over them:\n");
             Console.WriteLine("- T will Teleport you randomly to any place in the grid.\n");
             Console.WriteLine("- I will make you Invulnerable until your next collision.\n");
             Console.WriteLine("Press P to quit at any time!\n");
+            Console.WriteLine("-----------------------------------------------\n");
         }
 
         private static void RunGame()
