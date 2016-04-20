@@ -36,18 +36,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AiMovement.cs" />
+    <Compile Include="Components\AiMovement.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="KeepInBounds.cs" />
-    <Compile Include="KillOnContact.cs" />
+    <Compile Include="Components\KeepInBounds.cs" />
+    <Compile Include="Components\KillOnContact.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Grid.cs" />
-    <Compile Include="KeyboardMover.cs" />
+    <Compile Include="Components\KeyboardMover.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="Teleport.cs" />
-    <Compile Include="WrapAround.cs" />
+    <Compile Include="Components\WrapAround.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
