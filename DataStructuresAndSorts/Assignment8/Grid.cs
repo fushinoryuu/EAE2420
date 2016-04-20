@@ -8,14 +8,14 @@ namespace Assignment8
         private string[,] Board;
         private int Size;
         private List<Entity> EntityList;
-        private List<PowerUp> PowerUpList;
+        private List<Teleport> TeleportList;
 
-        public Grid(int size, List<Entity> entity_list, List<PowerUp> powerup_list)
+        public Grid(int size, List<Entity> entity_list, List<Teleport> powerup_list)
         {
             Size = size;
             Board = new string[size, size];
             EntityList = entity_list;
-            PowerUpList = powerup_list;
+            TeleportList = powerup_list;
         }
 
         public void Update()
@@ -34,8 +34,9 @@ namespace Assignment8
         {
             foreach (Entity entity in EntityList)
                 Board[entity.Position.X, entity.Position.Y] = entity.Name;
-            foreach (PowerUp powerup in PowerUpList)
-                Board[powerup.Position.X, powerup.Position.Y] = powerup.Name;
+            foreach (Teleport powerup in TeleportList)
+                if (powerup.IsActive)
+                    Board[powerup.Position.X, powerup.Position.Y] = powerup.Name;
         }
 
         private void DisplayGrid()

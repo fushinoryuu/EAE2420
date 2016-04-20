@@ -25,6 +25,8 @@ namespace Assignment8
                     Container.Position.Y++;
                     break;
                 case 'p':
+                    Console.WriteLine("\n\nThanks for playing!!");
+                    System.Threading.Thread.Sleep(2000);
                     Environment.Exit(1);
                     break;
             }

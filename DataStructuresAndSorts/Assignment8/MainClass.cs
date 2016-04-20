@@ -17,10 +17,11 @@ namespace Assignment8
             Console.WriteLine("Make sure that you don't collide with Monsters or you will die and the game ends.\n");
             Console.WriteLine("Monsters come in two types, Slow monsters (S) and Fast monsters (F) and can move \nrandomly in any direction.\n");
             Console.WriteLine("Slow monsters move 1 space at a time, while Fast monsters move 2 spaces at a time.\n");
-            Console.WriteLine("Monsters can only wrap around the grid, but the player can not.\n");
+            Console.WriteLine("Only monsters can wrap around the grid, the player can not.\n");
             Console.WriteLine("Collect Power Ups to stay alive longer by walking over them:\n");
             Console.WriteLine("- T will Teleport you randomly to any place in the grid.\n");
             Console.WriteLine("- I will make you Invulnerable until your next collision.\n");
+            Console.WriteLine("Press P to quit at any time!\n");
         }
 
         private static void RunGame()
@@ -29,7 +30,7 @@ namespace Assignment8
             int Turns = 0;
             Random RandInt = new Random();
             List<Entity> EntityList = new List<Entity>();
-            List<PowerUp> PowerUpList = new List<PowerUp>();
+            List<Teleport> TeleportList = new List<Teleport>();
 
             Entity Player = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
             Player.Name = "P";
@@ -45,15 +46,18 @@ namespace Assignment8
             EntityList.Add(Player);
             EntityList.Add(Monster);
 
-            Grid Board = new Grid(BoardSize, EntityList, PowerUpList);
+            Grid Board = new Grid(BoardSize, EntityList, TeleportList);
             Board.Update();
 
             while (true)
             {
+                if (Turns != 0 && Turns % 3 == 0)
+                    AddTeleporter(TeleportList, Player, BoardSize);
+
                 foreach (Entity entity in EntityList)
                     entity.Update();
 
-                foreach (PowerUp powerup in PowerUpList)
+                foreach (Teleport powerup in TeleportList)
                     powerup.Update();
 
                 AddMonster(EntityList, RandInt, Player, BoardSize);
@@ -96,10 +100,11 @@ namespace Assignment8
             list.Add(new_monster);
         }
 
-        private static void AddTeleporter(List<PowerUp> list, Entity player, int board_size)
+        private static void AddTeleporter(List<Teleport> list, Entity player, int board_size)
         {
-            PowerUp new_power = new Teleport(player, board_size);
-            list.Add(new_power);
+            Teleport new_teleport = new Teleport(player, board_size, list);
+                        
+            list.Add(new_teleport);
         }
 
         private static void AddInvulnerable()
