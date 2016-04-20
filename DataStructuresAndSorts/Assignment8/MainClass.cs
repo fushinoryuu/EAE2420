@@ -7,6 +7,23 @@ namespace Assignment8
     {
         public static void Main()
         {
+            Instructions();
+            RunGame();
+        }
+
+        private static void Instructions()
+        {
+            Console.WriteLine("Use the WASD keys to move your character (P) around the grid.\n");
+            Console.WriteLine("Make sure that you don't collide with Monsters or you will die and the game ends.\n");
+            Console.WriteLine("Monsters come in two types, Slow monsters (S) and Fast monsters (F) and can move randomly in any \ndirection.\n");
+            Console.WriteLine("Slow monsters move 1 space at a time, while Fast monsters move 2 spaces at a time.\n");
+            Console.WriteLine("Collect Power Ups to stay alive longer by walking over them:\n");
+            Console.WriteLine("- T will Teleport you randomly to any place in the grid.\n");
+            Console.WriteLine("- I will make you Invulnerable until your next collision.\n");
+        }
+
+        private static void RunGame()
+        {
             int BoardSize = 10;
             int Turns = 0;
             Random RandInt = new Random();
@@ -19,7 +36,7 @@ namespace Assignment8
             Player.AddComponent(new KeyboardMover());
 
             Entity Monster = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
-            Monster.Name = "M";
+            Monster.Name = "S";
             Monster.AddComponent(new KeepInBounds(BoardSize));
             Monster.AddComponent(new KillOnContact(Player));
             Monster.AddComponent(new AiMovement());
@@ -39,10 +56,6 @@ namespace Assignment8
                     powerup.Update();
 
                 AddMonster(EntityList, RandInt, Player, BoardSize);
-                if (Turns % 3 == 1)
-                    AddTeleporter(PowerUpList, Player, BoardSize);
-                else if (Turns % 7 == 1)
-                    AddLife();
 
                 Board.Update();
                 Turns++;
@@ -52,7 +65,7 @@ namespace Assignment8
         private static void AddMonster(List<Entity> list, Random randomizer, Entity player, int board_size)
         {
             Entity new_monster = new Entity(randomizer.Next(0, board_size), randomizer.Next(0, board_size));
-            new_monster.Name = "M";
+            new_monster.Name = "S";
             new_monster.AddComponent(new WrapAround(board_size));
             new_monster.AddComponent(new KillOnContact(player));
             new_monster.AddComponent(new AiMovement());
