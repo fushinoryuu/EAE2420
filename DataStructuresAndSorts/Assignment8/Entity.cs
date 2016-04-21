@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Assignment8
 {
@@ -9,11 +10,11 @@ namespace Assignment8
         public bool Invulnerable { get; set; }
         Stack<Component> Components = new Stack<Component>();
 
-        public Entity(int start_x, int start_y)
+        public Entity(Random randomizer, int bounds)
         {
             Position = new Point();
-            Position.X = start_x;
-            Position.Y = start_y;
+            Position.X = randomizer.Next(0, bounds);
+            Position.Y = randomizer.Next(0, bounds);
         }
 
         public void AddComponent(Component new_component)

@@ -6,20 +6,22 @@ namespace Assignment8
     class Teleport : PowerUp
     {
         Entity Player;
+        Random Randomizer;
         int Bounds;
         List<PowerUp> PowerUpList;
 
-        public Teleport(Entity player, int bounds, List<PowerUp> powerup_list)
+        public Teleport(Entity player, int bounds, List<PowerUp> powerup_list, Random randomizer)
         {
             Position = new Point();
             PowerUpList = powerup_list;
             Player = player;
             Bounds = bounds;
+            Randomizer = randomizer;
 
             Name = "T";
             IsVisible = true;
-            Position.X = new Random().Next(0, bounds);
-            Position.Y = new Random().Next(0, bounds);
+            Position.X = Randomizer.Next(0, Bounds);
+            Position.Y = Randomizer.Next(0, Bounds);
         }
 
         public override void Update()
@@ -28,8 +30,8 @@ namespace Assignment8
             {
                 Console.WriteLine("\nYOU GOT TELEPORTED!");
 
-                Player.Position.X = new Random().Next(0, Bounds);
-                Player.Position.Y = new Random().Next(0, Bounds);
+                Player.Position.X = Randomizer.Next(0, Bounds);
+                Player.Position.Y = Randomizer.Next(0, Bounds);
 
                 IsVisible = false;
             }

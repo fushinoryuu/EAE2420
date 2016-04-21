@@ -28,23 +28,24 @@ namespace Assignment8
 
         private static void RunGame()
         {
+            Random Randomizer = new Random();
             int BoardSize = 10;
             int Turns = 0;
             List<Entity> EntityList = new List<Entity>();
             List<PowerUp> PowerUpList = new List<PowerUp>();
 
-            Entity Player = new Entity(new Random().Next(0, BoardSize), new Random().Next(0, BoardSize));
+            Entity Player = new Entity(Randomizer, BoardSize);
             Player.Name = "X";
             Player.AddComponent(new KeepInBounds(BoardSize));
             Player.AddComponent(new KeyboardMover());
             EntityList.Add(Player);
 
-            Entity slow_monster = new Entity(new Random().Next(0, BoardSize), new Random().Next(0, BoardSize));
-            slow_monster.Name = "S";
-            slow_monster.AddComponent(new WrapAround(BoardSize));
-            slow_monster.AddComponent(new KillOnContact(Player));
-            slow_monster.AddComponent(new AiMovementSlow());
-            EntityList.Add(slow_monster);
+            Entity Monster = new Entity(Randomizer, BoardSize);
+            Monster.Name = "S";
+            Monster.AddComponent(new WrapAround(BoardSize));
+            Monster.AddComponent(new KillOnContact(Player));
+            Monster.AddComponent(new AiMovementSlow());
+            EntityList.Add(Monster);
 
             Grid Board = new Grid(BoardSize, EntityList, PowerUpList);
             Board.Update();
@@ -52,9 +53,9 @@ namespace Assignment8
             while (true)
             {
                 if (Turns != 0 && Turns % 5 == 0)
-                    AddTeleporter(PowerUpList, Player, BoardSize);
+                    AddTeleporter(PowerUpList, Player, BoardSize, Randomizer);
                 if (Turns != 0 && Turns % 7 == 0)
-                    AddInvulnerable(PowerUpList, Player, BoardSize);
+                    AddInvulnerable(PowerUpList, Player, BoardSize, Randomizer);
 
                 foreach (Entity entity in EntityList)
                     entity.Update();
@@ -62,19 +63,19 @@ namespace Assignment8
                 foreach (PowerUp powerup in PowerUpList)
                     powerup.Update();
 
-                AddMonster(EntityList, Player, BoardSize);
+                AddMonster(EntityList, Player, BoardSize, Randomizer);
 
                 Board.Update();
                 Turns++;
             }
         }
 
-        private static void AddMonster(List<Entity> list, Entity player, int board_size)
+        private static void AddMonster(List<Entity> list, Entity player, int board_size, Random randomizer)
         {
             if (RandomBool())
-                SlowMonster(list, player, board_size);
+                SlowMonster(list, player, board_size, randomizer);
             else
-                FastMonster(list, player, board_size);
+                FastMonster(list, player, board_size, randomizer);
         }
 
         private static bool RandomBool()
@@ -82,9 +83,9 @@ namespace Assignment8
             return new Random().Next() % 2 == 0;
         }
 
-        private static void SlowMonster(List<Entity> list, Entity player, int board_size)
+        private static void SlowMonster(List<Entity> list, Entity player, int board_size, Random randomizer)
         {
-            Entity slow_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
+            Entity slow_monster = new Entity(randomizer, board_size);
             slow_monster.Name = "S";
             slow_monster.AddComponent(new WrapAround(board_size));
             slow_monster.AddComponent(new KillOnContact(player));
@@ -92,9 +93,9 @@ namespace Assignment8
             list.Add(slow_monster);
         }
 
-        private static void FastMonster(List<Entity> list, Entity player, int board_size)
+        private static void FastMonster(List<Entity> list, Entity player, int board_size, Random randomizer)
         {
-            Entity fast_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
+            Entity fast_monster = new Entity(randomizer, board_size);
             fast_monster.Name = "F";
             fast_monster.AddComponent(new WrapAround(board_size));
             fast_monster.AddComponent(new KillOnContact(player));
@@ -102,16 +103,16 @@ namespace Assignment8
             list.Add(fast_monster);
         }
 
-        private static void AddTeleporter(List<PowerUp> list, Entity player, int board_size)
+        private static void AddTeleporter(List<PowerUp> list, Entity player, int board_size, Random randomizer)
         {
-            Teleport new_teleport = new Teleport(player, board_size, list);
+            Teleport new_teleport = new Teleport(player, board_size, list, randomizer);
 
             list.Add(new_teleport);
         }
 
-        private static void AddInvulnerable(List<PowerUp> list, Entity player, int boardSize)
+        private static void AddInvulnerable(List<PowerUp> list, Entity player, int boardSize, Random randomizer)
         {
-            Invulnerability new_invulnerable = new Invulnerability(player, boardSize, list);
+            Invulnerability new_invulnerable = new Invulnerability(player, boardSize, list, randomizer);
 
             list.Add(new_invulnerable);
         }
