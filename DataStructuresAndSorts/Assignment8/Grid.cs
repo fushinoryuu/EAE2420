@@ -35,7 +35,7 @@ namespace Assignment8
             foreach (Entity entity in EntityList)
                 Board[entity.Position.X, entity.Position.Y] = entity.Name;
             foreach (Teleport powerup in TeleportList)
-                if (powerup.IsActive)
+                if (powerup.IsVisible)
                     Board[powerup.Position.X, powerup.Position.Y] = powerup.Name;
         }
 

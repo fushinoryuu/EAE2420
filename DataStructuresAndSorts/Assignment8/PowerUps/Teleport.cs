@@ -18,19 +18,19 @@ namespace Assignment8
             Bounds = bounds;
 
             Name = "T";
-            IsActive = true;
+            IsVisible = true;
             Position.X = RandInt.Next(0, bounds - 1);
             Position.Y = RandInt.Next(0, bounds - 1);
         }
 
         public override void Update()
         {
-            if (StepedOn() && IsActive)
+            if (StepedOn() && IsVisible)
             {
                 Player.Position.X = new Random().Next(0, Bounds);
                 Player.Position.Y = new Random().Next(0, Bounds);
 
-                IsActive = false;
+                IsVisible = false;
             }
         }
 
