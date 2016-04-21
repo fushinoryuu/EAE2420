@@ -9,6 +9,7 @@ namespace Assignment8
         private int Size;
         private List<Entity> EntityList;
         private List<PowerUp> PowerUpList;
+        private int Turns;
 
         public Grid(int size, List<Entity> entity_list, List<PowerUp> powerup_list)
         {
@@ -16,6 +17,7 @@ namespace Assignment8
             Board = new string[size, size];
             EntityList = entity_list;
             PowerUpList = powerup_list;
+            Turns = 0;
         }
 
         public void Update()
@@ -23,6 +25,7 @@ namespace Assignment8
             ClearGrid();
             SetGrid();
             DisplayGrid();
+            Turns++;
         }
 
         private void ClearGrid()
@@ -42,7 +45,7 @@ namespace Assignment8
 
         private void DisplayGrid()
         {
-            Console.WriteLine("Current Map:\n");
+            Console.WriteLine("\n\nTurns Survived: {0} Current Map:\n", Turns);
 
             for (int x = 0; x < Size; x++)
             {
