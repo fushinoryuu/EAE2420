@@ -30,51 +30,46 @@ namespace Assignment8
         {
             int BoardSize = 10;
             int Turns = 0;
-            Random RandInt = new Random();
             List<Entity> EntityList = new List<Entity>();
-            List<Teleport> TeleportList = new List<Teleport>();
+            List<PowerUp> PowerUpList = new List<PowerUp>();
 
-            Entity Player = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
+            Entity Player = new Entity(new Random().Next(0, BoardSize), new Random().Next(0, BoardSize));
             Player.Name = "X";
             Player.AddComponent(new KeepInBounds(BoardSize));
             Player.AddComponent(new KeyboardMover());
-
-            Entity Monster = new Entity(RandInt.Next(0, BoardSize), RandInt.Next(0, BoardSize));
-            Monster.Name = "S";
-            Monster.AddComponent(new KeepInBounds(BoardSize));
-            Monster.AddComponent(new KillOnContact(Player));
-            Monster.AddComponent(new AiMovementSlow());
-
             EntityList.Add(Player);
-            EntityList.Add(Monster);
 
-            Grid Board = new Grid(BoardSize, EntityList, TeleportList);
+            AddMonster(EntityList, Player, BoardSize);
+
+            Grid Board = new Grid(BoardSize, EntityList, PowerUpList);
             Board.Update();
 
             while (true)
             {
                 if (Turns != 0 && Turns % 5 == 0)
-                    AddTeleporter(TeleportList, Player, BoardSize);
+                    AddTeleporter(PowerUpList, Player, BoardSize);
+                if (Turns != 0 && Turns % 5 == 0)
+                    AddInvulnerable(PowerUpList, Player, BoardSize);
 
                 foreach (Entity entity in EntityList)
                     entity.Update();
 
-                foreach (Teleport powerup in TeleportList)
+                foreach (PowerUp powerup in PowerUpList)
                     powerup.Update();
 
-                AddMonster(EntityList, RandInt, Player, BoardSize);
+                AddMonster(EntityList, Player, BoardSize);
 
                 Board.Update();
                 Turns++;
             }
         }
 
-        private static void AddMonster(List<Entity> list, Random randomizer, Entity player, int board_size)
+        private static void AddMonster(List<Entity> list, Entity player, int board_size)
         {
             if (RandomBool())
-                SlowMonster(list, randomizer, player, board_size);
+                SlowMonster(list, player, board_size);
             else
-                FastMonster(list, randomizer, player, board_size);
+                FastMonster(list, player, board_size);
         }
 
         private static bool RandomBool()
@@ -82,9 +77,9 @@ namespace Assignment8
             return new Random().Next() % 2 == 0;
         }
 
-        private static void SlowMonster(List<Entity> list, Random randomizer, Entity player, int board_size)
+        private static void SlowMonster(List<Entity> list, Entity player, int board_size)
         {
-            Entity new_monster = new Entity(randomizer.Next(0, board_size), randomizer.Next(0, board_size));
+            Entity new_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
             new_monster.Name = "S";
             new_monster.AddComponent(new WrapAround(board_size));
             new_monster.AddComponent(new KillOnContact(player));
@@ -92,9 +87,9 @@ namespace Assignment8
             list.Add(new_monster);
         }
 
-        private static void FastMonster(List<Entity> list, Random randomizer, Entity player, int board_size)
+        private static void FastMonster(List<Entity> list, Entity player, int board_size)
         {
-            Entity new_monster = new Entity(randomizer.Next(0, board_size), randomizer.Next(0, board_size));
+            Entity new_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
             new_monster.Name = "F";
             new_monster.AddComponent(new WrapAround(board_size));
             new_monster.AddComponent(new KillOnContact(player));
@@ -102,16 +97,18 @@ namespace Assignment8
             list.Add(new_monster);
         }
 
-        private static void AddTeleporter(List<Teleport> list, Entity player, int board_size)
+        private static void AddTeleporter(List<PowerUp> list, Entity player, int board_size)
         {
             Teleport new_teleport = new Teleport(player, board_size, list);
 
             list.Add(new_teleport);
         }
 
-        private static void AddInvulnerable()
+        private static void AddInvulnerable(List<PowerUp> list, Entity player, int boardSize)
         {
+            Invulnerability new_invulnerable = new Invulnerability(player, boardSize, list);
 
+            list.Add(new_invulnerable);
         }
     }
 }

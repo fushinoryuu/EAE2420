@@ -7,26 +7,27 @@ namespace Assignment8
     {
         Entity Player;
         int Bounds;
-        List<Teleport> TeleportList;
+        List<PowerUp> PowerUpList;
 
-        public Teleport(Entity player, int bounds, List<Teleport> teleport_list)
+        public Teleport(Entity player, int bounds, List<PowerUp> powerup_list)
         {
-            Random RandInt = new Random();
             Position = new Point();
-            TeleportList = teleport_list;
+            PowerUpList = powerup_list;
             Player = player;
             Bounds = bounds;
 
             Name = "T";
             IsVisible = true;
-            Position.X = RandInt.Next(0, bounds - 1);
-            Position.Y = RandInt.Next(0, bounds - 1);
+            Position.X = new Random().Next(0, bounds);
+            Position.Y = new Random().Next(0, bounds);
         }
 
         public override void Update()
         {
             if (StepedOn() && IsVisible)
             {
+                Console.WriteLine("\nYOU GOT TELEPORTED!");
+
                 Player.Position.X = new Random().Next(0, Bounds);
                 Player.Position.Y = new Random().Next(0, Bounds);
 

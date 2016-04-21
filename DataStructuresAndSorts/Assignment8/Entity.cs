@@ -6,6 +6,7 @@ namespace Assignment8
     {
         public string Name { get; set; }
         public Point Position { get; set; }
+        public bool Invulnerable { get; set; }
         Stack<Component> Components = new Stack<Component>();
 
         public Entity(int start_x, int start_y)
