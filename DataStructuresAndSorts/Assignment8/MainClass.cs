@@ -39,7 +39,12 @@ namespace Assignment8
             Player.AddComponent(new KeyboardMover());
             EntityList.Add(Player);
 
-            AddMonster(EntityList, Player, BoardSize);
+            Entity slow_monster = new Entity(new Random().Next(0, BoardSize), new Random().Next(0, BoardSize));
+            slow_monster.Name = "S";
+            slow_monster.AddComponent(new WrapAround(BoardSize));
+            slow_monster.AddComponent(new KillOnContact(Player));
+            slow_monster.AddComponent(new AiMovementSlow());
+            EntityList.Add(slow_monster);
 
             Grid Board = new Grid(BoardSize, EntityList, PowerUpList);
             Board.Update();
@@ -48,7 +53,7 @@ namespace Assignment8
             {
                 if (Turns != 0 && Turns % 5 == 0)
                     AddTeleporter(PowerUpList, Player, BoardSize);
-                if (Turns != 0 && Turns % 5 == 0)
+                if (Turns != 0 && Turns % 7 == 0)
                     AddInvulnerable(PowerUpList, Player, BoardSize);
 
                 foreach (Entity entity in EntityList)
@@ -79,22 +84,22 @@ namespace Assignment8
 
         private static void SlowMonster(List<Entity> list, Entity player, int board_size)
         {
-            Entity new_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
-            new_monster.Name = "S";
-            new_monster.AddComponent(new WrapAround(board_size));
-            new_monster.AddComponent(new KillOnContact(player));
-            new_monster.AddComponent(new AiMovementSlow());
-            list.Add(new_monster);
+            Entity slow_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
+            slow_monster.Name = "S";
+            slow_monster.AddComponent(new WrapAround(board_size));
+            slow_monster.AddComponent(new KillOnContact(player));
+            slow_monster.AddComponent(new AiMovementSlow());
+            list.Add(slow_monster);
         }
 
         private static void FastMonster(List<Entity> list, Entity player, int board_size)
         {
-            Entity new_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
-            new_monster.Name = "F";
-            new_monster.AddComponent(new WrapAround(board_size));
-            new_monster.AddComponent(new KillOnContact(player));
-            new_monster.AddComponent(new AiMovementFast());
-            list.Add(new_monster);
+            Entity fast_monster = new Entity(new Random().Next(0, board_size), new Random().Next(0, board_size));
+            fast_monster.Name = "F";
+            fast_monster.AddComponent(new WrapAround(board_size));
+            fast_monster.AddComponent(new KillOnContact(player));
+            fast_monster.AddComponent(new AiMovementFast());
+            list.Add(fast_monster);
         }
 
         private static void AddTeleporter(List<PowerUp> list, Entity player, int board_size)
