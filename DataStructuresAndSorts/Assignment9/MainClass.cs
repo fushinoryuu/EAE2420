@@ -9,10 +9,10 @@ namespace Assignment9
         {
             MaxHeap myHeap = new MaxHeap();
 
-            myHeap.Add(5);
-            myHeap.Add(7);
-            myHeap.Add(4);
-            myHeap.Add(10);
+            int[] numberList = new int[] { 0, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
+
+            foreach (int number in numberList)
+                myHeap.Add(number);
         }
     }
 }

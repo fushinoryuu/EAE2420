@@ -14,7 +14,7 @@ namespace Assignment9
 
         public MaxHeap()
         {
-            UnderlyingArray = new int[1];
+            UnderlyingArray = new int[5];
         }
 
         public int Count
@@ -54,9 +54,10 @@ namespace Assignment9
         {
             int max = UnderlyingArray[0];
 
-            Swap(0, ElementCount);
-            DeleteLast();
+            Swap(0, ElementCount - 1);
+            UnderlyingArray[ElementCount - 1] = 0;
             Sink();
+            ElementCount--;
             
             return max;
         }
@@ -68,21 +69,14 @@ namespace Assignment9
             UnderlyingArray[second] = temp;
         }
 
-        private void DeleteLast()
-        {
-            UnderlyingArray[ElementCount] = 0;
-            ElementCount--;
-        }
-
         //Finish
         private void Sink()
         {
-            int index = 0;
-            while (index < ElementCount)
+            int current_index = 0;
+
+            while (current_index < ElementCount)
             {
 
-
-                index++;
             }
         }
 
