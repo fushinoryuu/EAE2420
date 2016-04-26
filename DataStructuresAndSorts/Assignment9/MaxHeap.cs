@@ -27,6 +27,11 @@ namespace Assignment9
             }
         }
 
+        public int this[int index]
+        {
+            get { return UnderlyingArray[index]; }
+        }
+
         public void Add(int new_value)
         {
             if (IsHeap == false)

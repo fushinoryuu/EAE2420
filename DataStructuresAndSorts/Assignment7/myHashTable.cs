@@ -123,7 +123,7 @@ namespace Assignment7
             ElementCount++;
         }
 
-        public int GetNextPrime()
+        private int GetNextPrime()
         {
             bool skipped = false;
 
@@ -138,7 +138,7 @@ namespace Assignment7
             return (2 * BaseArray.Length) + 1;
         }
 
-        public bool IsPrime(int candidate)
+        private bool IsPrime(int candidate)
         {
             if ((candidate & 1) == 0)
                 if (candidate == 2)
