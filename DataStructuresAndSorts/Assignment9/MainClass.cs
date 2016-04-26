@@ -13,6 +13,10 @@ namespace Assignment9
 
             foreach (int number in numberList)
                 myHeap.Add(number);
+
+            myHeap.Sort();
+
+            myHeap.Add(11);
         }
     }
 }

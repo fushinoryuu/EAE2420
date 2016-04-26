@@ -6,6 +6,8 @@ namespace Assignment9
     {
         private int[] UnderlyingArray;
         private int ElementCount = 0;
+        private int OldCount = 0;
+        private bool IsHeap = true;
 
         public MaxHeap(int starting_size)
         {
@@ -27,12 +29,56 @@ namespace Assignment9
 
         public void Add(int new_value)
         {
+            if (IsHeap == false)
+                BuildHeap();
+
             if (ElementCount == UnderlyingArray.Length)
                 Resize();
 
             UnderlyingArray[ElementCount] = new_value;
             Swim();
             ElementCount++;
+        }
+
+        public int PopTop()
+        {
+            int max = UnderlyingArray[0];
+
+            Swap(0, ElementCount - 1);
+            UnderlyingArray[ElementCount - 1] = 0;
+            Sink();
+            ElementCount--;
+            
+            return max;
+        }
+
+        public void Sort()
+        {
+            OldCount = ElementCount;
+
+            for (int index = 0; index < OldCount; index++)
+            {
+                Swap(index, ElementCount - 1);
+                Sink();
+                ElementCount--;
+            }
+
+            IsHeap = false;
+        }
+
+        public void BuildHeap()
+        {
+            if (IsHeap == true)
+                return;
+
+            int last_item = OldCount - 1;
+            for(int index = 0; index < OldCount / 2; index++)
+            {
+                Swap(index, last_item);
+                last_item--;
+            }
+            ElementCount = OldCount;
+            IsHeap = true;
         }
 
         private void Swim()
@@ -50,18 +96,6 @@ namespace Assignment9
             }
         }
 
-        public int PopTop()
-        {
-            int max = UnderlyingArray[0];
-
-            Swap(0, ElementCount - 1);
-            UnderlyingArray[ElementCount - 1] = 0;
-            Sink();
-            ElementCount--;
-            
-            return max;
-        }
-
         private void Swap(int first, int second)
         {
             int temp = UnderlyingArray[first];
@@ -76,6 +110,9 @@ namespace Assignment9
 
             while (current_index < ElementCount)
             {
+                if (current_index > ElementCount)
+                    break;
+
 
             }
         }
