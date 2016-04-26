@@ -36,12 +36,15 @@ namespace Assignment9
 
         public int this[int index]
         {
-            get { return UnderlyingArray[index]; }
+            get
+            {
+                return UnderlyingArray[index];
+            }
         }
 
         public void Add(int new_value)
         {
-            if (IsHeap == false)
+            if (!IsHeap)
                 BuildHeap();
 
             if (ElementCount == UnderlyingArray.Length)
@@ -80,15 +83,17 @@ namespace Assignment9
 
         public void BuildHeap()
         {
-            if (IsHeap == true)
+            if (IsHeap)
                 return;
 
             int last_item = OldCount - 1;
+
             for (int index = 0; index < OldCount / 2; index++)
             {
                 Swap(index, last_item);
                 last_item--;
             }
+
             ElementCount = OldCount;
             IsHeap = true;
         }
