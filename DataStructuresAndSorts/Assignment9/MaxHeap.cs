@@ -57,6 +57,9 @@ namespace Assignment9
 
         public int PopTop()
         {
+            if (!IsHeap)
+                BuildHeap();
+
             int max = UnderlyingArray[0];
 
             Swap(0, ElementCount - 1);
