@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Assignment9
 {
-    class MaxHeap
+    class MaxHeap : IEnumerable
     {
         private int[] UnderlyingArray;
         private int ElementCount = 0;
@@ -25,6 +27,11 @@ namespace Assignment9
             {
                 return ElementCount;
             }
+        }
+
+        public void Clear()
+        {
+            UnderlyingArray = new int[UnderlyingArray.Length];
         }
 
         public int this[int index]
@@ -53,7 +60,7 @@ namespace Assignment9
             UnderlyingArray[ElementCount - 1] = 0;
             Sink();
             ElementCount--;
-            
+
             return max;
         }
 
@@ -77,7 +84,7 @@ namespace Assignment9
                 return;
 
             int last_item = OldCount - 1;
-            for(int index = 0; index < OldCount / 2; index++)
+            for (int index = 0; index < OldCount / 2; index++)
             {
                 Swap(index, last_item);
                 last_item--;
@@ -145,6 +152,17 @@ namespace Assignment9
                 new_array[index] = UnderlyingArray[index];
 
             UnderlyingArray = new_array;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int index = 0; index < ElementCount; index++)
+                yield return UnderlyingArray[index];
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

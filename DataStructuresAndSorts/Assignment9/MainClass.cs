@@ -14,6 +14,9 @@ namespace Assignment9
             foreach (int number in numberList)
                 myHeap.Add(number);
 
+            foreach (int number in myHeap)
+                Console.WriteLine(number);
+
             Console.WriteLine("Values in heap: [{0}]", string.Join(", ", myHeap));
 
             //myHeap.Sort();
