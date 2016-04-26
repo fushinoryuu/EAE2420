@@ -24,6 +24,8 @@ namespace Assignment9
 
             myHeap.BuildHeap();
             TestPop(myHeap, pop_error);
+
+
         }
 
         private static void TestInvariant(MaxHeap heap, string error)
@@ -50,6 +52,18 @@ namespace Assignment9
             {
                 Debug.Assert(heap[index] < heap[index + 1], error);
             }
+        }
+
+        private static int[] RandomIntArray(int elements)
+        {
+            Random randint = new Random();
+
+            int[] list = new int[elements];
+
+            for (int index = 0; index < elements; index++)
+                list[index] = randint.Next(1, elements);
+
+            return list;
         }
     }
 }
