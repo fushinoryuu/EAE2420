@@ -11,9 +11,8 @@ namespace Assignment9
             string sort_error = "The current value is not less than the next value on the array.";
             string pop_error = "The current value is not grater than the next value on the array";
             string invariant_error = "The invariants have been broken.";
-            string value_string = null;
 
-            MaxHeap myHeap = new MaxHeap();
+            MaxHeap<int> myHeap = new MaxHeap<int>();
 
             int[] numberList = new int[] { 2, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
 
@@ -23,52 +22,38 @@ namespace Assignment9
             foreach (int number in numberList)
                 myHeap.Add(number);
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
-
-            value_string = null;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             Console.WriteLine("Performing Heap Sort...\n");
 
             myHeap.Sort();
             TestSort(myHeap, sort_error);
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
-
-            value_string = null;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             Console.WriteLine("Rebuilding Heap...\n");
 
             myHeap.BuildHeap();
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
-
-            value_string = null;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             Console.WriteLine("Poping the top value until heap is empty...\n");
 
             TestPop(myHeap, pop_error);
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             int elements = 20000;
-            myHeap = new MaxHeap(elements);
+            myHeap = new MaxHeap<int>(elements);
             int[] random_list = RandomIntArray(elements);
 
             Console.WriteLine("Adding {0} values to a new heap and verifying the invariants...\n", elements);
 
-            Console.WriteLine("The program has not frozen, it will just take a while...\n");
+            System.Threading.Thread.Sleep(2000);
+
+            Console.WriteLine("This part will take a while...\n");
+
+            System.Threading.Thread.Sleep(3000);
 
             foreach (int number in random_list)
             {
@@ -78,9 +63,13 @@ namespace Assignment9
 
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
 
+            System.Threading.Thread.Sleep(2000);
+
             Console.WriteLine("Going to pop half of the values out of the heap and verifying the invariants...\n");
 
-            Console.WriteLine("Again... The program has not frozen, it will just take a while...\n");
+            System.Threading.Thread.Sleep(3000);
+
+            Console.WriteLine("Again... This part will take a while...\n");
 
             for (int i = 0; i < elements / 2; i++)
             {
@@ -91,8 +80,11 @@ namespace Assignment9
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
         }
 
-        private static void TestInvariant(MaxHeap heap, string error)
+        private static void TestInvariant(MaxHeap<int> heap, string error)
         {
+            if (heap.Count % 500 == 0)
+                Console.WriteLine("Cycle {0}\n", heap.Count);
+
             heap.Sort();
 
             for (int index = 0; index < heap.Count - 1; index++)
@@ -103,7 +95,7 @@ namespace Assignment9
             heap.BuildHeap();
         }
 
-        private static void TestPop(MaxHeap heap, string error)
+        private static void TestPop(MaxHeap<int> heap, string error)
         {
             int temp1 = heap.PopTop();
             int count = heap.Count;
@@ -116,7 +108,7 @@ namespace Assignment9
             }
         }
 
-        private static void TestSort(MaxHeap heap, string error)
+        private static void TestSort(MaxHeap<int> heap, string error)
         {
             for (int index = 0; index < heap.Count - 1; index++)
             {

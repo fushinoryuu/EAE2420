@@ -4,21 +4,21 @@ using System.Collections.Generic;
 
 namespace Assignment9
 {
-    class MaxHeap : IEnumerable
+    class MaxHeap<T> : IEnumerable<T> where T : IComparable
     {
-        private int[] UnderlyingArray;
+        private T[] UnderlyingArray;
         private int ElementCount = 0;
         private int OldCount = 0;
         private bool IsHeap = true;
 
         public MaxHeap(int starting_size)
         {
-            UnderlyingArray = new int[starting_size];
+            UnderlyingArray = new T[starting_size];
         }
 
         public MaxHeap()
         {
-            UnderlyingArray = new int[5];
+            UnderlyingArray = new T[5];
         }
 
         public int Count
@@ -31,10 +31,10 @@ namespace Assignment9
 
         public void Clear()
         {
-            UnderlyingArray = new int[UnderlyingArray.Length];
+            UnderlyingArray = new T[UnderlyingArray.Length];
         }
 
-        public int this[int index]
+        public T this[int index]
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Assignment9
             }
         }
 
-        public void Add(int new_value)
+        public void Add(T new_value)
         {
             if (!IsHeap)
                 BuildHeap();
@@ -55,15 +55,15 @@ namespace Assignment9
             ElementCount++;
         }
 
-        public int PopTop()
+        public T PopTop()
         {
             if (!IsHeap)
                 BuildHeap();
 
-            int max = UnderlyingArray[0];
+            T max = UnderlyingArray[0];
 
             Swap(0, ElementCount - 1);
-            UnderlyingArray[ElementCount - 1] = 0;
+            UnderlyingArray[ElementCount - 1] = default(T);
             ElementCount--;
             Sink();
             
@@ -113,10 +113,10 @@ namespace Assignment9
             {
                 int parent_index = FindParent(current_index);
 
-                if (UnderlyingArray[current_index] == UnderlyingArray[parent_index])
+                if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) == 0)
                     break;
 
-                else if (UnderlyingArray[current_index] > UnderlyingArray[parent_index])
+                else if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) > 0)
                     Swap(current_index, parent_index);
 
                 current_index = parent_index;
@@ -125,7 +125,7 @@ namespace Assignment9
 
         private void Swap(int first, int second)
         {
-            int temp = UnderlyingArray[first];
+            T temp = UnderlyingArray[first];
             UnderlyingArray[first] = UnderlyingArray[second];
             UnderlyingArray[second] = temp;
         }
@@ -147,21 +147,21 @@ namespace Assignment9
                     max_child_index = left_child_index;
 
                 if (right_child_index < ElementCount &&
-                    UnderlyingArray[left_child_index] == UnderlyingArray[right_child_index])
+                    UnderlyingArray[left_child_index].CompareTo(UnderlyingArray[right_child_index]) == 0)
                     max_child_index = left_child_index;
 
                 if (right_child_index < ElementCount && 
-                    UnderlyingArray[left_child_index] > UnderlyingArray[right_child_index])
+                    UnderlyingArray[left_child_index].CompareTo(UnderlyingArray[right_child_index]) > 0)
                     max_child_index = left_child_index;
 
                 if (right_child_index < ElementCount && 
-                    UnderlyingArray[left_child_index] < UnderlyingArray[right_child_index])
+                    UnderlyingArray[left_child_index].CompareTo(UnderlyingArray[right_child_index]) < 0)
                     max_child_index = right_child_index;
 
-                if (UnderlyingArray[max_child_index] == UnderlyingArray[current_index])
+                if (UnderlyingArray[max_child_index].CompareTo(UnderlyingArray[current_index]) == 0)
                     break;
 
-                if (UnderlyingArray[max_child_index] > UnderlyingArray[current_index])
+                if (UnderlyingArray[max_child_index].CompareTo(UnderlyingArray[current_index]) > 0)
                     Swap(current_index, max_child_index);
 
                 current_index = max_child_index;
@@ -185,7 +185,7 @@ namespace Assignment9
 
         private void Resize()
         {
-            int[] new_array = new int[UnderlyingArray.Length * 2];
+            T[] new_array = new T[UnderlyingArray.Length * 2];
 
             for (int index = 0; index < UnderlyingArray.Length; index++)
                 new_array[index] = UnderlyingArray[index];
@@ -193,10 +193,14 @@ namespace Assignment9
             UnderlyingArray = new_array;
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             for (int index = 0; index < ElementCount; index++)
-                yield return UnderlyingArray[index];
+            {
+                T temp = UnderlyingArray[index];
+                //Console.WriteLine("Current Value: {0}", temp);
+                yield return temp;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
