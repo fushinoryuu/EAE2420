@@ -11,35 +11,56 @@ namespace Assignment9
             string sort_error = "The current value is not less than the next value on the array.";
             string pop_error = "The current value is not grater than the next value on the array";
             string invariant_error = "The invariants have been broken.";
+            string value_string = null;
+
             MaxHeap myHeap = new MaxHeap();
 
             int[] numberList = new int[] { 0, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
 
-            Console.WriteLine("Adding the following numbers to the heap: [{0}]\n", string.Join(", ", numberList));
+            Console.WriteLine("Adding the following numbers to the heap: [{0}]\n", 
+                string.Join(", ", numberList));
 
             foreach (int number in numberList)
                 myHeap.Add(number);
 
-            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
+            foreach (int number in myHeap)
+                value_string += number + ", ";
+
+            Console.WriteLine("New heap: [{0}]\n", value_string);
+
+            value_string = null;
 
             Console.WriteLine("Performing Heap Sort...\n");
 
             myHeap.Sort();
             TestSort(myHeap, sort_error);
 
-            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
+            foreach (int number in myHeap)
+                value_string += number + ", ";
+
+            Console.WriteLine("New heap: [{0}]\n", value_string);
+
+            value_string = null;
 
             Console.WriteLine("Rebuilding Heap...\n");
 
             myHeap.BuildHeap();
 
-            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
+            foreach (int number in myHeap)
+                value_string += number + ", ";
+
+            Console.WriteLine("New heap: [{0}]\n", value_string);
+
+            value_string = null;
 
             Console.WriteLine("Poping the top value until heap is empty...\n");
 
             TestPop(myHeap, pop_error);
 
-            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
+            foreach (int number in myHeap)
+                value_string += number + ", ";
+
+            Console.WriteLine("New heap: [{0}]\n", value_string);
 
             int elements = 50000;
             myHeap = new MaxHeap(elements);
@@ -55,18 +76,27 @@ namespace Assignment9
 
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
 
-            //for (int i = 0; i < elements / 2; i++)
-            //{
-            //    myHeap.PopTop();
-            //    TestInvariant(myHeap, invariant_error);
-            //}
+            Console.WriteLine("Going to pop half of the values out of the heap...");
+
+            for (int i = 0; i < elements / 2; i++)
+            {
+                myHeap.PopTop();
+                TestInvariant(myHeap, invariant_error);
+            }
+
+            Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
         }
 
-        // 1. Parent is grater than both of its children
-        // 2. Complete array ???
         private static void TestInvariant(MaxHeap heap, string error)
         {
-            //throw new NotImplementedException();
+            heap.Sort();
+
+            for (int index = 0; index < heap.Count - 1; index++)
+            {
+                Debug.Assert(heap[index] < heap[index + 1], error);
+            }
+
+            heap.BuildHeap();
         }
 
         private static void TestPop(MaxHeap heap, string error)

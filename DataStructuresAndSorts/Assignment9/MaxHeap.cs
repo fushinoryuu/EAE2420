@@ -85,6 +85,7 @@ namespace Assignment9
             }
 
             IsHeap = false;
+            ElementCount = OldCount;
         }
 
         public void BuildHeap()
