@@ -15,28 +15,45 @@ namespace Assignment9
 
             int[] numberList = new int[] { 0, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
 
+            Console.WriteLine("Adding the following numbers to the heap: [{0}]\n", string.Join(", ", numberList));
+
             foreach (int number in numberList)
                 myHeap.Add(number);
 
-            //myHeap.PopTop();
+            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
 
-            //Console.WriteLine("Values in heap: [{0}]", string.Join(", ", myHeap));
+            Console.WriteLine("Performing Heap Sort...\n");
 
             myHeap.Sort();
             TestSort(myHeap, sort_error);
 
-            //myHeap.BuildHeap();
-            //TestPop(myHeap, pop_error);
+            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
 
-            //int elements = 10000;
-            //myHeap = new MaxHeap(elements);
-            //int[] random_list = RandomIntArray(elements);
+            Console.WriteLine("Rebuilding Heap...\n");
 
-            //foreach (int number in random_list)
-            //{
-            //    myHeap.Add(number);
-            //    TestInvariant(myHeap, invariant_error);
-            //}
+            myHeap.BuildHeap();
+
+            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
+
+            Console.WriteLine("Poping the top value until heap is empty...\n");
+
+            TestPop(myHeap, pop_error);
+
+            Console.WriteLine("New heap: [{0}]\n", string.Join(", ", myHeap));
+
+            int elements = 50000;
+            myHeap = new MaxHeap(elements);
+            int[] random_list = RandomIntArray(elements);
+
+            Console.WriteLine("Adding {0} values to a new heap...\n", elements);
+
+            foreach (int number in random_list)
+            {
+                myHeap.Add(number);
+                TestInvariant(myHeap, invariant_error);
+            }
+
+            Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
 
             //for (int i = 0; i < elements / 2; i++)
             //{
@@ -49,7 +66,7 @@ namespace Assignment9
         // 2. Complete array ???
         private static void TestInvariant(MaxHeap heap, string error)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private static void TestPop(MaxHeap heap, string error)
