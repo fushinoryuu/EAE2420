@@ -62,11 +62,13 @@ namespace Assignment9
 
             Console.WriteLine("New heap: [{0}]\n", value_string);
 
-            int elements = 10000;
+            int elements = 20000;
             myHeap = new MaxHeap(elements);
             int[] random_list = RandomIntArray(elements);
 
-            Console.WriteLine("Adding {0} values to a new heap...\n", elements);
+            Console.WriteLine("Adding {0} values to a new heap and verifying the invariants...\n", elements);
+
+            Console.WriteLine("The program has not frozen, it will just take a while...\n");
 
             foreach (int number in random_list)
             {
@@ -76,7 +78,9 @@ namespace Assignment9
 
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
 
-            Console.WriteLine("Going to pop half of the values out of the heap...");
+            Console.WriteLine("Going to pop half of the values out of the heap and verifying the invariants...\n");
+
+            Console.WriteLine("Again... The program has not frozen, it will just take a while...\n");
 
             for (int i = 0; i < elements / 2; i++)
             {
