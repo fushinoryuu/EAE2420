@@ -15,7 +15,7 @@ namespace Assignment9
 
             MaxHeap myHeap = new MaxHeap();
 
-            int[] numberList = new int[] { 0, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
+            int[] numberList = new int[] { 2, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
 
             Console.WriteLine("Adding the following numbers to the heap: [{0}]\n", 
                 string.Join(", ", numberList));
@@ -62,7 +62,7 @@ namespace Assignment9
 
             Console.WriteLine("New heap: [{0}]\n", value_string);
 
-            int elements = 50000;
+            int elements = 10000;
             myHeap = new MaxHeap(elements);
             int[] random_list = RandomIntArray(elements);
 
@@ -93,7 +93,7 @@ namespace Assignment9
 
             for (int index = 0; index < heap.Count - 1; index++)
             {
-                Debug.Assert(heap[index] < heap[index + 1], error);
+                Debug.Assert(heap[index] <= heap[index + 1], error);
             }
 
             heap.BuildHeap();
@@ -116,7 +116,7 @@ namespace Assignment9
         {
             for (int index = 0; index < heap.Count - 1; index++)
             {
-                Debug.Assert(heap[index] < heap[index + 1], error);
+                Debug.Assert(heap[index] <= heap[index + 1], error);
             }
         }
 
