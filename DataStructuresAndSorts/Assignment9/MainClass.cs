@@ -13,7 +13,7 @@ namespace Assignment9
             string invariant_error = "The invariants have been broken.";
             string value_string = null;
 
-            MaxHeap myHeap = new MaxHeap();
+            MaxHeap<int> myHeap = new MaxHeap<int>();
 
             int[] numberList = new int[] { 2, 5, 9, 2, 8, 1, 4, 7, 3, 6 };
 
@@ -65,7 +65,7 @@ namespace Assignment9
             Console.WriteLine("New heap: [{0}]\n", value_string);
 
             int elements = 20000;
-            myHeap = new MaxHeap(elements);
+            myHeap = new MaxHeap<int>(elements);
             int[] random_list = RandomIntArray(elements);
 
             Console.WriteLine("Adding {0} values to a new heap and verifying the invariants...\n", elements);
@@ -93,7 +93,7 @@ namespace Assignment9
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
         }
 
-        private static void TestInvariant(MaxHeap heap, string error)
+        private static void TestInvariant(MaxHeap<int> heap, string error)
         {
             heap.Sort();
 
@@ -105,7 +105,7 @@ namespace Assignment9
             heap.BuildHeap();
         }
 
-        private static void TestPop(MaxHeap heap, string error)
+        private static void TestPop(MaxHeap<int> heap, string error)
         {
             int temp1 = heap.PopTop();
             int count = heap.Count;
@@ -118,7 +118,7 @@ namespace Assignment9
             }
         }
 
-        private static void TestSort(MaxHeap heap, string error)
+        private static void TestSort(MaxHeap<int> heap, string error)
         {
             for (int index = 0; index < heap.Count - 1; index++)
             {

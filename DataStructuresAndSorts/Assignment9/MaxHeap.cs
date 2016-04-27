@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Assignment9
 {
-    class MaxHeap : IEnumerable
+    class MaxHeap<T> : IEnumerable<T> where T : IComparable
     {
-        private int[] UnderlyingArray;
+        private T[] UnderlyingArray;
         private int ElementCount = 0;
         private int OldCount = 0;
         private bool IsHeap = true;
@@ -193,17 +193,17 @@ namespace Assignment9
             UnderlyingArray = new_array;
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             for (int index = 0; index < ElementCount; index++)
             {
-                int temp = UnderlyingArray[index];
+                T temp = UnderlyingArray[index];
                 //Console.WriteLine("Current Value: {0}", temp);
                 yield return temp;
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return GetEnumerator();
         }
