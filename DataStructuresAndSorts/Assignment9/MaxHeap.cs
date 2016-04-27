@@ -113,7 +113,10 @@ namespace Assignment9
             {
                 int parent_index = FindParent(current_index);
 
-                if (UnderlyingArray[current_index] > UnderlyingArray[parent_index])
+                if (UnderlyingArray[current_index] == UnderlyingArray[parent_index])
+                    break;
+
+                else if (UnderlyingArray[current_index] > UnderlyingArray[parent_index])
                     Swap(current_index, parent_index);
 
                 current_index = parent_index;
