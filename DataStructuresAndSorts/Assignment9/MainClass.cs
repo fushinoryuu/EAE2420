@@ -18,29 +18,31 @@ namespace Assignment9
             foreach (int number in numberList)
                 myHeap.Add(number);
 
-            Console.WriteLine("Values in heap: [{0}]", string.Join(", ", myHeap));
+            //myHeap.PopTop();
+
+            //Console.WriteLine("Values in heap: [{0}]", string.Join(", ", myHeap));
 
             myHeap.Sort();
             TestSort(myHeap, sort_error);
 
-            myHeap.BuildHeap();
-            TestPop(myHeap, pop_error);
+            //myHeap.BuildHeap();
+            //TestPop(myHeap, pop_error);
 
-            int elements = 250000;
-            myHeap = new MaxHeap(elements);
-            int[] random_list = RandomIntArray(elements);
+            //int elements = 10000;
+            //myHeap = new MaxHeap(elements);
+            //int[] random_list = RandomIntArray(elements);
 
-            foreach (int number in random_list)
-            {
-                myHeap.Add(number);
-                TestInvariant(myHeap, invariant_error);
-            }
+            //foreach (int number in random_list)
+            //{
+            //    myHeap.Add(number);
+            //    TestInvariant(myHeap, invariant_error);
+            //}
 
-            for (int i = 0; i < elements / 2; i++)
-            {
-                myHeap.PopTop();
-                TestInvariant(myHeap, invariant_error);
-            }
+            //for (int i = 0; i < elements / 2; i++)
+            //{
+            //    myHeap.PopTop();
+            //    TestInvariant(myHeap, invariant_error);
+            //}
         }
 
         // 1. Parent is grater than both of its children

@@ -64,21 +64,24 @@ namespace Assignment9
 
             Swap(0, ElementCount - 1);
             UnderlyingArray[ElementCount - 1] = 0;
-            Sink();
             ElementCount--;
-
+            Sink();
+            
             return max;
         }
 
         public void Sort()
         {
+            if (!IsHeap)
+                BuildHeap();
+
             OldCount = ElementCount;
 
-            for (int index = 0; index < OldCount; index++)
+            for (int i = 0; i < OldCount; i++)
             {
-                Swap(index, ElementCount - 1);
-                Sink();
+                Swap(0, ElementCount - 1);
                 ElementCount--;
+                Sink();
             }
 
             IsHeap = false;
@@ -123,7 +126,6 @@ namespace Assignment9
             UnderlyingArray[second] = temp;
         }
 
-        //Finish
         private void Sink()
         {
             int current_index = 0;
@@ -131,23 +133,27 @@ namespace Assignment9
             while (current_index < ElementCount)
             {
                 int max_child_index = current_index;
-                int left_index = FindLeft(current_index);
-                int right_index = FindRight(current_index);
+                int left_child_index = FindLeft(current_index);
+                int right_child_index = FindRight(current_index);
 
-                if (left_index > ElementCount)
-                    break; // no children
+                if (left_child_index >= ElementCount)
+                    break;
 
-                if (right_index > ElementCount)
-                    max_child_index = left_index;
+                if (right_child_index >= ElementCount)
+                    max_child_index = left_child_index;
 
-                if (UnderlyingArray[left_index] > UnderlyingArray[right_index])
-                    max_child_index = left_index;
+                if (right_child_index < ElementCount && 
+                    UnderlyingArray[left_child_index] > UnderlyingArray[right_child_index])
+                    max_child_index = left_child_index;
 
-                if (UnderlyingArray[left_index] < UnderlyingArray[right_index])
-                    max_child_index = right_index;
+                if (right_child_index < ElementCount && 
+                    UnderlyingArray[left_child_index] < UnderlyingArray[right_child_index])
+                    max_child_index = right_child_index;
 
                 if (UnderlyingArray[max_child_index] > UnderlyingArray[current_index])
                     Swap(current_index, max_child_index);
+
+                current_index = max_child_index;
             }
         }
 
