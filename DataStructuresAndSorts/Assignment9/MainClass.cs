@@ -47,7 +47,7 @@ namespace Assignment9
         // 2. Complete array ???
         private static void TestInvariant(MaxHeap heap, string error)
         {
-
+            throw new NotImplementedException();
         }
 
         private static void TestPop(MaxHeap heap, string error)

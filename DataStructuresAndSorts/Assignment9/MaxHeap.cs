@@ -130,10 +130,24 @@ namespace Assignment9
 
             while (current_index < ElementCount)
             {
-                if (current_index > ElementCount)
-                    break;
+                int max_child_index = current_index;
+                int left_index = FindLeft(current_index);
+                int right_index = FindRight(current_index);
 
+                if (left_index > ElementCount)
+                    break; // no children
 
+                if (right_index > ElementCount)
+                    max_child_index = left_index;
+
+                if (UnderlyingArray[left_index] > UnderlyingArray[right_index])
+                    max_child_index = left_index;
+
+                if (UnderlyingArray[left_index] < UnderlyingArray[right_index])
+                    max_child_index = right_index;
+
+                if (UnderlyingArray[max_child_index] > UnderlyingArray[current_index])
+                    Swap(current_index, max_child_index);
             }
         }
 
