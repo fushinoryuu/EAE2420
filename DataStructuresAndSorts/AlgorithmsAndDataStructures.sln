@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment8 - Components", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment9 - Heaps", "Assignment9\Assignment9 - Heaps.csproj", "{34760AD3-EE61-4E40-BF56-9CC4BF020B15}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Assignment1 - Search and Sort", "Assignment1\Assignment1 - Search and Sort.pyproj", "{EE1D6D1D-0150-4677-9862-3E8D36C1FE10}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Assignment2 - Lambdas and Generators", "Assignment2\Assignment2 - Lambdas and Generators.pyproj", "{F6EF53A2-A329-41B8-B03D-2E32D066AFD5}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Assignment3 - Linked List and Quicksort", "Assignment3\Assignment3 - Linked List and Quicksort.pyproj", "{59CAA767-8168-4C2B-AC28-7B71D0F61E0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +51,12 @@ Global
 		{34760AD3-EE61-4E40-BF56-9CC4BF020B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34760AD3-EE61-4E40-BF56-9CC4BF020B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34760AD3-EE61-4E40-BF56-9CC4BF020B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE1D6D1D-0150-4677-9862-3E8D36C1FE10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE1D6D1D-0150-4677-9862-3E8D36C1FE10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EF53A2-A329-41B8-B03D-2E32D066AFD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EF53A2-A329-41B8-B03D-2E32D066AFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CAA767-8168-4C2B-AC28-7B71D0F61E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CAA767-8168-4C2B-AC28-7B71D0F61E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
