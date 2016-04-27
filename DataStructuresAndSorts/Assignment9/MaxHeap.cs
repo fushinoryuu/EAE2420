@@ -196,7 +196,11 @@ namespace Assignment9
         public IEnumerator GetEnumerator()
         {
             for (int index = 0; index < ElementCount; index++)
-                yield return UnderlyingArray[index];
+            {
+                int temp = UnderlyingArray[index];
+                //Console.WriteLine("Current Value: {0}", temp);
+                yield return temp;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

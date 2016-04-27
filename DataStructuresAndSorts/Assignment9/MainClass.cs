@@ -28,6 +28,8 @@ namespace Assignment9
 
             Console.WriteLine("New heap: [{0}]\n", value_string);
 
+            //Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
+
             value_string = null;
 
             Console.WriteLine("Performing Heap Sort...\n");
