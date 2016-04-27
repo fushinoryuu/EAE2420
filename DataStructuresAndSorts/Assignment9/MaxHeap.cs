@@ -146,6 +146,10 @@ namespace Assignment9
                 if (right_child_index >= ElementCount)
                     max_child_index = left_child_index;
 
+                if (right_child_index < ElementCount &&
+                    UnderlyingArray[left_child_index] == UnderlyingArray[right_child_index])
+                    max_child_index = left_child_index;
+
                 if (right_child_index < ElementCount && 
                     UnderlyingArray[left_child_index] > UnderlyingArray[right_child_index])
                     max_child_index = left_child_index;
@@ -153,6 +157,9 @@ namespace Assignment9
                 if (right_child_index < ElementCount && 
                     UnderlyingArray[left_child_index] < UnderlyingArray[right_child_index])
                     max_child_index = right_child_index;
+
+                if (UnderlyingArray[max_child_index] == UnderlyingArray[current_index])
+                    break;
 
                 if (UnderlyingArray[max_child_index] > UnderlyingArray[current_index])
                     Swap(current_index, max_child_index);
