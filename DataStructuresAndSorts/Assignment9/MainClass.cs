@@ -11,7 +11,6 @@ namespace Assignment9
             string sort_error = "The current value is not less than the next value on the array.";
             string pop_error = "The current value is not grater than the next value on the array";
             string invariant_error = "The invariants have been broken.";
-            string value_string = null;
 
             MaxHeap<int> myHeap = new MaxHeap<int>();
 
@@ -23,46 +22,26 @@ namespace Assignment9
             foreach (int number in numberList)
                 myHeap.Add(number);
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
-
-            //Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
-
-            value_string = null;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             Console.WriteLine("Performing Heap Sort...\n");
 
             myHeap.Sort();
             TestSort(myHeap, sort_error);
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
-
-            value_string = null;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             Console.WriteLine("Rebuilding Heap...\n");
 
             myHeap.BuildHeap();
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
-
-            value_string = null;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             Console.WriteLine("Poping the top value until heap is empty...\n");
 
             TestPop(myHeap, pop_error);
 
-            foreach (int number in myHeap)
-                value_string += number + ", ";
-
-            Console.WriteLine("New heap: [{0}]\n", value_string);
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
 
             int elements = 20000;
             myHeap = new MaxHeap<int>(elements);
