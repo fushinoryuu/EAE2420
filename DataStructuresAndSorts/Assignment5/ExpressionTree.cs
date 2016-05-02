@@ -61,13 +61,13 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        private void PreHelper(List<string> list, TreeNode<string> node)
+        private void PreHelper(List<string> list, TreeNode<string> Current_node)
         {
-            list.Add(node.Data);
-            if (node.Left != null)
-                PreHelper(list, node.Left);
-            if (node.Right != null)
-                PreHelper(list, node.Right);
+            list.Add(Current_node.Data);
+            if (Current_node.Left != null)
+                PreHelper(list, Current_node.Left);
+            if (Current_node.Right != null)
+                PreHelper(list, Current_node.Right);
         }
 
         public string TraverseIn()
@@ -77,13 +77,13 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        private void InHelper(List<string> list, TreeNode<string> node)
+        private void InHelper(List<string> list, TreeNode<string> current_node)
         {
-            if (node.Left != null)
-                InHelper(list, node.Left);
-            list.Add(node.Data);
-            if (node.Right != null)
-                InHelper(list, node.Right);
+            if (current_node.Left != null)
+                InHelper(list, current_node.Left);
+            list.Add(current_node.Data);
+            if (current_node.Right != null)
+                InHelper(list, current_node.Right);
         }
 
         public string TraversePost()
@@ -93,13 +93,13 @@ namespace Assignment5
             return string.Join(", ", list);
         }
 
-        private void PostHelper(List<string> list, TreeNode<string> node)
+        private void PostHelper(List<string> list, TreeNode<string> current_node)
         {
-            if (node.Left != null)
-                PostHelper(list, node.Left);
-            if (node.Right != null)
-                PostHelper(list, node.Right);
-            list.Add(node.Data);
+            if (current_node.Left != null)
+                PostHelper(list, current_node.Left);
+            if (current_node.Right != null)
+                PostHelper(list, current_node.Right);
+            list.Add(current_node.Data);
         }
     }
 }
