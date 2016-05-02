@@ -56,7 +56,7 @@ namespace Assignment5
 
             Console.WriteLine("Clearing the Binary Search Tree...\n");
             number_tree.Clear();
-            TestNullTree(number_tree.root, nullError);
+            TestNullTree(number_tree.Root, nullError);
 
             Console.WriteLine("-------------------------------------------------------\n");
         }
@@ -107,7 +107,7 @@ namespace Assignment5
 
             Console.WriteLine("Clearing the Hero Binary Search Tree...\n");
             hero_tree.Clear();
-            TestNullTree(hero_tree.root, nullError);
+            TestNullTree(hero_tree.Root, nullError);
 
             Console.WriteLine("-------------------------------------------------------\n");
         }

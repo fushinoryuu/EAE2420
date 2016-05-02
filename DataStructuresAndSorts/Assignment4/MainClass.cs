@@ -57,10 +57,6 @@ namespace Assignment4
             RunningTimes.SortPlot(mSorter, 70000, "Merge Sort");
         }
 
-        /// <summary>
-        /// Asserts that each item on the list is property sorted.
-        /// </summary>
-        /// <param name="numbers">Array to test.</param>
         private static void SortAsserter(int[] numbers)
         {
             for(int index = 0; index < numbers.Length; index++)
@@ -70,10 +66,6 @@ namespace Assignment4
             }
         }
 
-        /// <summary>
-        /// Calls all the other Test functions for my customer list. 
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestList(MyList<int> myList)
         {
             Console.Write("Initial list: [{0}]", string.Join(", ", myList));
@@ -108,10 +100,6 @@ namespace Assignment4
             TestCount(myList, 0);
         }
 
-        /// <summary>
-        /// Tests that a number can be added to the list.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestAdd(MyList<int> myList)
         {
             int[] testlist = new[] { 1, 3, 5, 7, 9 };
@@ -124,10 +112,6 @@ namespace Assignment4
             
         }
 
-        /// <summary>
-        /// Tests that a number can be inserted into the list.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestInsert(MyList<int> myList)
         {
             myList.Insert(3, 2);
@@ -137,10 +121,6 @@ namespace Assignment4
             Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
-        /// <summary>
-        /// Tests that the list can be cleared and reset to default value.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestClear(MyList<int> myList)
         {
             myList.Clear();
@@ -148,10 +128,6 @@ namespace Assignment4
             Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
-        /// <summary>
-        /// Tests that a number can be removed from the list.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestRemove(MyList<int> myList)
         {
             myList.Remove(5);
@@ -159,10 +135,6 @@ namespace Assignment4
             Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
-        /// <summary>
-        /// Test that a number can be removed at a specific index.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestRemoveAt(MyList<int> myList)
         {
             myList.RemoveAt(1);
@@ -170,52 +142,30 @@ namespace Assignment4
             Console.Write("New list: [{0}]", string.Join(", ", myList));
         }
 
-        /// <summary>
-        /// Tests how many items are in the list.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
-        /// <param name="count">How many items are suppose to be in the list.</param>
         private static void TestCount(MyList<int> myList, int count)
         {
             Debug.Assert(myList.Count == count, "The total count doesn't match.");
             Console.WriteLine(" Items in list: {0}\n", myList.Count);
         }
 
-        /// <summary>
-        /// Tests for the index of a paticular number.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
-        /// <param name="value">Number to look for on the list.</param>
         private static void TestIndexOf(MyList<int> myList, int value)
         {
             Debug.Assert(myList.Contains(value));
             Console.WriteLine("The index of 7 is: {0}\n",myList.IndexOf(value));
         }
 
-        /// <summary>
-        /// Test to make sure the list implements the customer interface for the assignment.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestInterface(MyList<int> myList)
         {
             Debug.Assert(myList is MyList<int> == true, "The object doesn't implement the interface.");
             Console.WriteLine("Does the list implement MyList interface? {0}\n", myList is MyList<int> == true);
         }
 
-        /// <summary>
-        /// Tests if the list is read only.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestIsReadOnly(MyList<int> myList)
         {
             Debug.Assert(myList.IsReadOnly == false);
             Console.WriteLine("Is the list ready only? {0}\n", myList.IsReadOnly);
         }
 
-        /// <summary>
-        /// Tests the iterator for the list.
-        /// </summary>
-        /// <param name="myList">List to test.</param>
         private static void TestIterator(MyList<int> myList)
         {
             IEnumerator<int> iterator = myList.GetEnumerator();

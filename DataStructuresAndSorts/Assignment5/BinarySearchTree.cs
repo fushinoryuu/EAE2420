@@ -5,62 +5,62 @@ namespace Assignment5
 {
     class BinarySearchTree<T> where T : IComparable<T>
     {
-        IComparer<T> comparer;
-        public TreeNode<T> root;
+        IComparer<T> CustomeComparer;
+        public TreeNode<T> Root;
 
 
         public BinarySearchTree(IComparer<T> comparer = null)
         {
-            root = null;
-            this.comparer = comparer;
+            Root = null;
+            CustomeComparer = comparer;
         }
 
         public void Add(T item)
         {
-            AddHelper(item, root);
+            AddHelper(item, Root);
         }
 
-        private void AddHelper(T item, TreeNode<T> currentNode)
+        private void AddHelper(T item, TreeNode<T> current_node)
         {
-            if (root == null)
+            if (Root == null)
             {
-                root = new TreeNode<T> { Data = item };
-                currentNode = root;
+                Root = new TreeNode<T> { Data = item };
+                current_node = Root;
             }
             else
             {
-                if ((comparer.Compare(item, currentNode.Data) < 0) || (item.CompareTo(currentNode.Data) < 0))
+                if ((CustomeComparer.Compare(item, current_node.Data) < 0) || (item.CompareTo(current_node.Data) < 0))
                 {
-                    if (currentNode.Left == null)
-                        currentNode.Left = new TreeNode<T> { Data = item };
+                    if (current_node.Left == null)
+                        current_node.Left = new TreeNode<T> { Data = item };
                     else
-                        AddHelper(item, currentNode.Left);
+                        AddHelper(item, current_node.Left);
                 }
-                else if ((comparer.Compare(item, currentNode.Data) >= 0) || (item.CompareTo(currentNode.Data) >= 0))
+                else if ((CustomeComparer.Compare(item, current_node.Data) >= 0) || (item.CompareTo(current_node.Data) >= 0))
                 {
-                    if (currentNode.Right == null)
-                        currentNode.Right = new TreeNode<T> { Data = item };
+                    if (current_node.Right == null)
+                        current_node.Right = new TreeNode<T> { Data = item };
                     else
-                        AddHelper(item, currentNode.Right);
+                        AddHelper(item, current_node.Right);
                 }
             }
         }
 
         public bool Contains(T item)
         {
-            return ContainsHelper(item, root);
+            return ContainsHelper(item, Root);
         }
 
-        private bool ContainsHelper(T item, TreeNode<T> currentNode)
+        private bool ContainsHelper(T item, TreeNode<T> current_node)
         {
-            if (currentNode != null)
+            if (current_node != null)
             {
-                if (comparer.Compare(item, currentNode.Data) == 0)
+                if (CustomeComparer.Compare(item, current_node.Data) == 0)
                     return true;
-                else if (comparer.Compare(item, currentNode.Data) < 0)
-                    return ContainsHelper(item, currentNode.Left);
+                else if (CustomeComparer.Compare(item, current_node.Data) < 0)
+                    return ContainsHelper(item, current_node.Left);
                 else
-                    return ContainsHelper(item, currentNode.Right);
+                    return ContainsHelper(item, current_node.Right);
             }
             else
             {
@@ -70,55 +70,55 @@ namespace Assignment5
 
         public void Clear()
         {
-            root = null;
+            Root = null;
         }
 
         public string TraversePre()
         {
             List<T> list = new List<T>();
-            PreHelper(list, root);
+            PreHelper(list, Root);
             return string.Join(", ", list);
         }
 
-        private void PreHelper(List<T> list, TreeNode<T> node)
+        private void PreHelper(List<T> list, TreeNode<T> current_node)
         {
-            list.Add(node.Data);
-            if (node.Left != null)
-                PreHelper(list, node.Left);
-            if (node.Right != null)
-                PreHelper(list, node.Right);
+            list.Add(current_node.Data);
+            if (current_node.Left != null)
+                PreHelper(list, current_node.Left);
+            if (current_node.Right != null)
+                PreHelper(list, current_node.Right);
         }
 
         public string TraverseIn()
         {
             List<T> list = new List<T>();
-            InHelper(list, root);
+            InHelper(list, Root);
             return string.Join(", ", list);
         }
 
-        private void InHelper(List<T> list, TreeNode<T> node)
+        private void InHelper(List<T> list, TreeNode<T> current_node)
         {
-            if (node.Left != null)
-                InHelper(list, node.Left);
-            list.Add(node.Data);
-            if (node.Right != null)
-                InHelper(list, node.Right);
+            if (current_node.Left != null)
+                InHelper(list, current_node.Left);
+            list.Add(current_node.Data);
+            if (current_node.Right != null)
+                InHelper(list, current_node.Right);
         }
 
         public string TraversePost()
         {
             List<T> list = new List<T>();
-            PostHelper(list, root);
+            PostHelper(list, Root);
             return string.Join(", ", list);
         }
 
-        private void PostHelper(List<T> list, TreeNode<T> node)
+        private void PostHelper(List<T> list, TreeNode<T> current_node)
         {
-            if (node.Left != null)
-                PostHelper(list, node.Left);
-            if (node.Right != null)
-                PostHelper(list, node.Right);
-            list.Add(node.Data);
+            if (current_node.Left != null)
+                PostHelper(list, current_node.Left);
+            if (current_node.Right != null)
+                PostHelper(list, current_node.Right);
+            list.Add(current_node.Data);
         }
     }
 }

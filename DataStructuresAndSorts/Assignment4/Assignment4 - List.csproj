@@ -37,7 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BubbleSort.cs" />
-    <Compile Include="Caller.cs" />
+    <Compile Include="MainClass.cs" />
     <Compile Include="ClassWork.cs" />
     <Compile Include="MyList.cs" />
     <Compile Include="InsertionSort.cs" />
