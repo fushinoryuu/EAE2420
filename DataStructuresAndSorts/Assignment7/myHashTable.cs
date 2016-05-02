@@ -6,12 +6,12 @@ namespace Assignment7
 {
     class MyHashTable<TKey, TValue> : IDictionary<TKey, TValue>
     {
-        LinkedList<KeyValuePair<TKey, TValue>>[] BaseArray;
+        private LinkedList<KeyValuePair<TKey, TValue>>[] UnderlyingArray;
         private int ElementCount = 0;
 
         public MyHashTable()
         {
-            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
+            UnderlyingArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
         }
 
         public TValue this[TKey key]
@@ -20,10 +20,10 @@ namespace Assignment7
             {
                 int bucket = GetHash(key);
 
-                if (BaseArray[bucket] == null)
+                if (UnderlyingArray[bucket] == null)
                     throw new KeyNotFoundException();
 
-                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
                     if (pair.Key.Equals(key))
                         return pair.Value;
 
@@ -57,9 +57,9 @@ namespace Assignment7
             get
             {
                 List<TKey> list = new List<TKey>(Count);
-                for (int bucket = 0; bucket < BaseArray.Length; bucket++)
-                    if (BaseArray[bucket] != null)
-                        foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                for (int bucket = 0; bucket < UnderlyingArray.Length; bucket++)
+                    if (UnderlyingArray[bucket] != null)
+                        foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
                             list.Add(pair.Key);
                 return list;
             }
@@ -70,9 +70,9 @@ namespace Assignment7
             get
             {
                 List<TValue> list = new List<TValue>(Count);
-                for (int bucket = 0; bucket < BaseArray.Length; bucket++)
-                    if (BaseArray[bucket] != null)
-                        foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+                for (int bucket = 0; bucket < UnderlyingArray.Length; bucket++)
+                    if (UnderlyingArray[bucket] != null)
+                        foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
                             list.Add(pair.Value);
                 return list;
             }
@@ -95,15 +95,15 @@ namespace Assignment7
 
             int bucket = GetHash(key);
 
-            if (BaseArray[bucket] == null)
+            if (UnderlyingArray[bucket] == null)
             {
-                BaseArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
-                BaseArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
+                UnderlyingArray[bucket] = new LinkedList<KeyValuePair<TKey, TValue>>();
+                UnderlyingArray[bucket].AddFirst(new KeyValuePair<TKey, TValue>(key, value));
                 ElementCount++;
                 return;
             }
 
-            LinkedList<KeyValuePair<TKey, TValue>> list = BaseArray[bucket];
+            LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[bucket];
 
             for (LinkedListNode<KeyValuePair<TKey, TValue>> pair = list.First; pair != null; pair = pair.Next)
             {
@@ -119,7 +119,7 @@ namespace Assignment7
                     return;
                 }
             }
-            BaseArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
+            UnderlyingArray[bucket].AddLast(new KeyValuePair<TKey, TValue>(key, value));
             ElementCount++;
         }
 
@@ -127,15 +127,15 @@ namespace Assignment7
         {
             bool skipped = false;
 
-            for (int i = BaseArray.Length + 2; i < 1000; i += 2)
+            for (int i = UnderlyingArray.Length + 2; i < 1000; i += 2)
             {
                 bool prime = IsPrime(i);
-                if (prime == true && skipped == true)
+                if (prime && skipped)
                     return i;
                 else if (prime && !skipped)
                     skipped = true;
             }
-            return (2 * BaseArray.Length) + 1;
+            return (2 * UnderlyingArray.Length) + 1;
         }
 
         private bool IsPrime(int candidate)
@@ -154,9 +154,9 @@ namespace Assignment7
         
         private void Resize()
         {
-            LinkedList<KeyValuePair<TKey, TValue>>[] old_array = BaseArray;
+            LinkedList<KeyValuePair<TKey, TValue>>[] old_array = UnderlyingArray;
             LinkedList<KeyValuePair<TKey, TValue>>[] new_array = new LinkedList<KeyValuePair<TKey, TValue>>[GetNextPrime()];
-            BaseArray = new_array;
+            UnderlyingArray = new_array;
             ElementCount = 0;
 
             for (int index = 0; index < old_array.Length; index++)
@@ -167,16 +167,16 @@ namespace Assignment7
 
         public void Clear()
         {
-            BaseArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
+            UnderlyingArray = new LinkedList<KeyValuePair<TKey, TValue>>[5];
             ElementCount = 0;
         }
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
-            for (int index = 0; index < BaseArray.Length; index++)
-                if (BaseArray[index] != null)
+            for (int index = 0; index < UnderlyingArray.Length; index++)
+                if (UnderlyingArray[index] != null)
                 {
-                    LinkedList<KeyValuePair<TKey, TValue>> list = BaseArray[index];
+                    LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
                     foreach (KeyValuePair<TKey, TValue> pair in list)
                         if (pair.Key.Equals(item.Key) && pair.Value.Equals(item.Value))
                             return true;
@@ -202,10 +202,10 @@ namespace Assignment7
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            for (int index = 0; index < BaseArray.Length; index++)
-                if (BaseArray[index] != null)
+            for (int index = 0; index < UnderlyingArray.Length; index++)
+                if (UnderlyingArray[index] != null)
                 {
-                    LinkedList<KeyValuePair<TKey, TValue>> list = BaseArray[index];
+                    LinkedList<KeyValuePair<TKey, TValue>> list = UnderlyingArray[index];
                     foreach (KeyValuePair<TKey, TValue> pair in list)
                         yield return pair;
                 }
@@ -213,11 +213,11 @@ namespace Assignment7
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            for (int index = 0; index < BaseArray.Length; index++)
-                foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
+            for (int index = 0; index < UnderlyingArray.Length; index++)
+                foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[index])
                     if (pair.Equals(item)) //(pair.Value.Equals(item))
                     {
-                        BaseArray[index].Remove(item);
+                        UnderlyingArray[index].Remove(item);
                         return true;
                     }
             return false;
@@ -227,13 +227,13 @@ namespace Assignment7
         {
             int index = GetHash(key);
 
-            if (BaseArray[index] == null)
+            if (UnderlyingArray[index] == null)
                 return false;
 
-            foreach (KeyValuePair<TKey, TValue> pair in BaseArray[index])
+            foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[index])
                 if (pair.Key.Equals(key))
                 {
-                    BaseArray[index].Remove(pair);
+                    UnderlyingArray[index].Remove(pair);
                     return true;
                 }
             return false;
@@ -243,13 +243,13 @@ namespace Assignment7
         {
             int bucket = GetHash(key);
 
-            if (BaseArray[bucket] == null)
+            if (UnderlyingArray[bucket] == null)
             {
                 value = default(TValue);
                 return false;
             }
 
-            foreach (KeyValuePair<TKey, TValue> pair in BaseArray[bucket])
+            foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[bucket])
                 if (pair.Key.Equals(key))
                 {
                     value = pair.Value;
@@ -276,12 +276,12 @@ namespace Assignment7
         private int GetHash(TKey key)
         {
             int hash = Math.Abs(key.GetHashCode());
-            return hash % BaseArray.Length;
+            return hash % UnderlyingArray.Length;
         }
 
         private double GetRatio()
         {
-            double ratio = (double)ElementCount / (double)BaseArray.Length;
+            double ratio = (double)ElementCount / (double)UnderlyingArray.Length;
             return ratio;
         }
     }
