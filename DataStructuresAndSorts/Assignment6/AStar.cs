@@ -150,14 +150,14 @@ namespace Assignment6
 
         private void RunAStar()
         {
-            GraphNode current;
+            GraphNode current_node;
 
             while (OpenList.Count != 0)
             {
-                current = FindBestNode();
-                RemoveFromOpenList(current);
-                ProcessConnections(current);
-                AddToCloseList(current);
+                current_node = FindBestNode();
+                RemoveFromOpenList(current_node);
+                ProcessConnections(current_node);
+                AddToCloseList(current_node);
             }
         }
 
@@ -174,9 +174,9 @@ namespace Assignment6
         {
             GraphNode best_node = OpenList[0];
 
-            foreach (GraphNode list_node in OpenList)
-                if (list_node.TotalEstimatedCost < best_node.TotalEstimatedCost)
-                    best_node = list_node;
+            foreach (GraphNode open_node in OpenList)
+                if (open_node.TotalEstimatedCost < best_node.TotalEstimatedCost)
+                    best_node = open_node;
             
             return best_node;
         }
