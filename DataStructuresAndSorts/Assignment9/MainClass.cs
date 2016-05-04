@@ -41,19 +41,13 @@ namespace Assignment9
 
             TestPop(myHeap, pop_error);
 
-            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", myHeap));
-
             int elements = 20000;
             myHeap = new MaxHeap<int>(elements);
             int[] random_list = RandomIntArray(elements);
 
             Console.WriteLine("Adding {0} values to a new heap and verifying the invariants...\n", elements);
 
-            System.Threading.Thread.Sleep(2000);
-
             Console.WriteLine("This part will take a while...\n");
-
-            System.Threading.Thread.Sleep(3000);
 
             foreach (int number in random_list)
             {
@@ -63,11 +57,7 @@ namespace Assignment9
 
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
 
-            System.Threading.Thread.Sleep(2000);
-
             Console.WriteLine("Going to pop half of the values out of the heap and verifying the invariants...\n");
-
-            System.Threading.Thread.Sleep(3000);
 
             Console.WriteLine("Again... This part will take a while...\n");
 
@@ -99,12 +89,15 @@ namespace Assignment9
         {
             int temp1 = heap.PopTop();
             int count = heap.Count;
+            Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", heap));
 
             for (int i = 0; i < count; i++)
             {
                 int temp2 = heap.PopTop();
                 Debug.Assert(temp1 >= temp2, error);
                 temp1 = temp2;
+
+                Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", heap));
             }
         }
 

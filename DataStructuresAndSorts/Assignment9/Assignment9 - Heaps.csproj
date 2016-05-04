@@ -39,7 +39,6 @@
     <Compile Include="Heap.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="MaxHeap.cs" />
-    <Compile Include="MaxHeapTest.cs" />
     <Compile Include="MinHeap.cs" />
   </ItemGroup>
   <ItemGroup>
