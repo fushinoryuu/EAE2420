@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Assignment9
 {
-    abstract class Heap<T> : IEnumerable<T> where T : IComparable
+    abstract class Heap<T> : IEnumerable<T>
     {
         protected T[] UnderlyingArray;
         protected int ElementCount = 0;
@@ -55,29 +55,29 @@ namespace Assignment9
             IsHeap = true;
         }
 
-        private void Swap(int first, int second)
+        protected void Swap(int first, int second)
         {
             T temp = UnderlyingArray[first];
             UnderlyingArray[first] = UnderlyingArray[second];
             UnderlyingArray[second] = temp;
         }
 
-        private int FindParent(int current_index)
+        protected int FindParent(int current_index)
         {
             return (current_index - 1) / 2;
         }
 
-        private int FindLeft(int current_index)
+        protected int FindLeft(int current_index)
         {
             return (current_index * 2) + 1;
         }
 
-        private int FindRight(int current_index)
+        protected int FindRight(int current_index)
         {
             return (current_index * 2) + 2;
         }
 
-        private void Resize()
+        protected void Resize()
         {
             T[] new_array = new T[UnderlyingArray.Length * 2];
 
