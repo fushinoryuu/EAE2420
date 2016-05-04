@@ -8,7 +8,7 @@ namespace Assignment9
     {
         public static void Main()
         {
-            //MaxTest();
+            MaxTest();
             MinTest();
         }
 
@@ -82,7 +82,7 @@ namespace Assignment9
 
         private static void MinTest()
         {
-            Console.WriteLine("This section is to test the MIN HEAP class.\n");
+            Console.WriteLine("\nThis section is to test the MIN HEAP class.\n");
 
             string sort_error = "The current value is not grater than the next value on the array.";
             string pop_error = "The current value is not less than the next value on the array";
