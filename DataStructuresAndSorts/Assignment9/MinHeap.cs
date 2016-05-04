@@ -13,12 +13,12 @@ namespace Assignment9
 
         public MinHeap(int starting_size)
         {
-            throw new NotImplementedException();
+            UnderlyingArray = new T[starting_size];
         }
 
         public MinHeap()
         {
-            throw new NotImplementedException();
+            UnderlyingArray = new T[5];
         }
 
         public int Count
@@ -31,7 +31,7 @@ namespace Assignment9
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            UnderlyingArray = new T[UnderlyingArray.Length];
         }
 
         public T this[int index]
@@ -94,7 +94,12 @@ namespace Assignment9
 
         private void Resize()
         {
-            throw new NotImplementedException();
+            T[] new_array = new T[UnderlyingArray.Length * 2];
+
+            for (int index = 0; index < UnderlyingArray.Length; index++)
+                new_array[index] = UnderlyingArray[index];
+
+            UnderlyingArray = new_array;
         }
 
         public IEnumerator<T> GetEnumerator()
