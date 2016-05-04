@@ -8,6 +8,12 @@ namespace Assignment9
     {
         public static void Main()
         {
+            MaxTest();
+            MinTest();
+        }
+
+        private static void MaxTest()
+        {
             string sort_error = "The current value is not less than the next value on the array.";
             string pop_error = "The current value is not grater than the next value on the array";
             string invariant_error = "The invariants have been broken.";
@@ -68,6 +74,13 @@ namespace Assignment9
             }
 
             Console.WriteLine("Heap too big to print on console, current elements in heap: {0}\n", myHeap.Count);
+
+            Console.WriteLine("----------------------------------------------------");
+        }
+
+        private static void MinTest()
+        {
+
         }
 
         private static void TestInvariant(MaxHeap<int> heap, string error)
