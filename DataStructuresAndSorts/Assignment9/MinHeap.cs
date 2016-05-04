@@ -62,7 +62,40 @@ namespace Assignment9
 
         private void Sink()
         {
-            throw new NotImplementedException();
+            int current_index = 0;
+
+            while (current_index < ElementCount)
+            {
+                int smallest_child = current_index;
+                int left_child = FindLeft(current_index);
+                int right_child = FindRight(current_index);
+
+                if (left_child >= ElementCount)
+                    break;
+
+                if (right_child >= ElementCount)
+                    smallest_child = left_child;
+
+                if (right_child < ElementCount &&
+                    UnderlyingArray[left_child].CompareTo(UnderlyingArray[right_child]) == 0)
+                    smallest_child = left_child;
+
+                if (right_child < ElementCount &&
+                    UnderlyingArray[left_child].CompareTo(UnderlyingArray[right_child]) > 0)
+                    smallest_child = right_child;
+
+                if (right_child < ElementCount &&
+                    UnderlyingArray[left_child].CompareTo(UnderlyingArray[right_child]) < 0)
+                    smallest_child = left_child;
+
+                if (UnderlyingArray[smallest_child].CompareTo(UnderlyingArray[current_index]) == 0)
+                    break;
+
+                if (UnderlyingArray[smallest_child].CompareTo(UnderlyingArray[current_index]) > 0)
+                    Swap(current_index, smallest_child);
+
+                current_index = smallest_child;
+            }
         }
 
         private void Swim()
