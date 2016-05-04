@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="MainClass.cs" />
     <Compile Include="MaxHeap.cs" />
+    <Compile Include="MinHeap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
