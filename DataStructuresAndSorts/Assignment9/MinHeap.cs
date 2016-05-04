@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Assignment9
 {
@@ -18,27 +16,71 @@ namespace Assignment9
 
         public override void Add(T new_value)
         {
-            throw new NotImplementedException();
+            if (!IsHeap)
+                BuildHeap();
+
+            if (ElementCount == UnderlyingArray.Length)
+                Resize();
+
+            UnderlyingArray[ElementCount] = new_value;
+            Swim();
+            ElementCount++;
         }
 
         public override T PopTop()
         {
-            throw new NotImplementedException();
+            if (!IsHeap)
+                BuildHeap();
+
+            T max = UnderlyingArray[0];
+
+            Swap(0, ElementCount - 1);
+            UnderlyingArray[ElementCount - 1] = default(T);
+            ElementCount--;
+            Sink();
+
+            return max;
         }
 
         public override void Sort()
+        {
+            if (!IsHeap)
+                BuildHeap();
+
+            OldCount = ElementCount;
+
+            for (int i = 0; i < OldCount; i++)
+            {
+                Swap(0, ElementCount - 1);
+                ElementCount--;
+                Sink();
+            }
+
+            IsHeap = false;
+            ElementCount = OldCount;
+        }
+
+        private void Sink()
         {
             throw new NotImplementedException();
         }
 
         private void Swim()
         {
-            throw new NotImplementedException();
-        }
+            int current_index = ElementCount;
 
-        private void Sink()
-        {
-            throw new NotImplementedException();
+            while (current_index != 0)
+            {
+                int parent_index = FindParent(current_index);
+
+                if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) == 0)
+                    break;
+
+                else if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) < 0)
+                    Swap(current_index, parent_index);
+
+                current_index = parent_index;
+            }
         }
     }
 }
