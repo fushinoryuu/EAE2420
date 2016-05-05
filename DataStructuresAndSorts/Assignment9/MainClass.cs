@@ -71,7 +71,7 @@ namespace Assignment9
 
             for (int i = 0; i < elements / 2; i++)
             {
-                myHeap.PopTop();
+                myHeap.PopMax();
                 TestMaxInvariant(myHeap, invariant_error);
             }
 
@@ -139,7 +139,7 @@ namespace Assignment9
 
             for (int i = 0; i < elements / 2; i++)
             {
-                myHeap.PopTop();
+                myHeap.PopMin();
                 TestMinInvariant(myHeap, invariant_error);
             }
 
@@ -178,13 +178,13 @@ namespace Assignment9
 
         private static void TestMaxPop(MaxHeap<int> heap, string error)
         {
-            int temp1 = heap.PopTop();
+            int temp1 = heap.PopMax();
             int count = heap.Count;
             Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", heap));
 
             for (int i = 0; i < count; i++)
             {
-                int temp2 = heap.PopTop();
+                int temp2 = heap.PopMax();
                 Debug.Assert(temp1 >= temp2, error);
                 temp1 = temp2;
 
@@ -194,13 +194,13 @@ namespace Assignment9
 
         private static void TestMinPop(MinHeap<int> heap, string error)
         {
-            int temp1 = heap.PopTop();
+            int temp1 = heap.PopMin();
             int count = heap.Count;
             Console.WriteLine("New Heap: [{0}]\n", string.Join(", ", heap));
 
             for (int i = 0; i < count; i++)
             {
-                int temp2 = heap.PopTop();
+                int temp2 = heap.PopMin();
                 Debug.Assert(temp1 <= temp2, error);
                 temp1 = temp2;
 

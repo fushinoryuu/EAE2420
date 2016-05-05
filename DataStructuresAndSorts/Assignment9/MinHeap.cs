@@ -27,7 +27,7 @@ namespace Assignment9
             ElementCount++;
         }
 
-        public override T PopTop()
+        public T PopMin()
         {
             if (!IsHeap)
                 BuildHeap();

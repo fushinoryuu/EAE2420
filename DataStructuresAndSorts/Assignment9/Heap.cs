@@ -33,8 +33,6 @@ namespace Assignment9
 
         abstract public void Add(T new_value);
 
-        abstract public T PopTop();
-
         abstract public void Sort();
 
         public void BuildHeap()
