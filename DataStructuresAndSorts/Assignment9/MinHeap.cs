@@ -2,16 +2,16 @@
 
 namespace Assignment9
 {
-    class MaxHeap<T> : Heap<T> where T : IComparable
+    class MinHeap<T> : Heap<T> where T : IComparable
     {
-        public MaxHeap()
-        {
-            UnderlyingArray = new T[5];
-        }
-        
-        public MaxHeap(int starting_size)
+        public MinHeap(int starting_size)
         {
             UnderlyingArray = new T[starting_size];
+        }
+
+        public MinHeap()
+        {
+            UnderlyingArray = new T[5];
         }
 
         public override void Add(T new_value)
@@ -27,7 +27,7 @@ namespace Assignment9
             ElementCount++;
         }
 
-        public T PopMax()
+        public T PopMin()
         {
             if (!IsHeap)
                 BuildHeap();
@@ -66,7 +66,7 @@ namespace Assignment9
 
             while (current_index < ElementCount)
             {
-                int max_child = current_index;
+                int smallest_child = current_index;
                 int left_child = FindLeft(current_index);
                 int right_child = FindRight(current_index);
 
@@ -74,27 +74,27 @@ namespace Assignment9
                     break;
 
                 if (right_child >= ElementCount)
-                    max_child = left_child;
+                    smallest_child = left_child;
 
                 if (right_child < ElementCount &&
                     UnderlyingArray[left_child].CompareTo(UnderlyingArray[right_child]) == 0)
-                    max_child = left_child;
+                    smallest_child = left_child;
 
                 if (right_child < ElementCount &&
                     UnderlyingArray[left_child].CompareTo(UnderlyingArray[right_child]) > 0)
-                    max_child = left_child;
+                    smallest_child = right_child;
 
                 if (right_child < ElementCount &&
                     UnderlyingArray[left_child].CompareTo(UnderlyingArray[right_child]) < 0)
-                    max_child = right_child;
+                    smallest_child = left_child;
 
-                if (UnderlyingArray[max_child].CompareTo(UnderlyingArray[current_index]) == 0)
+                if (UnderlyingArray[smallest_child].CompareTo(UnderlyingArray[current_index]) == 0)
                     break;
 
-                if (UnderlyingArray[max_child].CompareTo(UnderlyingArray[current_index]) > 0)
-                    Swap(current_index, max_child);
+                if (UnderlyingArray[smallest_child].CompareTo(UnderlyingArray[current_index]) < 0)
+                    Swap(current_index, smallest_child);
 
-                current_index = max_child;
+                current_index = smallest_child;
             }
         }
 
@@ -109,7 +109,7 @@ namespace Assignment9
                 if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) == 0)
                     break;
 
-                else if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) > 0)
+                else if (UnderlyingArray[current_index].CompareTo(UnderlyingArray[parent_index]) < 0)
                     Swap(current_index, parent_index);
 
                 current_index = parent_index;

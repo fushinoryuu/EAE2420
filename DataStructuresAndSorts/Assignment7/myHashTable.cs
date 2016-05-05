@@ -215,7 +215,7 @@ namespace Assignment7
         {
             for (int index = 0; index < UnderlyingArray.Length; index++)
                 foreach (KeyValuePair<TKey, TValue> pair in UnderlyingArray[index])
-                    if (pair.Equals(item)) //(pair.Value.Equals(item))
+                    if (pair.Equals(item))
                     {
                         UnderlyingArray[index].Remove(item);
                         return true;
